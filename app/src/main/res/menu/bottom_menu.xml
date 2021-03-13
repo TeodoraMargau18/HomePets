@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:title="@string/general" android:icon="@drawable/ic_general"
+        app:showAsAction="ifRoom" android:id="@id/profilGeneralFragment" />
+    <item android:title="@string/vaccine" android:icon="@drawable/syringe"
+        app:showAsAction="ifRoom" android:id="@id/vaccineFragment"/>
+    <item android:title="@string/interventii" android:icon="@drawable/medicaltools"
+        app:showAsAction="ifRoom" android:id="@id/interventiiFragment"/>
+    <item android:title="@string/deparazitari" android:icon="@drawable/nobugs"
+        app:showAsAction="ifRoom" android:id="@id/deparazitariFragment"/>
+</menu>

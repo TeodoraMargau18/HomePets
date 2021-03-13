@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BanchelorApp</string>
+    <string name="app_name">HomePets</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -9,8 +9,28 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="creaza_cont">Crează cont</string>
+    <string name="creaza_cont">Creează cont</string>
     <string name="introduceti_adresa_de_email">Introduceti adresa de email</string>
-    <string name="parola">Parola</string>
     <string name="login">Login</string>
+    <string name="nume">Nume</string>
+    <string name="prenume">Prenume</string>
+    <string name="adresa">Adresa</string>
+    <string name="parolaInregistrare">Parola</string>
+    <string name="inregistrare">Inregistrare</string>
+    <string name="animalutele_mele">Animalutele mele</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="general">General</string>
+    <string name="vaccine">Vaccine</string>
+    <string name="interventii">Interventii</string>
+    <string name="deparazitari">Deparazitari</string>
+    <string name="email">Email</string>
+    <string name="telefon">Telefon</string>
+    <string name="parola">Parola</string>
+    <string name="am_deja_cont">Am deja cont</string>
+    <string name="sunt_deja_membru">Sunt deja membru</string>
+    <string name="inregistreaz_te">Inregistrează-te</string>
+    <string name="fii_parte_din_comunitatea_noastr">Fii parte din comunitatea noastră</string>
+    <string name="inregistrareEfectuata">Inregisrare efectuată</string>
+    <string name="adauga">Adauga</string>
 </resources>

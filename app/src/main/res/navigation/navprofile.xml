@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navprofileee"
+    app:startDestination="@id/profilGeneralFragment">
+
+    <fragment
+        android:id="@+id/profilGeneralFragment"
+        android:name="com.example.banchelorapp.ProfilGeneralFragment"
+        android:label="fragment_profil_general"
+        tools:layout="@layout/fragment_profil_general" />
+
+    <fragment
+        android:id="@+id/vaccineFragment"
+        android:name="com.example.banchelorapp.VaccineFragment"
+        android:label="fragment_vaccine"
+        tools:layout="@layout/fragment_vaccine" />
+    <fragment
+        android:id="@+id/deparazitariFragment"
+        android:name="com.example.banchelorapp.DeparazitariFragment"
+        android:label="fragment_deparazitari"
+        tools:layout="@layout/fragment_deparazitari" />
+    <fragment
+        android:id="@+id/interventiiFragment"
+        android:name="com.example.banchelorapp.InterventiiFragment"
+        android:label="fragment_interventii"
+        tools:layout="@layout/fragment_interventii" />
+
+</navigation>
