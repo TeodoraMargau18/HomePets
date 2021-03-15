@@ -1,8 +1,11 @@
 package com.example.banchelorapp.utils;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
-public class Salon {
+public class Salon implements Parcelable {
     private String despre;
     private ArrayList<ServiciuSalon> servicii;//Fac clasa ServiciuSalon cu denumireServiciu si tarifServiciu
     private String telefon;
@@ -17,6 +20,42 @@ public class Salon {
         this.site = site;
         this.locatie = locatie;
         this.program = program;
+    }
+
+    protected Salon(Parcel in) {
+        despre = in.readString();
+        servicii = in.createTypedArrayList(ServiciuSalon.CREATOR);
+        telefon = in.readString();
+        site = in.readString();
+        locatie = in.readString();
+        program = in.createStringArrayList();
+    }
+
+    public static final Creator<Salon> CREATOR = new Creator<Salon>() {
+        @Override
+        public Salon createFromParcel(Parcel in) {
+            return new Salon(in);
+        }
+
+        @Override
+        public Salon[] newArray(int size) {
+            return new Salon[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(despre);
+        dest.writeTypedList(servicii);
+        dest.writeString(telefon);
+        dest.writeString(site);
+        dest.writeString(locatie);
+        dest.writeStringList(program);
     }
 
     public String getDespre() {
@@ -78,4 +117,5 @@ public class Salon {
                 ", program=" + program +
                 '}';
     }
+
 }

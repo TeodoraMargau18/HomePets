@@ -7,39 +7,40 @@
     tools:context=".MainActivity"
 android:weightSum="3"
     android:orientation="vertical"
+    android:id="@+id/mainActivityID"
     >
 
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="76dp"
         android:layout_weight="1"
-        android:onClick="sanatateFunction"
-        android:text="Sanatate"
-
+        android:background="@drawable/sanatate1"
+        android:fontFamily="@font/annie_use_your_telescope"
         android:textAlignment="center"
+        android:textColor="@color/black"
+
+        android:onClick="sanatateFunction"
+
 
         android:textSize="50dp" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="76dp"
         android:layout_weight="1"
         android:onClick="frumuseteFunction"
-        android:text="Frumusete"
-
-        android:textAlignment="center"
-        android:textSize="50dp" />
+        android:background="@drawable/masinascris" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="76dp"
         android:layout_weight="1"
         android:onClick="adoptiiFunction"
-        android:text="Adoptii"
+        android:background="@drawable/adoptie"
 
         android:textAlignment="center"
         android:textSize="50dp" />

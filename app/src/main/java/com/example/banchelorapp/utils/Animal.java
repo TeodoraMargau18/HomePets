@@ -1,14 +1,18 @@
 package com.example.banchelorapp.utils;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.example.banchelorapp.utils.interventii.Deparazitare;
-import com.example.banchelorapp.utils.interventii.Operatie;
+import com.example.banchelorapp.utils.interventii.Interventie;
 import com.example.banchelorapp.utils.interventii.Vaccin;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-public class Animal {
+public class Animal implements Parcelable {
 //emailProp, Nume, Rasa, sex,dataN,culoare,vaccine(lista),operatii(lista),Ddeparazitari(lista)
     private String emailProprietar;
     private String numeAnimal;
@@ -16,24 +20,77 @@ public class Animal {
     private String sexAnimal;//feminin/masculin
     private Date dataNasteriiAnimal;
     private String culoareAnimal;
-    private List<Vaccin> vaccineAnimal;
-    private List<Operatie> operatiiAnimal;
-    private List<Deparazitare> deparazitariAnimal;
+    private ArrayList<Vaccin> vaccinuriAnimal;
+    private ArrayList<Interventie> operatiiAnimal;
+    private ArrayList<Deparazitare> deparazitariAnimal;
+
+    public Animal() {
+    }
 
     public Animal(String emailProprietar,
-                  String numeAnimal, String rasaAnimal,
-                  String sexAnimal, Date dataNasteriiAnimal, String culoareAnimal,
-                  List<Vaccin> vaccineAnimal, List<Operatie> operatiiAnimal,
-                  List<Deparazitare> deparazitariAnimal) {
+                  String numeAnimal, String rasaAnimal, String sexAnimal, Date dataNasteriiAnimal, String culoareAnimal,
+                  ArrayList<Vaccin> vaccinuriAnimal, ArrayList<Interventie> operatiiAnimal,
+                  ArrayList<Deparazitare> deparazitariAnimal) {
         this.emailProprietar = emailProprietar;
         this.numeAnimal = numeAnimal;
         this.rasaAnimal = rasaAnimal;
         this.sexAnimal = sexAnimal;
         this.dataNasteriiAnimal = dataNasteriiAnimal;
         this.culoareAnimal = culoareAnimal;
-        this.vaccineAnimal = vaccineAnimal;
+        this.vaccinuriAnimal = vaccinuriAnimal;
         this.operatiiAnimal = operatiiAnimal;
         this.deparazitariAnimal = deparazitariAnimal;
+    }
+
+    protected Animal(Parcel in) {
+        emailProprietar = in.readString();
+        numeAnimal = in.readString();
+        rasaAnimal = in.readString();
+        sexAnimal = in.readString();
+        culoareAnimal = in.readString();
+        vaccinuriAnimal = in.createTypedArrayList(Vaccin.CREATOR);
+        operatiiAnimal = in.createTypedArrayList(Interventie.CREATOR);
+        deparazitariAnimal = in.createTypedArrayList(Deparazitare.CREATOR);
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(emailProprietar);
+        dest.writeString(numeAnimal);
+        dest.writeString(rasaAnimal);
+        dest.writeString(sexAnimal);
+        dest.writeString(culoareAnimal);
+        dest.writeTypedList(vaccinuriAnimal);
+        dest.writeTypedList(operatiiAnimal);
+        dest.writeTypedList(deparazitariAnimal);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Animal> CREATOR = new Creator<Animal>() {
+        @Override
+        public Animal createFromParcel(Parcel in) {
+            return new Animal(in);
+        }
+
+        @Override
+        public Animal[] newArray(int size) {
+            return new Animal[size];
+        }
+    };
+
+    public String returneazaVarstaGen(){
+        LocalDate today = LocalDate.now();
+        LocalDate dataNastere
+                = LocalDate.of(dataNasteriiAnimal.getYear(),
+                dataNasteriiAnimal.getMonth(),
+                dataNasteriiAnimal.getDay());  //Data nasterii
+
+        Period p=Period.between(dataNastere,today);
+        return getSexAnimal()+" - "+p.getYears()+" ani si "+p.getMonths()+" luni ";
     }
 
     public String getEmailProprietar() {
@@ -84,42 +141,27 @@ public class Animal {
         this.culoareAnimal = culoareAnimal;
     }
 
-    public List<Vaccin> getVaccineAnimal() {
-        return vaccineAnimal;
+    public ArrayList<Vaccin> getVaccinuriAnimal() {
+        return vaccinuriAnimal;
     }
 
-    public void setVaccineAnimal(List<Vaccin> vaccineAnimal) {
-        this.vaccineAnimal = vaccineAnimal;
+    public void setVaccinuriAnimal(ArrayList<Vaccin> vaccinuriAnimal) {
+        this.vaccinuriAnimal = vaccinuriAnimal;
     }
 
-    public List<Operatie> getOperatiiAnimal() {
+    public ArrayList<Interventie> getOperatiiAnimal() {
         return operatiiAnimal;
     }
 
-    public void setOperatiiAnimal(List<Operatie> operatiiAnimal) {
+    public void setOperatiiAnimal(ArrayList<Interventie> operatiiAnimal) {
         this.operatiiAnimal = operatiiAnimal;
     }
 
-    public List<Deparazitare> getDeparazitariAnimal() {
+    public ArrayList<Deparazitare> getDeparazitariAnimal() {
         return deparazitariAnimal;
     }
 
-    public void setDeparazitariAnimal(List<Deparazitare> deparazitariAnimal) {
+    public void setDeparazitariAnimal(ArrayList<Deparazitare> deparazitariAnimal) {
         this.deparazitariAnimal = deparazitariAnimal;
-    }
-
-    @Override
-    public String toString() {
-        return "Animal{" +
-                "emailProprietar='" + emailProprietar + '\'' +
-                ", numeAnimal='" + numeAnimal + '\'' +
-                ", rasaAnimal='" + rasaAnimal + '\'' +
-                ", sexAnimal='" + sexAnimal + '\'' +
-                ", dataNasteriiAnimal=" + dataNasteriiAnimal +
-                ", culoareAnimal='" + culoareAnimal + '\'' +
-                ", vaccineAnimal=" + vaccineAnimal +
-                ", operatiiAnimal=" + operatiiAnimal +
-                ", deparazitariAnimal=" + deparazitariAnimal +
-                '}';
     }
 }

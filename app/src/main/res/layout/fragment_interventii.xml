@@ -5,15 +5,19 @@
     android:layout_height="match_parent"
     tools:context=".InterventiiFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Interventii"
-        android:textAlignment="center"
-        android:backgroundTint="@color/black"
+        android:background="@drawable/lvanimele">
 
-        android:background="@drawable/email"
-        />
+
+        <ListView
+            android:id="@+id/interventiiListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@color/white" />
+
+    </LinearLayout>
 
 </FrameLayout>

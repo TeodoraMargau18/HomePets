@@ -5,13 +5,19 @@
     android:layout_height="match_parent"
     tools:context=".DeparazitariFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Deparazitari"
-        android:textAlignment="center"
-        android:background="@drawable/homepet"
-        />
+        android:background="@drawable/lvanimele">
+
+
+        <ListView
+            android:id="@+id/deparazitariListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@color/white" />
+
+    </LinearLayout>
 
 </FrameLayout>

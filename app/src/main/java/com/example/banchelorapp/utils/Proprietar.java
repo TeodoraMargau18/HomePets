@@ -1,8 +1,11 @@
 package com.example.banchelorapp.utils;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
-public class Proprietar {
+public class Proprietar implements Parcelable {
 //        nume, prenume, mail, adresa, numar Tel, parola
     private String nume;
     private String prenume;
@@ -21,6 +24,45 @@ public class Proprietar {
         this.parola = parola;
         this.listaAnimale = listaAnimale;
     }
+
+    protected Proprietar(Parcel in) {
+        nume = in.readString();
+        prenume = in.readString();
+        adresa = in.readString();
+        id = in.readString();
+        numarTel = in.readString();
+        parola = in.readString();
+        listaAnimale = in.createTypedArrayList(Animal.CREATOR);
+    }
+
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(nume);
+        dest.writeString(prenume);
+        dest.writeString(adresa);
+        dest.writeString(id);
+        dest.writeString(numarTel);
+        dest.writeString(parola);
+        dest.writeTypedList(listaAnimale);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Proprietar> CREATOR = new Creator<Proprietar>() {
+        @Override
+        public Proprietar createFromParcel(Parcel in) {
+            return new Proprietar(in);
+        }
+
+        @Override
+        public Proprietar[] newArray(int size) {
+            return new Proprietar[size];
+        }
+    };
 
     public String getNume() {
         return nume;

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="100"
+    android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/imgListaVaccinuri"
+            android:src="@drawable/syringe"
+
+            android:layout_marginBottom="5dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_weight="66.6"
+            />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="33.3"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp">
+            <TextView
+                android:id="@+id/tvNumeVaccin"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="Nume vaccin"
+                android:fontFamily="@font/annie_use_your_telescope"
+                android:textSize="25dp"
+                android:textColor="@color/design_default_color_primary_dark"
+                />
+            <TextView
+                android:id="@+id/tvDataVaccin"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:paddingLeft="2dp"
+                android:text="Data vaccin - Data viitorului vaccin"
+                android:fontFamily="@font/annie_use_your_telescope"
+                android:textSize="15dp"
+                android:textColor="#4994BD"
+                />
+            <TextView
+                android:id="@+id/tvNumeMedic"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:paddingLeft="2dp"
+                android:text="Nume medic"
+                android:fontFamily="@font/annie_use_your_telescope"
+                android:textSize="15dp"
+                android:textColor="#4994BD"
+                />
+
+        </LinearLayout>
+
+</LinearLayout>

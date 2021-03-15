@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="100">
+    
+    <ImageView
+        android:id="@+id/imgListaAnimale"
+        android:src="@drawable/sysytest"
+
+        android:textAlignment="center"
+        android:layout_marginBottom="5dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_weight="66.6"
+        />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="33.3"
+        android:layout_marginBottom="5dp"
+        >
+        <TextView
+            android:id="@+id/tvNumeAnimalListView"
+           android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="Sysy"
+            android:fontFamily="@font/annie_use_your_telescope"
+            android:textSize="30dp"
+            android:textColor="@color/design_default_color_primary_dark"
+            />
+        <TextView
+            android:id="@+id/tvGenVarsta"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="femela - 9 ani si o luna"
+            android:fontFamily="@font/annie_use_your_telescope"
+            android:textSize="30dp"
+            android:textColor="#4994BD"
+            />
+    </LinearLayout>
+
+</LinearLayout>

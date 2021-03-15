@@ -29,8 +29,8 @@ public class ListaSaloaneActivity extends AppCompatActivity {
 
 ArrayList<Salon> listaSaloaneStr=new ArrayList<>();
 
-        ServiciuSalon s1=new ServiciuSalon("spalat",50);
-        ServiciuSalon s2=new ServiciuSalon("spalat",50);
+        ServiciuSalon s1=new ServiciuSalon("Spalat",40,"pisica");
+        ServiciuSalon s2=new ServiciuSalon("Spalat și tuns",100,"pisica");
 ArrayList<ServiciuSalon> servicii=new ArrayList<>();
 servicii.add(s1);
 servicii.add(s2);

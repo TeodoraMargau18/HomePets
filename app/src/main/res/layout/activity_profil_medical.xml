@@ -28,7 +28,6 @@
         android:background="#3fc7f3"
         app:itemIconSize="30dp"
         android:layout_gravity="bottom"
-        android:foregroundGravity=""
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
