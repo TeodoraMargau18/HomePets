@@ -20,8 +20,6 @@ import com.example.banchelorapp.utils.interventii.Vaccin;
 import java.util.ArrayList;
 
 public class InterventiiFragment extends Fragment {
-
-
     public static final String INTERVENTII_KEY="transferAnimal";
 
     Bundle bundle;
@@ -44,13 +42,16 @@ public class InterventiiFragment extends Fragment {
         interventiiListView=view.findViewById(R.id.interventiiListView);
         Animal animal;
         if(getArguments()!=null){
+
+            Log.i("Interventii Fragment","A preluat argumentul");
             animal=getArguments().getParcelable(InterventiiFragment.INTERVENTII_KEY);
-            Log.e("Interventii fragment",String.valueOf( animal.getOperatiiAnimal().size()));
+//            Log.e("Interventii fragment",String.valueOf( animal.getOperatiiAnimal().size()));
         }
         else
             animal=new Animal();
         if(getContext()!=null)
         {
+            Log.i("Interventii Fragment","A preluat context");
             ArrayList<Interventie> listainterventii=animal.getOperatiiAnimal();
             ListaInterventiiAdapter adapter=new ListaInterventiiAdapter
                     (getContext().getApplicationContext(),

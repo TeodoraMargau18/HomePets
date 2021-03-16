@@ -12,6 +12,7 @@ public class Salon implements Parcelable {
     private String site;
     private String locatie;
     private ArrayList<String> program;//O sa am fie l-v 08:00-17:00 , sambata 09:12 fie tot orarul intr-un String
+    //Adauga o lista de programari
 
     public Salon(String despre, ArrayList<ServiciuSalon> servicii, String telefon, String site, String locatie, ArrayList<String> program) {
         this.despre = despre;

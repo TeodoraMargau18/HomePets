@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.banchelorapp.adapter.ListaAnimaleAdapter;
 import com.example.banchelorapp.utils.Animal;
@@ -23,7 +24,6 @@ public class AnimaleleMeleActivity extends AppCompatActivity {
     Intent intent;
     public static final String tranferAnimal="ANIMAL";
     private  static  final String AnimaleleMele_TAG="AnimaleleMele";
-    ImageView imgAnimal;
     ListView animalListView;
 
     @Override
@@ -31,7 +31,6 @@ public class AnimaleleMeleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animalele_mele);
         Log.e("Activitate deschisa","Animalele mele");
-        imgAnimal=findViewById(R.id.animalImageView);
 
 //testez
        Date dataMMMM=new Date(1999  ,06,01);
@@ -77,11 +76,30 @@ public class AnimaleleMeleActivity extends AppCompatActivity {
         listaDeparazitari.add(deparazitare2);
         listaDeparazitari.add(deparazitare);
         listaDeparazitari.add(deparazitare2);
+        listaDeparazitari.add(deparazitare);
+        listaDeparazitari.add(deparazitare2);
+        listaDeparazitari.add(deparazitare);
+        listaDeparazitari.add(deparazitare2);
+        listaDeparazitari.add(deparazitare);
+        listaDeparazitari.add(deparazitare2);
+        listaDeparazitari.add(deparazitare);
+        listaDeparazitari.add(deparazitare2);
        Animal a= new Animal("test","Gogo","bichon","feminin",
                 dataMMMM,"crem",
                 listaVaccinuri,
                 listaOperatii,listaDeparazitari);
         ArrayList<Animal> listaAnimale=new ArrayList<Animal>();
+        listaAnimale.add(a);
+        listaAnimale.add(a);
+        listaAnimale.add(a);
+        listaAnimale.add(a);
+        listaAnimale.add(a);
+        listaAnimale.add(a);
+        listaAnimale.add(a);
+        listaAnimale.add(a);
+        listaAnimale.add(a);
+        listaAnimale.add(a);
+        listaAnimale.add(a);
         listaAnimale.add(a);
         listaAnimale.add(a);
         animalListView=findViewById(R.id.animalsListView);
@@ -95,7 +113,11 @@ public class AnimaleleMeleActivity extends AppCompatActivity {
         animalListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                imgAnimal.setImageResource(R.drawable.sysytest);
+                DialogFragmentAnimal dialogFragmentAnimal=new DialogFragmentAnimal();
+                dialogFragmentAnimal.show(getSupportFragmentManager(),"MyDialogFragment");
+
+
+                Toast.makeText(getApplicationContext(),"Hello ai apasat ceva ",Toast.LENGTH_LONG).show();
             }
         });
         animalListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {

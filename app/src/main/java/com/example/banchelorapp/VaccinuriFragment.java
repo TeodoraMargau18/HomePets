@@ -24,11 +24,11 @@ import java.util.List;
 public class VaccinuriFragment extends Fragment {
 
     public static final String VACCINURI_KEY="transferAnimal";
-
     Bundle bundle;
     ListView vaccinuriListView;
 
     public VaccinuriFragment() {
+
     }
     public static VaccinuriFragment newInstance(Animal animal){
         VaccinuriFragment fragment=new VaccinuriFragment();

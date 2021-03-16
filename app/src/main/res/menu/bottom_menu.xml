@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:title="@string/general" android:icon="@drawable/ic_general"
         app:showAsAction="ifRoom" android:id="@id/profilGeneralFragment" />
-    <item android:title="@string/vaccine" android:icon="@drawable/injectie"
-        app:showAsAction="ifRoom" android:id="@id/vaccineFragment"/>
+    <item android:title="@string/vaccinuri" android:icon="@drawable/injectie"
+        app:showAsAction="ifRoom" android:id="@id/vaccinuriFragment"/>
     <item android:title="@string/interventii" android:icon="@drawable/medicaltools"
         app:showAsAction="ifRoom" android:id="@id/interventiiFragment"/>
     <item android:title="@string/deparazitari" android:icon="@drawable/nobugs"

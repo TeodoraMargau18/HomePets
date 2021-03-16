@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2DAED6">
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="440dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/dialogFragmentImg"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/sysytest"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="2dp" />
+
+        <TextView
+            android:id="@+id/dialogFragmentNume"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dialogFragmentImg"
+            android:fontFamily="@font/annie_use_your_telescope"
+            android:text="Gogo"
+            android:textAlignment="center"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            android:layout_below="@+id/dialogFragmentNume"
+            android:orientation="vertical"
+            android:weightSum="4">
+            <!--Inceput llSEx-->
+            <LinearLayout
+                android:id="@+id/dialogFragmentLLSex"
+                android:layout_width="match_parent"
+                android:layout_height="47dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <ImageView
+                    android:id="@+id/dialogFragmentSexImg"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:src="@drawable/female" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.7"
+                    android:orientation="vertical"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:id="@+id/dialogFragmentSpecie"
+                        android:layout_width="250dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:text="SPECIE"
+                        android:textSize="23dp" />
+
+                    <TextView
+                        android:id="@+id/dialogFragmentRasa"
+                        android:layout_width="250dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:text="Rasa"
+                        android:textSize="23dp" />
+
+                </LinearLayout>
+            </LinearLayout>
+            <!--Sfarsit llSEx-->
+            <!--Inceput LLDataN-->
+            <LinearLayout
+                android:id="@+id/dialogFragmentLLDataN"
+                android:layout_width="match_parent"
+                android:layout_height="47dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/dialogFragmentNascut"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:paddingTop="20dp"
+                    android:text="@string/n_scut"
+                    android:textAlignment="center"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.7"
+                    android:orientation="vertical"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:id="@+id/dialogFragmentDataN"
+                        android:layout_width="253dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:text="Data nasterii"
+                        android:textSize="23dp" />
+
+                    <TextView
+                        android:id="@+id/dialogFragmentVarsta"
+                        android:layout_width="250dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:text="Varsta"
+                        android:textSize="23dp" />
+
+                </LinearLayout>
+            </LinearLayout>
+            <!--Sfarsit LLDataN-->
+
+            <!--   inceput notite -->
+            <LinearLayout
+                android:id="@+id/dialogFragmentLLNotite"
+                android:layout_width="match_parent"
+                android:layout_height="47dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/dialogFragmentNotite"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:paddingTop="20dp"
+                    android:text="@string/notite"
+                    android:textAlignment="center"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etNotite"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.7"
+                    android:orientation="vertical"
+                    android:text="Test"
+                    android:textSize="20dp"
+                    android:weightSum="1" />
+            </LinearLayout>
+            <!--   sfarsit notite -->
+
+            <!--Inceput llSEx-->
+            <LinearLayout
+                android:id="@+id/dialogFragmentLLButoane"
+                android:layout_width="match_parent"
+                android:layout_height="47dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/dialogFragmentInchide"
+                        android:layout_width="250dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="0.5"
+                        android:background="#2A1F95"
+                        android:paddingTop="7dp"
+                        android:text="Inchide"
+
+                        android:textAlignment="center"
+                        android:textSize="20dp" />
+
+                    <Button
+                        android:id="@+id/dialogFragmentSalveaza"
+                        android:layout_width="250dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="0.5"
+                        android:background="#2A1F95"
+                        android:paddingTop="7dp"
+                        android:text="Salveaza"
+                        android:textAlignment="center"
+                        android:textSize="20dp" />
+
+                </LinearLayout>
+            </LinearLayout>
+            <!--Sfarsit llSEx-->
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

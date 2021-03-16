@@ -70,7 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/prenume"
-                android:textColor="#1A86A8"
+                android:textColor="#0C556C"
                 android:textColorHighlight="#1A86A8"
                 android:textColorHint="#0C556C"
                 android:textColorLink="#1A86A8" />
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
 
                 android:hint="@string/adresa"
-                android:textColor="#1A86A8"
+                android:textColor="#0C556C"
                 android:textColorHighlight="#1A86A8"
                 android:textColorHint="#0C556C"
                 android:textColorLink="#1A86A8" />
@@ -119,7 +119,7 @@
 
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
-                android:textColor="#1A86A8"
+                android:textColor="#0C556C"
                 android:textColorHighlight="#1A86A8"
                 android:textColorHint="#0C556C"
                 android:textColorLink="#1A86A8" />
@@ -144,7 +144,7 @@
                 android:inputType="phone"
 
                 android:hint="@string/telefon"
-                android:textColor="#1A86A8"
+                android:textColor="#0C556C"
                 android:textColorHighlight="#1A86A8"
                 android:textColorHint="#0C556C"
                 android:textColorLink="#1A86A8" />
@@ -169,10 +169,10 @@
                 android:hint="@string/parola"
 
                 android:inputType="textPassword"
-                android:textColor="#1A86A8"
+                android:textColor="#0C556C"
                 android:textColorHighlight="#1A86A8"
                 android:textColorHint="#0C556C"
-                android:textColorLink="#1A86A8" />
+                android:textColorLink="#1A86A8"/>
         </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout

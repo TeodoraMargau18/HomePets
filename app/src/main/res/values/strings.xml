@@ -20,7 +20,7 @@
     <string name="animalutele_mele">Animalele mele</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="general">General</string>
-    <string name="vaccine">Vaccine</string>
+    <string name="vaccinuri">Vaccinuri</string>
     <string name="interventii">Interventii</string>
     <string name="deparazitari">Deparazitari</string>
     <string name="email">Email</string>
@@ -33,4 +33,6 @@
     <string name="inregistrareEfectuata">Inregisrare efectuată</string>
     <string name="adauga">Adauga</string>
     <string name="acas">Acasă</string>
+    <string name="n_scut">Născut</string>
+    <string name="notite">Notite</string>
 </resources>

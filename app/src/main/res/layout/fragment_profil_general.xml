@@ -3,14 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfilGeneralFragment">
+    tools:context=".ProfilGeneralFragment"
+    android:background="@color/white"
+    >
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="General"
-        android:textAlignment="center"
-        android:backgroundTint="@color/black"
-        />
+        >
+        <ImageView
+            android:id="@+id/imgFragmentGeneral"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:src="@drawable/sysytest"
+            />
+        <ExpandableListView
+            android:id="@+id/expLvProfilGeneral"
+            android:layout_below="@+id/imgFragmentGeneral"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="55dp"
+            />
+
+
+    </RelativeLayout>
 
 </FrameLayout>

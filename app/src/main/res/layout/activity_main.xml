@@ -16,7 +16,7 @@ android:weightSum="3"
         android:layout_width="match_parent"
         android:layout_height="76dp"
         android:layout_weight="1"
-        android:background="@drawable/sanatate1"
+        android:background="@drawable/sanatate"
         android:fontFamily="@font/annie_use_your_telescope"
         android:textAlignment="center"
         android:textColor="@color/black"
@@ -32,7 +32,7 @@ android:weightSum="3"
         android:layout_height="76dp"
         android:layout_weight="1"
         android:onClick="frumuseteFunction"
-        android:background="@drawable/masinascris" />
+        android:background="@drawable/frumusete2" />
 
     <TextView
         android:id="@+id/textView3"
@@ -40,7 +40,7 @@ android:weightSum="3"
         android:layout_height="76dp"
         android:layout_weight="1"
         android:onClick="adoptiiFunction"
-        android:background="@drawable/adoptie"
+        android:background="@drawable/adoptiefinal"
 
         android:textAlignment="center"
         android:textSize="50dp" />

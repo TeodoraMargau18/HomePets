@@ -10,7 +10,7 @@ public class Proprietar implements Parcelable {
     private String nume;
     private String prenume;
     private String adresa;
-    private String id;
+    private String id;//CNP?
     private String numarTel;
     private String parola;
     private ArrayList<Animal> listaAnimale;

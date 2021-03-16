@@ -12,9 +12,9 @@
         tools:layout="@layout/fragment_profil_general" />
 
     <fragment
-        android:id="@+id/vaccineFragment"
+        android:id="@+id/vaccinuriFragment"
         android:name="com.example.banchelorapp.VaccinuriFragment"
-        android:label="fragment_vaccine"
+        android:label="fragment_vaccinuri"
         tools:layout="@layout/fragment_vaccinuri" />
     <fragment
         android:id="@+id/deparazitariFragment"

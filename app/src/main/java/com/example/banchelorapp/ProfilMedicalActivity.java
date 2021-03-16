@@ -36,30 +36,24 @@ public class ProfilMedicalActivity extends AppCompatActivity {
                         Fragment selectedFragment=null;
                         Log.e("Profil Medical","Se Apeleaza ceva");
                         bundle=new Bundle();
-//                        bundle.putParcelable
-//                                (ProfilMedicalActivity.tranferAnimalProfil,animal);
                         switch (item.getItemId()){
                             case R.id.profilGeneralFragment:
                                 selectedFragment=new ProfilGeneralFragment();
-                                selectedFragment.setArguments(bundle);
                                 getSupportFragmentManager().beginTransaction().
                                         replace(R.id.fragment_container,selectedFragment).commit();
                                 break;
                             case R.id.interventiiFragment:
-                                selectedFragment=new InterventiiFragment();
-                                selectedFragment.setArguments(bundle);
+                                selectedFragment=InterventiiFragment.newInstance(animal);
                                 getSupportFragmentManager().beginTransaction().
                                         replace(R.id.fragment_container,selectedFragment).commit();
                                 break;
                             case R.id.deparazitariFragment:
-                                selectedFragment=new DeparazitariFragment();
-                                selectedFragment.setArguments(bundle);
+                                selectedFragment= DeparazitariFragment.newInstance(animal);
                                 getSupportFragmentManager().beginTransaction().
                                         replace(R.id.fragment_container,selectedFragment).commit();
                                 break;
-                            case R.id.vaccineFragment:
+                            case R.id.vaccinuriFragment:
                                 selectedFragment=VaccinuriFragment.newInstance(animal);
-//                                selectedFragment.setArguments(bundle);
                                 getSupportFragmentManager().beginTransaction()
                                         .replace(R.id.fragment_container,selectedFragment)
                                         .commit();
