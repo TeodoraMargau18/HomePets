@@ -4,14 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListaSaloaneActivity">
-
-    <ListView
-        android:id="@+id/listViewSaloane"
+    android:background="#2DAED6">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="match_parent">
+        <ImageView
+        android:id="@+id/ivSaloane"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:srcCompat="@drawable/ivsaloane"
+
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+        <ListView
+            android:id="@+id/listViewSaloane"
+            android:layout_width="match_parent"
+            android:layout_height="550dp"
+            android:layout_below="@+id/ivSaloane"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivSaloane">
+
+        </ListView>
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

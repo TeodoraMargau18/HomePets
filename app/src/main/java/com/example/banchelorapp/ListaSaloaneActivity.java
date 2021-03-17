@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.banchelorapp.adapter.ListaSaloaneAdapter;
 import com.example.banchelorapp.utils.Animal;
 import com.example.banchelorapp.utils.Salon;
 import com.example.banchelorapp.utils.ServiciuSalon;
@@ -25,6 +27,7 @@ public class ListaSaloaneActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_saloane);
 
+        Log.e("Activitate deschisa","Saloanele mele");
         listaSaloane=findViewById(R.id.listViewSaloane);
 
 ArrayList<Salon> listaSaloaneStr=new ArrayList<>();
@@ -42,11 +45,18 @@ servicii.add(s2);
         program.add(p2);
 
 
-Salon salon=new Salon("Test",servicii,"0878","site","locatie",program);
+Salon salon=new Salon("Mirra's Pet","Test",servicii,"0878","site","locatie",program);
         listaSaloaneStr.add(salon);
-        ArrayAdapter<Salon> adapter=new ArrayAdapter<>
+        listaSaloaneStr.add(salon);
+        listaSaloaneStr.add(salon);
+        listaSaloaneStr.add(salon);
+        listaSaloaneStr.add(salon);
+        listaSaloaneStr.add(salon);
+        listaSaloaneStr.add(salon);
+        listaSaloaneStr.add(salon);
+        ListaSaloaneAdapter adapter=new ListaSaloaneAdapter
                 (getApplicationContext(),
-                        android.R.layout.simple_list_item_1,
+                        R.layout.lista_saloane_adapter,
                         listaSaloaneStr);
         listaSaloane.setAdapter(adapter);
 

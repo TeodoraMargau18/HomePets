@@ -6,6 +6,8 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 
 public class Salon implements Parcelable {
+
+    private String numeSalon;
     private String despre;
     private ArrayList<ServiciuSalon> servicii;//Fac clasa ServiciuSalon cu denumireServiciu si tarifServiciu
     private String telefon;
@@ -14,7 +16,8 @@ public class Salon implements Parcelable {
     private ArrayList<String> program;//O sa am fie l-v 08:00-17:00 , sambata 09:12 fie tot orarul intr-un String
     //Adauga o lista de programari
 
-    public Salon(String despre, ArrayList<ServiciuSalon> servicii, String telefon, String site, String locatie, ArrayList<String> program) {
+    public Salon(String numeSalon,String despre, ArrayList<ServiciuSalon> servicii, String telefon, String site, String locatie, ArrayList<String> program) {
+       this.numeSalon=numeSalon;
         this.despre = despre;
         this.servicii = servicii;
         this.telefon = telefon;
@@ -23,7 +26,9 @@ public class Salon implements Parcelable {
         this.program = program;
     }
 
+
     protected Salon(Parcel in) {
+        numeSalon = in.readString();
         despre = in.readString();
         servicii = in.createTypedArrayList(ServiciuSalon.CREATOR);
         telefon = in.readString();
@@ -51,12 +56,21 @@ public class Salon implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(numeSalon);
         dest.writeString(despre);
         dest.writeTypedList(servicii);
         dest.writeString(telefon);
         dest.writeString(site);
         dest.writeString(locatie);
         dest.writeStringList(program);
+    }
+
+    public String getNumeSalon() {
+        return numeSalon;
+    }
+
+    public void setNumeSalon(String numeSalon) {
+        this.numeSalon = numeSalon;
     }
 
     public String getDespre() {
@@ -106,17 +120,4 @@ public class Salon implements Parcelable {
     public void setProgram(ArrayList<String> program) {
         this.program = program;
     }
-
-    @Override
-    public String toString() {
-        return "Salon{" +
-                "despre='" + despre + '\'' +
-                ", servicii=" + servicii +
-                ", telefon='" + telefon + '\'' +
-                ", site='" + site + '\'' +
-                ", locatie='" + locatie + '\'' +
-                ", program=" + program +
-                '}';
-    }
-
 }
