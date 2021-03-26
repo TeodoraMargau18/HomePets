@@ -3,9 +3,11 @@ package com.example.banchelorapp.utils;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.banchelorapp.Calculeaza;
+
 import java.util.ArrayList;
 
-public class Salon implements Parcelable {
+public class Salon implements Parcelable, Calculeaza {
 
     private String numeSalon;
     private String despre;
@@ -119,5 +121,28 @@ public class Salon implements Parcelable {
 
     public void setProgram(ArrayList<String> program) {
         this.program = program;
+    }
+
+
+    @Override
+    public float calculeazaSumaTotala() {
+        float sum=0;
+        if(servicii!=null){
+            for(ServiciuSalon serviciu : servicii){
+                sum+=serviciu.getTarifServiciu();
+            }
+        }
+        return sum;
+    }
+
+    @Override
+    public float calculeazaTimpTotal() {
+        float timpTotal=0;
+        if(servicii!=null){
+            for(ServiciuSalon serviciu : servicii){
+                timpTotal+=serviciu.getDurata();
+            }
+        }
+        return timpTotal;
     }
 }

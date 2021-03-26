@@ -7,17 +7,34 @@ public class ServiciuSalon implements Parcelable {
     private String categorieAnimal;
     private String denumireServiciu;
     private float tarifServiciu;
+    private float durata;
 
-    public ServiciuSalon(String denumireServiciu, float tarifServiciu, String categorieAnimal) {
+    public ServiciuSalon(String denumireServiciu, float tarifServiciu, String categorieAnimal,float durata) {
         this.denumireServiciu = denumireServiciu;
         this.tarifServiciu = tarifServiciu;
         this.categorieAnimal=categorieAnimal;
+        this.durata=durata;
     }
+
 
     protected ServiciuSalon(Parcel in) {
         categorieAnimal = in.readString();
         denumireServiciu = in.readString();
         tarifServiciu = in.readFloat();
+        durata = in.readFloat();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(categorieAnimal);
+        dest.writeString(denumireServiciu);
+        dest.writeFloat(tarifServiciu);
+        dest.writeFloat(durata);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<ServiciuSalon> CREATOR = new Creator<ServiciuSalon>() {
@@ -32,16 +49,12 @@ public class ServiciuSalon implements Parcelable {
         }
     };
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public float getDurata() {
+        return durata;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(categorieAnimal);
-        dest.writeString(denumireServiciu);
-        dest.writeFloat(tarifServiciu);
+    public void setDurata(float durata) {
+        this.durata = durata;
     }
 
     public String getDenumireServiciu() {

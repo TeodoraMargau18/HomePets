@@ -31,7 +31,6 @@ public class AnimaleleMeleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animalele_mele);
         Log.e("Activitate deschisa","Animalele mele");
-
 //testez
        Date dataMMMM=new Date(1999  ,06,01);
         ArrayList<Vaccin> listaVaccinuri=new ArrayList<>();
@@ -88,16 +87,24 @@ public class AnimaleleMeleActivity extends AppCompatActivity {
                 dataMMMM,"crem",
                 listaVaccinuri,
                 listaOperatii,listaDeparazitari);
+        Animal a1= new Animal("test","Sysy","bichon","feminin",
+                dataMMMM,"crem",
+                listaVaccinuri,
+                listaOperatii,listaDeparazitari);
+        Animal a2= new Animal("test","Pittie","british","feminin",
+                dataMMMM,"crem",
+                listaVaccinuri,
+                listaOperatii,listaDeparazitari);
         ArrayList<Animal> listaAnimale=new ArrayList<Animal>();
         listaAnimale.add(a);
+        listaAnimale.add(a1);
+        listaAnimale.add(a2);
         listaAnimale.add(a);
+        listaAnimale.add(a1);
+        listaAnimale.add(a2);
         listaAnimale.add(a);
-        listaAnimale.add(a);
-        listaAnimale.add(a);
-        listaAnimale.add(a);
-        listaAnimale.add(a);
-        listaAnimale.add(a);
-        listaAnimale.add(a);
+        listaAnimale.add(a1);
+        listaAnimale.add(a2);
         listaAnimale.add(a);
         listaAnimale.add(a);
         listaAnimale.add(a);
@@ -127,7 +134,6 @@ public class AnimaleleMeleActivity extends AppCompatActivity {
                 intent.putExtra(AnimaleleMeleActivity.tranferAnimal,a);
                 Log.e("Test", "Apasare buton luuung");
                 startActivity(intent);
-
 
                 return true;
             }

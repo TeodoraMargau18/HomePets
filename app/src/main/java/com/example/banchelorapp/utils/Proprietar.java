@@ -10,16 +10,16 @@ public class Proprietar implements Parcelable {
     private String nume;
     private String prenume;
     private String adresa;
-    private String id;//CNP?
+    private String email;//CNP?
     private String numarTel;
     private String parola;
     private ArrayList<Animal> listaAnimale;
 
-    public Proprietar(String nume, String prenume, String adresa, String id, String numarTel, String parola, ArrayList<Animal> listaAnimale) {
+    public Proprietar(String nume, String prenume, String adresa, String email, String numarTel, String parola, ArrayList<Animal> listaAnimale) {
         this.nume = nume;
         this.prenume = prenume;
         this.adresa = adresa;
-        this.id = id;
+        this.email = email;
         this.numarTel = numarTel;
         this.parola = parola;
         this.listaAnimale = listaAnimale;
@@ -29,7 +29,7 @@ public class Proprietar implements Parcelable {
         nume = in.readString();
         prenume = in.readString();
         adresa = in.readString();
-        id = in.readString();
+        email = in.readString();
         numarTel = in.readString();
         parola = in.readString();
         listaAnimale = in.createTypedArrayList(Animal.CREATOR);
@@ -41,7 +41,7 @@ public class Proprietar implements Parcelable {
         dest.writeString(nume);
         dest.writeString(prenume);
         dest.writeString(adresa);
-        dest.writeString(id);
+        dest.writeString(email);
         dest.writeString(numarTel);
         dest.writeString(parola);
         dest.writeTypedList(listaAnimale);
@@ -88,12 +88,12 @@ public class Proprietar implements Parcelable {
         this.adresa = adresa;
     }
 
-    public String getId() {
-        return id;
+    public String getEmail() {
+        return email;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getNumarTel() {
@@ -126,7 +126,7 @@ public class Proprietar implements Parcelable {
                 "nume='" + nume + '\'' +
                 ", prenume='" + prenume + '\'' +
                 ", adresa='" + adresa + '\'' +
-                ", id='" + id + '\'' +
+                ", id='" + email + '\'' +
                 ", numarTel='" + numarTel + '\'' +
                 ", parola='" + parola + '\'' +
                 ", listaAnimale=" + listaAnimale +

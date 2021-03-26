@@ -4,30 +4,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2DAED6"
+    android:orientation="vertical"
     tools:context=".SalonSelectatActivity">
 
-    <ImageView
-        android:id="@+id/imagineSalon"
-        android:layout_width="300dp"
+    <ViewFlipper
+        android:id="@+id/viewFlipperSalon"
+        android:layout_width="match_parent"
         android:layout_height="300dp"
-        app:layout_constraintEnd_toEndOf="parent"
+
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/padlock"
-        android:layout_marginTop="30dp"
-        />
-
+        >
+    </ViewFlipper>
     <TextView
-        android:id="@+id/editTextTextMultiLine"
-        android:layout_width="300dp"
-        android:layout_height="350dp"
-        android:background="@color/white"
+        android:id="@+id/tvNumeSalonSelectat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Nume salon"
+        android:textAlignment="center"
+        android:textSize="40dp"
+        android:fontFamily="@font/annie_use_your_telescope"
+        android:textStyle="bold"
+        android:textColor="#2444A3"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imagineSalon"
-        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewFlipperSalon"
         />
 
+    <ListView
+        android:id="@+id/tvProgram"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="150dp"
+        android:clickable="false"
+        android:textAlignment="center"
+
+        android:textColor="#2444A3"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNumeSalonSelectat"
+        app:layout_constraintVertical_bias="0.0"></ListView>
+
+    <Button
+        android:id="@+id/btnServicii"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+
+        android:onClick="goToServiciiActivity"
+        android:text="@string/servicii"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvProgram"
+
+        android:layout_marginLeft="30dp"/>
+    <Button
+        android:id="@+id/btnProgramarileMele"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+
+        android:onClick="goToProgramarileMeleActivity"
+        android:text="@string/programarile_mele"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnServicii"
+        app:layout_constraintTop_toBottomOf="@+id/tvProgram"
+
+        android:layout_marginLeft="30dp"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

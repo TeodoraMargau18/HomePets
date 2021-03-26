@@ -46,4 +46,9 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="camp_obligatoriu">Campul nu este valid</string>
+    <string name="programeaza_te">Programeaza-te</string>
+    <string name="servicii">Servicii</string>
+    <string name="finalizeaza_programarea">Finalizeaza programarea</string>
+    <string name="programarile_mele">Programarile mele</string>
 </resources>
