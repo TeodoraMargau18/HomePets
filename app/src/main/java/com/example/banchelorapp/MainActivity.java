@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void sanatateFunction(View view){
         Log.e("Test", "TextView Sanatate apasat");
+        Log.e("Test2", String.valueOf( AuthentificationActivity.listaAnimale.size()));
+
         intent=new Intent(this,AnimaleleMeleActivity.class);
         startActivity(intent);
 

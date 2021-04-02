@@ -14,6 +14,10 @@ import java.util.Date;
 
 public class Animal implements Parcelable {
 //emailProp, Nume, Rasa, sex,dataN,culoare,vaccine(lista),operatii(lista),Ddeparazitari(lista)
+
+//+pozaAnimal,categorieAnimal
+    private String CIP;
+    private String imagine;
     private String emailProprietar;
     private String numeAnimal;
     private String rasaAnimal;
@@ -27,10 +31,9 @@ public class Animal implements Parcelable {
     public Animal() {
     }
 
-    public Animal(String emailProprietar,
-                  String numeAnimal, String rasaAnimal, String sexAnimal, Date dataNasteriiAnimal, String culoareAnimal,
-                  ArrayList<Vaccin> vaccinuriAnimal, ArrayList<Interventie> operatiiAnimal,
-                  ArrayList<Deparazitare> deparazitariAnimal) {
+    public Animal(String CIP,String imagine, String emailProprietar, String numeAnimal, String rasaAnimal, String sexAnimal, Date dataNasteriiAnimal, String culoareAnimal, ArrayList<Vaccin> vaccinuriAnimal, ArrayList<Interventie> operatiiAnimal, ArrayList<Deparazitare> deparazitariAnimal) {
+        this.CIP = CIP;
+        this.imagine = imagine;
         this.emailProprietar = emailProprietar;
         this.numeAnimal = numeAnimal;
         this.rasaAnimal = rasaAnimal;
@@ -42,7 +45,10 @@ public class Animal implements Parcelable {
         this.deparazitariAnimal = deparazitariAnimal;
     }
 
+
     protected Animal(Parcel in) {
+        CIP = in.readString();
+        imagine = in.readString();
         emailProprietar = in.readString();
         numeAnimal = in.readString();
         rasaAnimal = in.readString();
@@ -55,6 +61,8 @@ public class Animal implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(CIP);
+        dest.writeString(imagine);
         dest.writeString(emailProprietar);
         dest.writeString(numeAnimal);
         dest.writeString(rasaAnimal);
@@ -163,5 +171,38 @@ public class Animal implements Parcelable {
 
     public void setDeparazitariAnimal(ArrayList<Deparazitare> deparazitariAnimal) {
         this.deparazitariAnimal = deparazitariAnimal;
+    }
+
+    public String getCIP() {
+        return CIP;
+    }
+
+    public void setCIP(String CIP) {
+        this.CIP = CIP;
+    }
+
+    public String getImagine() {
+        return imagine;
+    }
+
+    public void setImagine(String imagine) {
+        this.imagine = imagine;
+    }
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "CIP='" + CIP + '\'' +
+                ", imagine='" + imagine + '\'' +
+                ", emailProprietar='" + emailProprietar + '\'' +
+                ", numeAnimal='" + numeAnimal + '\'' +
+                ", rasaAnimal='" + rasaAnimal + '\'' +
+                ", sexAnimal='" + sexAnimal + '\'' +
+                ", dataNasteriiAnimal=" + dataNasteriiAnimal +
+                ", culoareAnimal='" + culoareAnimal + '\'' +
+                ", vaccinuriAnimal=" + vaccinuriAnimal +
+                ", operatiiAnimal=" + operatiiAnimal +
+                ", deparazitariAnimal=" + deparazitariAnimal +
+                '}';
     }
 }

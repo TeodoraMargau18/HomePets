@@ -3,6 +3,8 @@ package com.example.banchelorapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,103 +19,29 @@ import com.example.banchelorapp.utils.interventii.Deparazitare;
 import com.example.banchelorapp.utils.interventii.Interventie;
 import com.example.banchelorapp.utils.interventii.Vaccin;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class AnimaleleMeleActivity extends AppCompatActivity {
+
+
     Intent intent;
     public static final String tranferAnimal="ANIMAL";
-    private  static  final String AnimaleleMele_TAG="AnimaleleMele";
-    ListView animalListView;
+   ListView animalListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animalele_mele);
         Log.e("Activitate deschisa","Animalele mele");
-//testez
-       Date dataMMMM=new Date(1999  ,06,01);
-        ArrayList<Vaccin> listaVaccinuri=new ArrayList<>();
-        Vaccin v= new Vaccin("antirabic",new Date(2000,06,01),new Date(2000,06,13),"popescu18");
-        listaVaccinuri.add(v);
-        listaVaccinuri.add(v);
-        listaVaccinuri.add(v);
-        listaVaccinuri.add(v);
-        listaVaccinuri.add(v);
-        listaVaccinuri.add(v);
-        listaVaccinuri.add(v);
-        listaVaccinuri.add(v);
-        listaVaccinuri.add(v);
-        listaVaccinuri.add(v);
-        listaVaccinuri.add(v);
-        listaVaccinuri.add(v);
-        listaVaccinuri.add(v);
-        listaVaccinuri.add(v);
-        ArrayList<Interventie> listaOperatii=new ArrayList<>();
-        Interventie interventie =new Interventie("Cezariana",new Date(2021,01,01),"Gigel");
-        Interventie interventie2 =new Interventie("Tratament parvoviroza",new Date(2021,01,01),"Teodora");
-        listaOperatii.add(interventie);
-        listaOperatii.add(interventie2);
-        listaOperatii.add(interventie);
-        listaOperatii.add(interventie2);
-        listaOperatii.add(interventie);
-        listaOperatii.add(interventie2);
-        listaOperatii.add(interventie);
-        listaOperatii.add(interventie2);
-        listaOperatii.add(interventie);
-        listaOperatii.add(interventie2);
-        listaOperatii.add(interventie);
-        listaOperatii.add(interventie2);
-        ArrayList<Deparazitare> listaDeparazitari=new ArrayList<Deparazitare>();
-        Deparazitare deparazitare=new Deparazitare(dataMMMM,dataMMMM,"INTERNA","Cestal");
-         Deparazitare deparazitare2=new Deparazitare(dataMMMM,dataMMMM,"EXTERNA","Parakill");
-        listaDeparazitari.add(deparazitare);
-        listaDeparazitari.add(deparazitare2);
-        listaDeparazitari.add(deparazitare);
-        listaDeparazitari.add(deparazitare2);
-        listaDeparazitari.add(deparazitare);
-        listaDeparazitari.add(deparazitare2);
-        listaDeparazitari.add(deparazitare);
-        listaDeparazitari.add(deparazitare2);
-        listaDeparazitari.add(deparazitare);
-        listaDeparazitari.add(deparazitare2);
-        listaDeparazitari.add(deparazitare);
-        listaDeparazitari.add(deparazitare2);
-        listaDeparazitari.add(deparazitare);
-        listaDeparazitari.add(deparazitare2);
-        listaDeparazitari.add(deparazitare);
-        listaDeparazitari.add(deparazitare2);
-       Animal a= new Animal("test","Gogo","bichon","feminin",
-                dataMMMM,"crem",
-                listaVaccinuri,
-                listaOperatii,listaDeparazitari);
-        Animal a1= new Animal("test","Sysy","bichon","feminin",
-                dataMMMM,"crem",
-                listaVaccinuri,
-                listaOperatii,listaDeparazitari);
-        Animal a2= new Animal("test","Pittie","british","feminin",
-                dataMMMM,"crem",
-                listaVaccinuri,
-                listaOperatii,listaDeparazitari);
-        ArrayList<Animal> listaAnimale=new ArrayList<Animal>();
-        listaAnimale.add(a);
-        listaAnimale.add(a1);
-        listaAnimale.add(a2);
-        listaAnimale.add(a);
-        listaAnimale.add(a1);
-        listaAnimale.add(a2);
-        listaAnimale.add(a);
-        listaAnimale.add(a1);
-        listaAnimale.add(a2);
-        listaAnimale.add(a);
-        listaAnimale.add(a);
-        listaAnimale.add(a);
-        listaAnimale.add(a);
+
         animalListView=findViewById(R.id.animalsListView);
 
-
         ListaAnimaleAdapter adapter=new ListaAnimaleAdapter
-                (this,R.layout.lista_animale_adapter,listaAnimale);
+                (this,R.layout.lista_animale_adapter,AuthentificationActivity.listaAnimale);
 
         animalListView.setAdapter(adapter);
 
@@ -123,7 +51,6 @@ public class AnimaleleMeleActivity extends AppCompatActivity {
                 DialogFragmentAnimal dialogFragmentAnimal=new DialogFragmentAnimal();
                 dialogFragmentAnimal.show(getSupportFragmentManager(),"MyDialogFragment");
 
-
                 Toast.makeText(getApplicationContext(),"Hello ai apasat ceva ",Toast.LENGTH_LONG).show();
             }
         });
@@ -131,7 +58,7 @@ public class AnimaleleMeleActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 intent=new Intent(getApplicationContext(),ProfilMedicalActivity.class);
-                intent.putExtra(AnimaleleMeleActivity.tranferAnimal,a);
+                intent.putExtra(AnimaleleMeleActivity.tranferAnimal,AuthentificationActivity.listaAnimale.get(position));
                 Log.e("Test", "Apasare buton luuung");
                 startActivity(intent);
 
