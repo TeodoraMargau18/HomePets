@@ -15,7 +15,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.bumptech.glide.Glide;
 import com.example.banchelorapp.R;
 import com.example.banchelorapp.utils.Animal;
 import com.example.banchelorapp.utils.interventii.Deparazitare;
