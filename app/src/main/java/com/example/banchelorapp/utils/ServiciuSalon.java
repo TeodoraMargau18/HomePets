@@ -8,20 +8,22 @@ public class ServiciuSalon implements Parcelable {
     private String denumireServiciu;
     private float tarifServiciu;
     private float durata;
+    private int codSalon;
 
-    public ServiciuSalon(String denumireServiciu, float tarifServiciu, String categorieAnimal,float durata) {
+    public ServiciuSalon(String categorieAnimal, String denumireServiciu, float tarifServiciu, float durata, int codSalon) {
+        this.categorieAnimal = categorieAnimal;
         this.denumireServiciu = denumireServiciu;
         this.tarifServiciu = tarifServiciu;
-        this.categorieAnimal=categorieAnimal;
-        this.durata=durata;
+        this.durata = durata;
+        this.codSalon = codSalon;
     }
-
 
     protected ServiciuSalon(Parcel in) {
         categorieAnimal = in.readString();
         denumireServiciu = in.readString();
         tarifServiciu = in.readFloat();
         durata = in.readFloat();
+        codSalon = in.readInt();
     }
 
     @Override
@@ -30,6 +32,7 @@ public class ServiciuSalon implements Parcelable {
         dest.writeString(denumireServiciu);
         dest.writeFloat(tarifServiciu);
         dest.writeFloat(durata);
+        dest.writeInt(codSalon);
     }
 
     @Override
@@ -49,12 +52,12 @@ public class ServiciuSalon implements Parcelable {
         }
     };
 
-    public float getDurata() {
-        return durata;
+    public String getCategorieAnimal() {
+        return categorieAnimal;
     }
 
-    public void setDurata(float durata) {
-        this.durata = durata;
+    public void setCategorieAnimal(String categorieAnimal) {
+        this.categorieAnimal = categorieAnimal;
     }
 
     public String getDenumireServiciu() {
@@ -73,12 +76,19 @@ public class ServiciuSalon implements Parcelable {
         this.tarifServiciu = tarifServiciu;
     }
 
-    public String getCategorieAnimal() {
-        return categorieAnimal;
+    public float getDurata() {
+        return durata;
     }
 
-    public void setCategorieAnimal(String categorieAnimal) {
-        this.categorieAnimal = categorieAnimal;
+    public void setDurata(float durata) {
+        this.durata = durata;
     }
 
+    public int getCodSalon() {
+        return codSalon;
+    }
+
+    public void setCodSalon(int codSalon) {
+        this.codSalon = codSalon;
+    }
 }

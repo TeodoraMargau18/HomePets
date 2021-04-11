@@ -53,27 +53,32 @@ public class ServiciiActivity extends AppCompatActivity {
     }
 
     private void initListData(Salon salon){
-
+        Log.e("In servicii", String.valueOf(salon.getServicii().size()));
         for(int i=0;i<salon.getServicii().size();i++){
-            if(listGroup.contains(salon.getServicii().get(i).getCategorieAnimal().toString())){
+            if(listGroup.contains(salon.getServicii().get(i).getCategorieAnimal())){
                 continue;
             }
             else{
-                listGroup.add(salon.getServicii().get(i).getCategorieAnimal().toString());
-                ArrayList<String> listElExpandat = new ArrayList<>();
-                for (int j = 0; j < salon.getServicii().size(); j++) {
-                    if (salon.getServicii().get(j).getCategorieAnimal().equals(salon.getServicii().get(i).getCategorieAnimal())) {
-                        listElExpandat.add(salon.getServicii().get(j).getDenumireServiciu().toString()
+                listGroup.add(salon.getServicii().get(i).getCategorieAnimal());
+            }
+        }
+
+        for (int i = 0; i < listGroup.size(); i++) {
+            ArrayList<String> listElExpandat = new ArrayList<>();
+            for (int j = 0; j < salon.getServicii().size(); j++) {
+                    if (salon.getServicii().get(j).getCategorieAnimal().equals(listGroup.get(i)))
+                    {
+
+                        listElExpandat.add(salon.getServicii().get(j).getDenumireServiciu()
                                 + " - Pret: "
                                 + salon.getServicii().get(j).getTarifServiciu()
                                 + " lei ");
+                        listItem.put(listGroup.get(i), listElExpandat);
                     }
-                }
-                listItem.put(listGroup.get(i), listElExpandat);
-                adapter.notifyDataSetChanged();
-                Log.e("ServiciiActivity", "S-a adaugat Categoria");
             }
         }
+
+
 
     }
 

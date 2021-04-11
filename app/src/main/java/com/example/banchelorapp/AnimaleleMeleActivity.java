@@ -49,15 +49,18 @@ public class AnimaleleMeleActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 DialogFragmentAnimal dialogFragmentAnimal=new DialogFragmentAnimal();
-                dialogFragmentAnimal.show(getSupportFragmentManager(),"MyDialogFragment");
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(tranferAnimal, AuthentificationActivity.listaAnimale.get(position));
+                dialogFragmentAnimal.setArguments(bundle);
 
-                Toast.makeText(getApplicationContext(),"Hello ai apasat ceva ",Toast.LENGTH_LONG).show();
+                dialogFragmentAnimal.show(getSupportFragmentManager(),"MyDialogFragment");
             }
         });
         animalListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 intent=new Intent(getApplicationContext(),ProfilMedicalActivity.class);
+
                 intent.putExtra(AnimaleleMeleActivity.tranferAnimal,AuthentificationActivity.listaAnimale.get(position));
                 Log.e("Test", "Apasare buton luuung");
                 startActivity(intent);

@@ -51,4 +51,8 @@
     <string name="servicii">Servicii</string>
     <string name="finalizeaza_programarea">Finalizeaza programarea</string>
     <string name="programarile_mele">Programarile mele</string>
+    <string name="home">Home</string>
+    <string name="my_profile">Profilul meu</string>
+    <string name="acasa">Acasa</string>
+    <string name="logout">Logout</string>
 </resources>

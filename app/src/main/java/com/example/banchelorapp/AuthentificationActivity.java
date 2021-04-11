@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.banchelorapp.mysql.BackgroundTask;
 import com.example.banchelorapp.utils.Animal;
+import com.example.banchelorapp.utils.Salon;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,8 +22,11 @@ public class AuthentificationActivity extends AppCompatActivity {
     EditText etParola;
     EditText etEmail;
     public static String email;
+    public static String numeProp;
     String typeAnimale="getAnimale";
+    String typeSaloane="getSaloane";
    public static ArrayList<Animal> listaAnimale;
+   public static ArrayList<Salon> listaSaloane;
 
     public void creazaCont(View view){
         intent=new Intent(this,SignInActivity.class);
@@ -31,6 +35,7 @@ public class AuthentificationActivity extends AppCompatActivity {
     public void goToMain(View view){
 
         listaAnimale=new ArrayList<Animal>();
+        listaSaloane=new ArrayList<Salon>();
         email=etEmail.getText().toString();
         String parola=etParola.getText().toString();
         String type="login";
@@ -50,6 +55,7 @@ public class AuthentificationActivity extends AppCompatActivity {
         }
 
         fetchData();
+        fetchDataSalon();
 
         if(backgroundTask.corect){
             Log.e("Ath IF","E pe IF");
@@ -70,6 +76,11 @@ public class AuthentificationActivity extends AppCompatActivity {
         BackgroundTask backgroundTaskAnimale=new BackgroundTask(getApplicationContext());
         Log.e("Emailull",email);
         backgroundTaskAnimale.execute(typeAnimale,email);
+    }
+    public void fetchDataSalon() {
+        Log.e("Fetch Data Salon","Am intrat");
+        BackgroundTask backgroundTaskSaloane=new BackgroundTask(getApplicationContext());
+        backgroundTaskSaloane.execute(typeSaloane);
     }
 
     @Override

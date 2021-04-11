@@ -14,8 +14,10 @@ import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.example.banchelorapp.utils.Salon;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SalonSelectatActivity extends AppCompatActivity {
 
@@ -50,14 +52,14 @@ public class SalonSelectatActivity extends AppCompatActivity {
         salon=intent.getParcelableExtra(ListaSaloaneActivity.SALON_KEY);
         if(salon!=null)
             Log.e("SalonSelectat", "S-a preluat salonul");
+        Log.e("Sunt in salon selectat si am  atatea servicii ",String.valueOf(salon.getServicii().size()));
+//        flipperImages(R.drawable.salon1,3000);
 
-        flipperImages(R.drawable.salon1,3000);
-
-        int images[]={R.drawable.poza1,R.drawable.poaza2};
+        List<String> images=salon.getPozeSalon();
         tvNume=findViewById(R.id.tvNumeSalonSelectat);
         lvProgram =findViewById(R.id.tvProgram);
 
-        ArrayList<String> listaPrograme=new ArrayList<>();
+        List<String> listaPrograme=new ArrayList<>();
         listaPrograme=salon.getProgram();
 
         tvNume.setText(salon.getNumeSalon());
@@ -67,16 +69,19 @@ public class SalonSelectatActivity extends AppCompatActivity {
                 listaPrograme );
         lvProgram.setAdapter(programAdapter);
 
-        for(int image:images){
+        for(String image:images){
             Log.i("SalonSelectatActivity","Am intrat in for");
             flipperImages(image,3000);
         }
 
     }
 
-    public void flipperImages(int image, int interval) {
+    public void flipperImages(String image, int interval) {
         ImageView img=new ImageView(this);
-        img.setBackgroundResource(image);
+        Log.e("ListView Adapter","Inainte de imagine");
+        Log.e("Ce imagine am aici ?",image);
+        Picasso.get().load(image.trim()).into(img);
+        Log.e("ListView Adapter","Dupa  imagine");
 
 
         viewFlipper.addView(img);

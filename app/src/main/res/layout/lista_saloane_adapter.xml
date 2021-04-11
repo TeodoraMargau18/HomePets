@@ -15,7 +15,7 @@
 
         android:text="Nume salon"
         android:textAlignment="center"
-        android:textSize="40dp"
+        android:textSize="25dp"
         android:fontFamily="@font/annie_use_your_telescope"
         android:textStyle="bold"
         android:textColor="#2444A3"
@@ -39,7 +39,7 @@
         android:paddingLeft="5dp"
 
         android:background="#2DAED6"
-        android:textSize="25dp"
+        android:textSize="15dp"
         android:fontFamily="@font/annie_use_your_telescope"
         />
     </LinearLayout>

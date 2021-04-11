@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +26,10 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -68,23 +72,17 @@ public class ListaAnimaleAdapter extends ArrayAdapter<Animal>  {
         TextView tvGenVarsta=convertView.findViewById(R.id.tvGenVarsta);
         imgListaAnimale=convertView.findViewById(R.id.imgListaAnimale);
 
-
         tvNume.setText(animal.getNumeAnimal());
         tvGenVarsta.setText(animal.returneazaVarstaGen());
 
 
         Log.e("ListView Adapter","Inainte de imagine");
-
-
-
+        Log.e("Ce imagine am aici ?",imagine);
+        Picasso.get().load(imagine.trim()).into(imgListaAnimale);
         Log.e("ListView Adapter","Dupa  imagine");
 
 
         return convertView;
     }
-    private void loadImageFromURL(String url){
-        Picasso.with(mContext).load(url).placeholder(R.drawable.sysytest);
-    }
-
 
 }

@@ -15,6 +15,7 @@ import com.example.banchelorapp.utils.Salon;
 import com.example.banchelorapp.utils.ServiciuSalon;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListaSaloaneAdapter extends ArrayAdapter<Salon> {
     private static final String TAG="ListaSaloaneAdapter";
@@ -31,16 +32,18 @@ public class ListaSaloaneAdapter extends ArrayAdapter<Salon> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
+        int codSalon=getItem(position).getCod();
         String numeSalon=getItem(position).getNumeSalon();
         String despre=getItem(position).getDespre();
-        ArrayList<ServiciuSalon> servicii=getItem(position).getServicii();
+        List<ServiciuSalon> servicii=getItem(position).getServicii();
+        List<String> poze=getItem(position).getPozeSalon();
         String telefon=getItem(position).getTelefon();
         String site=getItem(position).getSite();
         String locatie=getItem(position).getLocatie();
-         ArrayList<String> program=getItem(position).getProgram();
+        List<String> program=getItem(position).getProgram();
 
          //creez obiect Salon
-        Salon salon=new Salon(numeSalon,despre,servicii,telefon,site,locatie,program);
+        Salon salon=new Salon(codSalon,numeSalon,despre,servicii,poze,telefon,site,locatie,program);
 
         LayoutInflater inflater=LayoutInflater.from(mContext);
         convertView=inflater.inflate(mResource,parent,false);

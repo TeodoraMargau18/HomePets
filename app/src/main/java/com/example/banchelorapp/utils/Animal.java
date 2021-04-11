@@ -98,7 +98,18 @@ public class Animal implements Parcelable {
                 dataNasteriiAnimal.getDay());  //Data nasterii
 
         Period p=Period.between(dataNastere,today);
-        return getSexAnimal()+" - "+p.getYears()+" ani si "+p.getMonths()+" luni ";
+        int ani=p.getYears()-1900;
+        return getSexAnimal()+" - "+ani+" ani si "+p.getMonths()+" luni ";
+    }
+    public String returneazaVarsta(){
+        LocalDate today = LocalDate.now();
+        LocalDate dataNastere
+                = LocalDate.of(dataNasteriiAnimal.getYear(),
+                dataNasteriiAnimal.getMonth(),
+                dataNasteriiAnimal.getDay());  //Data nasterii
+
+        Period p=Period.between(dataNastere,today);
+        return p.getYears()-1900+" ani si "+p.getMonths()+" luni ";
     }
 
     public String getEmailProprietar() {

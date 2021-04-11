@@ -11,7 +11,7 @@
         <ImageView
         android:id="@+id/ivSaloane"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="200dp"
         app:srcCompat="@drawable/ivsaloane"
 
         app:layout_constraintTop_toTopOf="parent"
@@ -22,7 +22,7 @@
         <ListView
             android:id="@+id/listViewSaloane"
             android:layout_width="match_parent"
-            android:layout_height="550dp"
+            android:layout_height="650dp"
             android:layout_below="@+id/ivSaloane"
 
             app:layout_constraintEnd_toEndOf="parent"
