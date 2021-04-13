@@ -8,7 +8,7 @@
             android:icon="@drawable/profile_ico"/>
         <item
         android:id="@+id/detalii"
-        android:title="Informatii personale"
+        android:title="Detalii Aplicatie"
         android:icon="@drawable/house"/>
         <item
             android:id="@+id/logOut"

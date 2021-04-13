@@ -10,12 +10,14 @@ public class Vaccin implements Parcelable {
     private Date dataVaccin;
     private Date dataViitoareiVaccinări;
     private String medic;
+    private float pretVaccin;
 
-    public Vaccin(String tip, Date dataVaccin, Date dataViitoareiVaccinări, String medic) {
+    public Vaccin(String tip, Date dataVaccin, Date dataViitoareiVaccinări, String medic,float pretVaccin) {
         this.tip = tip;
         this.dataVaccin = dataVaccin;
         this.dataViitoareiVaccinări = dataViitoareiVaccinări;
         this.medic = medic;
+        this.pretVaccin = pretVaccin;
     }
 
     protected Vaccin(Parcel in) {
@@ -70,6 +72,14 @@ public class Vaccin implements Parcelable {
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    public float getPretVaccin() {
+        return pretVaccin;
+    }
+
+    public void setPretVaccin(float pretVaccin) {
+        this.pretVaccin = pretVaccin;
     }
 
     @Override

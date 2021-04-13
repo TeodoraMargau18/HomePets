@@ -41,7 +41,6 @@ public class ListaSaloaneActivity extends AppCompatActivity {
             listaItemApasat.add(false);
         }
 
-        Log.e("Activitate deschisa","Saloanele mele");
         listaSaloane=findViewById(R.id.listViewSaloane);
         ListaSaloaneAdapter adapter=new ListaSaloaneAdapter
                 (getApplicationContext(),

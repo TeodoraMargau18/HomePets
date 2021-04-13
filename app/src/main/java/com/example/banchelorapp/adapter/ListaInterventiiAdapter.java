@@ -35,8 +35,10 @@ public class ListaInterventiiAdapter extends ArrayAdapter<Interventie> {
         String tipInterventie=getItem(position).getTipInterventie();
         String medic=getItem(position).getMedic();
         Date dataInterventie=getItem(position).getDataInterventie();
+        float tarif=getItem(position).getTarif();
+        String cod=getItem(position).getCodInterventie();
 
-      Interventie interventie=new Interventie(tipInterventie,dataInterventie,medic);
+      Interventie interventie=new Interventie(tipInterventie,dataInterventie,medic,tarif,cod);
         LayoutInflater inflater=LayoutInflater.from(mContext);
         convertView=inflater.inflate(mResource,parent,false);
 

@@ -10,10 +10,20 @@ public class Proprietar implements Parcelable {
     private String nume;
     private String prenume;
     private String adresa;
-    private String email;//CNP?
+    private String email;
     private String numarTel;
     private String parola;
     private ArrayList<Animal> listaAnimale;
+
+    public Proprietar() {
+        this.nume = "";
+        this.prenume = "";
+        this.adresa = "";
+        this.email = "";
+        this.numarTel = "";
+        this.parola = "";
+        this.listaAnimale = new ArrayList<>();
+    }
 
     public Proprietar(String nume, String prenume, String adresa, String email, String numarTel, String parola, ArrayList<Animal> listaAnimale) {
         this.nume = nume;

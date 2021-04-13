@@ -9,10 +9,12 @@
     android:padding="20dp"
     >
     <ImageView
+        android:id="@+id/imagineProprietarHeader"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:src="@drawable/profile_ico"/>
     <TextView
+        android:id="@+id/numeProprietarHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Numele proprietarului"
@@ -21,6 +23,7 @@
         android:textStyle="bold"
         />
     <TextView
+        android:id="@+id/emailProprietarHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="email proprietar"

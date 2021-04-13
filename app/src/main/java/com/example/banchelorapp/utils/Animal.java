@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Animal implements Parcelable {
-//emailProp, Nume, Rasa, sex,dataN,culoare,vaccine(lista),operatii(lista),Ddeparazitari(lista)
 
 //+pozaAnimal,categorieAnimal
     private String CIP;
@@ -21,6 +20,8 @@ public class Animal implements Parcelable {
     private String emailProprietar;
     private String numeAnimal;
     private String rasaAnimal;
+    private String descriereAnimal;
+    private String specieAnimal;
     private String sexAnimal;//feminin/masculin
     private Date dataNasteriiAnimal;
     private String culoareAnimal;
@@ -31,12 +32,14 @@ public class Animal implements Parcelable {
     public Animal() {
     }
 
-    public Animal(String CIP,String imagine, String emailProprietar, String numeAnimal, String rasaAnimal, String sexAnimal, Date dataNasteriiAnimal, String culoareAnimal, ArrayList<Vaccin> vaccinuriAnimal, ArrayList<Interventie> operatiiAnimal, ArrayList<Deparazitare> deparazitariAnimal) {
+    public Animal(String CIP, String imagine, String emailProprietar, String numeAnimal, String rasaAnimal, String descriereAnimal, String specieAnimal, String sexAnimal, Date dataNasteriiAnimal, String culoareAnimal, ArrayList<Vaccin> vaccinuriAnimal, ArrayList<Interventie> operatiiAnimal, ArrayList<Deparazitare> deparazitariAnimal) {
         this.CIP = CIP;
         this.imagine = imagine;
         this.emailProprietar = emailProprietar;
         this.numeAnimal = numeAnimal;
         this.rasaAnimal = rasaAnimal;
+        this.descriereAnimal = descriereAnimal;
+        this.specieAnimal = specieAnimal;
         this.sexAnimal = sexAnimal;
         this.dataNasteriiAnimal = dataNasteriiAnimal;
         this.culoareAnimal = culoareAnimal;
@@ -45,71 +48,20 @@ public class Animal implements Parcelable {
         this.deparazitariAnimal = deparazitariAnimal;
     }
 
-
-    protected Animal(Parcel in) {
-        CIP = in.readString();
-        imagine = in.readString();
-        emailProprietar = in.readString();
-        numeAnimal = in.readString();
-        rasaAnimal = in.readString();
-        sexAnimal = in.readString();
-        culoareAnimal = in.readString();
-        vaccinuriAnimal = in.createTypedArrayList(Vaccin.CREATOR);
-        operatiiAnimal = in.createTypedArrayList(Interventie.CREATOR);
-        deparazitariAnimal = in.createTypedArrayList(Deparazitare.CREATOR);
+    public String getCIP() {
+        return CIP;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(CIP);
-        dest.writeString(imagine);
-        dest.writeString(emailProprietar);
-        dest.writeString(numeAnimal);
-        dest.writeString(rasaAnimal);
-        dest.writeString(sexAnimal);
-        dest.writeString(culoareAnimal);
-        dest.writeTypedList(vaccinuriAnimal);
-        dest.writeTypedList(operatiiAnimal);
-        dest.writeTypedList(deparazitariAnimal);
+    public void setCIP(String CIP) {
+        this.CIP = CIP;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public String getImagine() {
+        return imagine;
     }
 
-    public static final Creator<Animal> CREATOR = new Creator<Animal>() {
-        @Override
-        public Animal createFromParcel(Parcel in) {
-            return new Animal(in);
-        }
-
-        @Override
-        public Animal[] newArray(int size) {
-            return new Animal[size];
-        }
-    };
-
-    public String returneazaVarstaGen(){
-        LocalDate today = LocalDate.now();
-        LocalDate dataNastere
-                = LocalDate.of(dataNasteriiAnimal.getYear(),
-                dataNasteriiAnimal.getMonth(),
-                dataNasteriiAnimal.getDay());  //Data nasterii
-
-        Period p=Period.between(dataNastere,today);
-        int ani=p.getYears()-1900;
-        return getSexAnimal()+" - "+ani+" ani si "+p.getMonths()+" luni ";
-    }
-    public String returneazaVarsta(){
-        LocalDate today = LocalDate.now();
-        LocalDate dataNastere
-                = LocalDate.of(dataNasteriiAnimal.getYear(),
-                dataNasteriiAnimal.getMonth(),
-                dataNasteriiAnimal.getDay());  //Data nasterii
-
-        Period p=Period.between(dataNastere,today);
-        return p.getYears()-1900+" ani si "+p.getMonths()+" luni ";
+    public void setImagine(String imagine) {
+        this.imagine = imagine;
     }
 
     public String getEmailProprietar() {
@@ -134,6 +86,22 @@ public class Animal implements Parcelable {
 
     public void setRasaAnimal(String rasaAnimal) {
         this.rasaAnimal = rasaAnimal;
+    }
+
+    public String getDescriereAnimal() {
+        return descriereAnimal;
+    }
+
+    public void setDescriereAnimal(String descriereAnimal) {
+        this.descriereAnimal = descriereAnimal;
+    }
+
+    public String getSpecieAnimal() {
+        return specieAnimal;
+    }
+
+    public void setSpecieAnimal(String specieAnimal) {
+        this.specieAnimal = specieAnimal;
     }
 
     public String getSexAnimal() {
@@ -184,36 +152,85 @@ public class Animal implements Parcelable {
         this.deparazitariAnimal = deparazitariAnimal;
     }
 
-    public String getCIP() {
-        return CIP;
-    }
-
-    public void setCIP(String CIP) {
-        this.CIP = CIP;
-    }
-
-    public String getImagine() {
-        return imagine;
-    }
-
-    public void setImagine(String imagine) {
-        this.imagine = imagine;
+    protected Animal(Parcel in) {
+        CIP = in.readString();
+        imagine = in.readString();
+        emailProprietar = in.readString();
+        numeAnimal = in.readString();
+        rasaAnimal = in.readString();
+        descriereAnimal = in.readString();
+        specieAnimal = in.readString();
+        sexAnimal = in.readString();
+        culoareAnimal = in.readString();
+        vaccinuriAnimal = in.createTypedArrayList(Vaccin.CREATOR);
+        operatiiAnimal = in.createTypedArrayList(Interventie.CREATOR);
+        deparazitariAnimal = in.createTypedArrayList(Deparazitare.CREATOR);
     }
 
     @Override
-    public String toString() {
-        return "Animal{" +
-                "CIP='" + CIP + '\'' +
-                ", imagine='" + imagine + '\'' +
-                ", emailProprietar='" + emailProprietar + '\'' +
-                ", numeAnimal='" + numeAnimal + '\'' +
-                ", rasaAnimal='" + rasaAnimal + '\'' +
-                ", sexAnimal='" + sexAnimal + '\'' +
-                ", dataNasteriiAnimal=" + dataNasteriiAnimal +
-                ", culoareAnimal='" + culoareAnimal + '\'' +
-                ", vaccinuriAnimal=" + vaccinuriAnimal +
-                ", operatiiAnimal=" + operatiiAnimal +
-                ", deparazitariAnimal=" + deparazitariAnimal +
-                '}';
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(CIP);
+        dest.writeString(imagine);
+        dest.writeString(emailProprietar);
+        dest.writeString(numeAnimal);
+        dest.writeString(rasaAnimal);
+        dest.writeString(descriereAnimal);
+        dest.writeString(specieAnimal);
+        dest.writeString(sexAnimal);
+        dest.writeString(culoareAnimal);
+        dest.writeTypedList(vaccinuriAnimal);
+        dest.writeTypedList(operatiiAnimal);
+        dest.writeTypedList(deparazitariAnimal);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Animal> CREATOR = new Creator<Animal>() {
+        @Override
+        public Animal createFromParcel(Parcel in) {
+            return new Animal(in);
+        }
+
+        @Override
+        public Animal[] newArray(int size) {
+            return new Animal[size];
+        }
+    };
+
+    public String returneazaVarstaGen(){
+        LocalDate today = LocalDate.now();
+        LocalDate dataNastere
+                = LocalDate.of(dataNasteriiAnimal.getYear(),
+                dataNasteriiAnimal.getMonth(),
+                dataNasteriiAnimal.getDay());  //Data nasterii
+
+        Period p=Period.between(dataNastere,today);
+        int ani=p.getYears()-1900;
+        return getSexAnimal()+" - "+ani+" ani si "+p.getMonths()+" luni ";
+    }
+    public String returneazaVarsta(){
+        LocalDate today = LocalDate.now();
+        LocalDate dataNastere
+                = LocalDate.of(dataNasteriiAnimal.getYear(),
+                dataNasteriiAnimal.getMonth(),
+                dataNasteriiAnimal.getDay());  //Data nasterii
+
+        Period p=Period.between(dataNastere,today);
+        return p.getYears()-1900+" ani si "+p.getMonths()+" luni ";
+    }
+    public void adaugaVaccin(Vaccin vaccin)
+    {
+        vaccinuriAnimal.add(vaccin);
+    }
+    public void adaugaInterventie(Interventie interventie)
+    {
+        operatiiAnimal.add(interventie);
+    }
+    public void adaugaDeparazitare(Deparazitare deparazitare)
+    {
+        deparazitariAnimal.add(deparazitare);
     }
 }

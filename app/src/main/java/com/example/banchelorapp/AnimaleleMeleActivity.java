@@ -2,6 +2,7 @@ package com.example.banchelorapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -27,7 +28,7 @@ import java.util.Date;
 
 public class AnimaleleMeleActivity extends AppCompatActivity {
 
-
+    public static Context ctx;
     Intent intent;
     public static final String tranferAnimal="ANIMAL";
    ListView animalListView;
@@ -38,6 +39,7 @@ public class AnimaleleMeleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_animalele_mele);
         Log.e("Activitate deschisa","Animalele mele");
 
+        ctx=this.getApplicationContext();
         animalListView=findViewById(R.id.animalsListView);
 
         ListaAnimaleAdapter adapter=new ListaAnimaleAdapter
@@ -62,7 +64,6 @@ public class AnimaleleMeleActivity extends AppCompatActivity {
                 intent=new Intent(getApplicationContext(),ProfilMedicalActivity.class);
 
                 intent.putExtra(AnimaleleMeleActivity.tranferAnimal,AuthentificationActivity.listaAnimale.get(position));
-                Log.e("Test", "Apasare buton luuung");
                 startActivity(intent);
 
                 return true;

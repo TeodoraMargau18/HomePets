@@ -53,22 +53,24 @@ public class ServiciiActivity extends AppCompatActivity {
     }
 
     private void initListData(Salon salon){
-        Log.e("In servicii", String.valueOf(salon.getServicii().size()));
         for(int i=0;i<salon.getServicii().size();i++){
-            if(listGroup.contains(salon.getServicii().get(i).getCategorieAnimal())){
+            String element=salon.getServicii().get(i).getCategorieAnimal();
+            String firstUpper=element.substring(0,1).toUpperCase() + element.substring(1).toLowerCase();
+            if(listGroup.contains(firstUpper)){
                 continue;
             }
             else{
-                listGroup.add(salon.getServicii().get(i).getCategorieAnimal());
+                listGroup.add(firstUpper);
             }
         }
 
         for (int i = 0; i < listGroup.size(); i++) {
             ArrayList<String> listElExpandat = new ArrayList<>();
             for (int j = 0; j < salon.getServicii().size(); j++) {
-                    if (salon.getServicii().get(j).getCategorieAnimal().equals(listGroup.get(i)))
+                String item=salon.getServicii().get(j).getCategorieAnimal();
+                String firstUpper=item.substring(0,1).toUpperCase() + item.substring(1).toLowerCase();
+                    if (firstUpper.equals(listGroup.get(i)))
                     {
-
                         listElExpandat.add(salon.getServicii().get(j).getDenumireServiciu()
                                 + " - Pret: "
                                 + salon.getServicii().get(j).getTarifServiciu()

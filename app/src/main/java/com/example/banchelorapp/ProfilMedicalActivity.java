@@ -18,13 +18,14 @@ public class ProfilMedicalActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     Intent intent;
     Bundle bundle;
+    public static Animal animal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil_medical);
         Log.e("Profil Medical","S-a deschis");
         intent=getIntent();
-        Animal animal=(Animal)intent.getParcelableExtra(AnimaleleMeleActivity.tranferAnimal);
+        animal=(Animal)intent.getParcelableExtra(AnimaleleMeleActivity.tranferAnimal);
         Log.e("Profil Medical",animal.getCuloareAnimal());
 
         bottomNavigationView=(BottomNavigationView)findViewById(R.id.bottomNav);

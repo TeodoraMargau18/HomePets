@@ -13,6 +13,7 @@ import android.widget.ExpandableListView;
 
 import com.example.banchelorapp.adapter.ListaVaccinuriAdapter;
 import com.example.banchelorapp.utils.Animal;
+import com.example.banchelorapp.utils.Proprietar;
 import com.example.banchelorapp.utils.interventii.Vaccin;
 
 import java.util.ArrayList;
@@ -30,6 +31,8 @@ public class ProfilGeneralFragment extends Fragment {
 
     public ProfilGeneralFragment() {
     }
+
+
     public static ProfilGeneralFragment newInstance(Animal animal){
         ProfilGeneralFragment fragment=new ProfilGeneralFragment();
         Bundle bundle=new Bundle();
@@ -90,29 +93,30 @@ public class ProfilGeneralFragment extends Fragment {
 
         ArrayList<String> list1=new ArrayList<>();
         array=new ArrayList<>();
-        array.add("Nume proprietar");
-        array.add("Prenume proprietar");
-        array.add("Adresa proprietar");
-        array.add("CNP proprietar");
-        array.add("Numar telefon proprietar");
+        Log.e("IN PROFIL GENERAL",MainActivity.proprietarGeneral.toString());
+        array.add(MainActivity.proprietarGeneral.getNume());
+        array.add(MainActivity.proprietarGeneral.getPrenume());
+        array.add(MainActivity.proprietarGeneral.getAdresa());
+        array.add(MainActivity.proprietarGeneral.getNumarTel());
         for (String item : array) {
             list1.add(item);
         }
 
         ArrayList<String> list2=new ArrayList<>();
         array=new ArrayList<>();
-        array.add("Nume animal");
-        array.add("Rasa");
-        array.add("Sexul");
-        array.add("Data nasterii");
-        array.add("Culoarea");
+        array.add(ProfilMedicalActivity.animal.getNumeAnimal());
+        array.add(ProfilMedicalActivity.animal.getRasaAnimal());
+        array.add(ProfilMedicalActivity.animal.getSexAnimal());
+//        array.add(DialogFragmentAnimal.formatareData(ProfilMedicalActivity.animal.getDataNasteriiAnimal().toString()));
+        array.add("zz-ll-aaaa");
+        array.add(ProfilMedicalActivity.animal.getCuloareAnimal());
         for (String item : array) {
             list2.add(item);
         }
 
         ArrayList<String> list3=new ArrayList<>();
         array=new ArrayList<>();
-        array.add("Numar CIP");
+        array.add(ProfilMedicalActivity.animal.getCIP());
         array.add("Semne particulare");
         for (String item : array) {
             list3.add(item);

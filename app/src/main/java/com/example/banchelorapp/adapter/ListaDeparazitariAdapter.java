@@ -36,8 +36,9 @@ public class ListaDeparazitariAdapter extends ArrayAdapter<Deparazitare> {
         String produsDeparazitare=getItem(position).getProdusDeparazitare();
         Date dataDeparazitare=getItem(position).getDataDeparazitare();
         Date dataViitoareiDeparazitari=getItem(position).getDataViitoareiDeparazitari();
+        float pret=getItem(position).getPretProdus();
 
-      Deparazitare deparazitare=new Deparazitare(dataDeparazitare,dataViitoareiDeparazitari,tipDeparazitare,produsDeparazitare);
+      Deparazitare deparazitare=new Deparazitare(dataDeparazitare,dataViitoareiDeparazitari,tipDeparazitare,produsDeparazitare,pret);
         LayoutInflater inflater=LayoutInflater.from(mContext);
         convertView=inflater.inflate(mResource,parent,false);
 

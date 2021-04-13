@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/listadeExpandatServicii"
         android:textSize="25dp"
+        android:fontFamily="@font/annie_use_your_telescope"
         android:textColor="@color/design_default_color_primary_dark"
         android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"/>
 </LinearLayout>

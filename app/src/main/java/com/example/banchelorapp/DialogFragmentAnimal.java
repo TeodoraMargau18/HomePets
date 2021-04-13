@@ -1,12 +1,10 @@
 package com.example.banchelorapp;
 
-import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -16,14 +14,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.banchelorapp.mysql.BackgroundTask;
 import com.example.banchelorapp.utils.Animal;
 import com.squareup.picasso.Picasso;
 
-import java.util.Date;
-
 public class DialogFragmentAnimal extends DialogFragment {
 
-    EditText et;
+    EditText etDespre;
     TextView tvNume, tvSpecie, tvRasa,tvDataN, tvVarsta;
     Button btnInchide;
     Button btnSalveaza;
@@ -31,6 +28,7 @@ public class DialogFragmentAnimal extends DialogFragment {
     ImageView img;
     ImageView imgSex;
     Animal animal;
+    String descriereAnimal;
 
 
     @Nullable
@@ -38,7 +36,7 @@ public class DialogFragmentAnimal extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view=inflater.inflate(R.layout.dialog_fragment_animal,container,false);
-        et=view.findViewById(R.id.etNotite);
+        etDespre =view.findViewById(R.id.etNotite);
         tvNume=view.findViewById(R.id.dialogFragmentNume);
         tvSpecie=view.findViewById(R.id.dialogFragmentSpecie);
         tvVarsta=view.findViewById(R.id.dialogFragmentVarsta);
@@ -53,10 +51,14 @@ public class DialogFragmentAnimal extends DialogFragment {
         animal =getArguments().getParcelable(
                 AnimaleleMeleActivity.tranferAnimal);
         tvNume.setText(animal.getNumeAnimal());
-//        tvSpecie.setText(animal.getSpecie());
-
+        tvSpecie.setText(animal.getSpecieAnimal());
+        descriereAnimal=animal.getDescriereAnimal();
         tvVarsta.setText(animal.returneazaVarsta());
         tvRasa.setText(animal.getRasaAnimal());
+        if(animal.getDescriereAnimal().equals("null"))
+            etDespre.setText("");
+        else
+            etDespre.setText(animal.getDescriereAnimal());
 
         String dataFormatata=formatareData(animal.getDataNasteriiAnimal().toString());
 
@@ -79,8 +81,10 @@ else
         btnSalveaza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text=et.getText().toString();
-                et.setText(text);
+                String type="addDesc";
+                descriereAnimal= etDespre.getText().toString();
+                BackgroundTask backgroundTask=new BackgroundTask(AnimaleleMeleActivity.ctx);
+                backgroundTask.execute(type,descriereAnimal,animal.getCIP());
                 dlg.dismiss();
             }
         });
@@ -95,5 +99,10 @@ else
         String an=data.substring(data.length()-4);
         dataFormatata=zi+"-"+luna+"-"+an;
         return  dataFormatata;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 }

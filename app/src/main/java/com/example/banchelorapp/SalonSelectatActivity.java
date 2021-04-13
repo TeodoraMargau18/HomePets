@@ -37,9 +37,6 @@ public class SalonSelectatActivity extends AppCompatActivity {
             intent.putExtras(bundle);
             startActivity(intent);
         }
-        else{
-            Log.e("goToServiciiActivity","Salonul este null");
-        }
     }
 
 
@@ -50,10 +47,6 @@ public class SalonSelectatActivity extends AppCompatActivity {
         viewFlipper=findViewById(R.id.viewFlipperSalon);
         intent=getIntent();
         salon=intent.getParcelableExtra(ListaSaloaneActivity.SALON_KEY);
-        if(salon!=null)
-            Log.e("SalonSelectat", "S-a preluat salonul");
-        Log.e("Sunt in salon selectat si am  atatea servicii ",String.valueOf(salon.getServicii().size()));
-//        flipperImages(R.drawable.salon1,3000);
 
         List<String> images=salon.getPozeSalon();
         tvNume=findViewById(R.id.tvNumeSalonSelectat);
@@ -70,19 +63,14 @@ public class SalonSelectatActivity extends AppCompatActivity {
         lvProgram.setAdapter(programAdapter);
 
         for(String image:images){
-            Log.i("SalonSelectatActivity","Am intrat in for");
-            flipperImages(image,3000);
+            flipperImages(image,2000);
         }
 
     }
 
     public void flipperImages(String image, int interval) {
         ImageView img=new ImageView(this);
-        Log.e("ListView Adapter","Inainte de imagine");
-        Log.e("Ce imagine am aici ?",image);
         Picasso.get().load(image.trim()).into(img);
-        Log.e("ListView Adapter","Dupa  imagine");
-
 
         viewFlipper.addView(img);
         viewFlipper.setFlipInterval(interval);

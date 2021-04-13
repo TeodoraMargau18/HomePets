@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.banchelorapp.mysql.BackgroundTask;
 import com.example.banchelorapp.utils.Animal;
+import com.example.banchelorapp.utils.Proprietar;
 import com.example.banchelorapp.utils.Salon;
 
 import java.util.ArrayList;
@@ -22,11 +23,11 @@ public class AuthentificationActivity extends AppCompatActivity {
     EditText etParola;
     EditText etEmail;
     public static String email;
-    public static String numeProp;
-    String typeAnimale="getAnimale";
-    String typeSaloane="getSaloane";
    public static ArrayList<Animal> listaAnimale;
    public static ArrayList<Salon> listaSaloane;
+
+    String typeAnimale="getAnimale";
+    String typeSaloane="getSaloane";
 
     public void creazaCont(View view){
         intent=new Intent(this,SignInActivity.class);
@@ -43,14 +44,11 @@ public class AuthentificationActivity extends AppCompatActivity {
         BackgroundTask backgroundTask=new BackgroundTask(getApplicationContext());
         backgroundTask.execute(type,email,parola);
 
-
-
-        //------------?
         Date startMoment = new Date();
         while(!backgroundTask.corect){
             Date endMoment = new Date();
             int numSeconds = (int)((endMoment.getTime() - startMoment.getTime()) / 1000);
-            if(numSeconds>0.2)
+            if(numSeconds>0.5)
                 break;
         }
 
@@ -58,37 +56,28 @@ public class AuthentificationActivity extends AppCompatActivity {
         fetchDataSalon();
 
         if(backgroundTask.corect){
-            Log.e("Ath IF","E pe IF");
             intent=new Intent(this,MainActivity.class);
             startActivity(intent);
         }
-        //------------?
         else{
-            Log.e("Ath ELSE","E pe else");
             Toast.makeText(getApplicationContext(),"Email sau parola invalide",Toast.LENGTH_LONG).show();
         }
-
     }
-
-    public void fetchData() {
-//Pentru GetAnimale Vreau lista de animaleee!!
-        Log.e("Fetch Data","Am intrat");
-        BackgroundTask backgroundTaskAnimale=new BackgroundTask(getApplicationContext());
-        Log.e("Emailull",email);
-        backgroundTaskAnimale.execute(typeAnimale,email);
-    }
-    public void fetchDataSalon() {
-        Log.e("Fetch Data Salon","Am intrat");
-        BackgroundTask backgroundTaskSaloane=new BackgroundTask(getApplicationContext());
-        backgroundTaskSaloane.execute(typeSaloane);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentification);
-
         etParola=findViewById(R.id.etParolaLogIn);
         etEmail=findViewById(R.id.etEmailLogIn);
+    }
+
+
+    public void fetchData() {
+        BackgroundTask backgroundTaskAnimale=new BackgroundTask(getApplicationContext());
+        backgroundTaskAnimale.execute(typeAnimale,AuthentificationActivity.email);
+    }
+    public void fetchDataSalon() {
+        BackgroundTask backgroundTaskSaloane=new BackgroundTask(getApplicationContext());
+        backgroundTaskSaloane.execute(typeSaloane);
     }
 }

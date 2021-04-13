@@ -55,6 +55,8 @@ public class ListaAnimaleAdapter extends ArrayAdapter<Animal>  {
         String numeAnimal=getItem(position).getNumeAnimal();
         String emailProprietar=getItem(position).getEmailProprietar();
         String rasaAnimal=getItem(position).getRasaAnimal();
+        String descriereAnimal=getItem(position).getDescriereAnimal();
+        String specieAnimal=getItem(position).getSpecieAnimal();
         String sexAnimal=getItem(position).getSexAnimal();//feminin/masculin
         Date dataNasteriiAnimal=getItem(position).getDataNasteriiAnimal();
         String culoareAnimal=getItem(position).getCuloareAnimal();
@@ -62,7 +64,7 @@ public class ListaAnimaleAdapter extends ArrayAdapter<Animal>  {
         ArrayList<Interventie> operatiiAnimal=getItem(position).getOperatiiAnimal();
         ArrayList<Deparazitare> deparazitariAnimal=getItem(position).getDeparazitariAnimal();
 
-         Animal animal=new Animal(cipAnimal,imagine,emailProprietar,numeAnimal,rasaAnimal,
+         Animal animal=new Animal(cipAnimal,imagine,emailProprietar,numeAnimal,rasaAnimal,descriereAnimal,specieAnimal,
                  sexAnimal,dataNasteriiAnimal,culoareAnimal,vaccineAnimal,operatiiAnimal,deparazitariAnimal);
 
         LayoutInflater inflater=LayoutInflater.from(mContext);
@@ -74,12 +76,7 @@ public class ListaAnimaleAdapter extends ArrayAdapter<Animal>  {
 
         tvNume.setText(animal.getNumeAnimal());
         tvGenVarsta.setText(animal.returneazaVarstaGen());
-
-
-        Log.e("ListView Adapter","Inainte de imagine");
-        Log.e("Ce imagine am aici ?",imagine);
         Picasso.get().load(imagine.trim()).into(imgListaAnimale);
-        Log.e("ListView Adapter","Dupa  imagine");
 
 
         return convertView;

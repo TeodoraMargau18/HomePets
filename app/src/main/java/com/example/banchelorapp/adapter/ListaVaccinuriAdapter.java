@@ -35,8 +35,9 @@ public class ListaVaccinuriAdapter extends ArrayAdapter<Vaccin> {
         String medic=getItem(position).getMedic();
         Date dataVaccin=getItem(position).getDataVaccin();
         Date dataViitoareiVaccinari=getItem(position).getDataViitoareiVaccinări();
+        float pret=getItem(position).getPretVaccin();
 
-      Vaccin vaccin=new Vaccin(tipVaccin,dataVaccin,dataViitoareiVaccinari,medic);
+      Vaccin vaccin=new Vaccin(tipVaccin,dataVaccin,dataViitoareiVaccinari,medic,pret);
         LayoutInflater inflater=LayoutInflater.from(mContext);
         convertView=inflater.inflate(mResource,parent,false);
 

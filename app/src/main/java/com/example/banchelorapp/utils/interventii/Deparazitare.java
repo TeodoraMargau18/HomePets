@@ -10,12 +10,14 @@ public class Deparazitare implements Parcelable {
     private Date dataViitoareiDeparazitari;
     private String tipDeparazitare;
     private String produsDeparazitare;
+    private float pretProdus;
 
-    public Deparazitare(Date dataDeparazitare, Date dataViitoareiDeparazitari, String tipDeparazitare, String produsDeparazitare) {
+    public Deparazitare(Date dataDeparazitare, Date dataViitoareiDeparazitari, String tipDeparazitare, String produsDeparazitare,float pretProdus) {
         this.dataDeparazitare = dataDeparazitare;
         this.dataViitoareiDeparazitari = dataViitoareiDeparazitari;
         this.tipDeparazitare = tipDeparazitare;
         this.produsDeparazitare = produsDeparazitare;
+        this.pretProdus = pretProdus;
     }
 
     public Date getDataDeparazitare() {
@@ -40,6 +42,14 @@ public class Deparazitare implements Parcelable {
 
     public void setTipDeparazitare(String tipDeparazitare) {
         this.tipDeparazitare = tipDeparazitare;
+    }
+
+    public float getPretProdus() {
+        return pretProdus;
+    }
+
+    public void setPretProdus(float pretProdus) {
+        this.pretProdus = pretProdus;
     }
 
     public String getProdusDeparazitare() {

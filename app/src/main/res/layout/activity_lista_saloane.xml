@@ -13,22 +13,33 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         app:srcCompat="@drawable/ivsaloane"
-
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />
-
+        <TextView
+            android:id="@+id/tvListaSaloane"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ivSaloane"
+            android:text="@string/saloane_nregistrate"
+            android:textSize="40dp"
+            android:textAlignment="center"
+            android:fontFamily="@font/boogaloo"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+         />
         <ListView
+            android:layout_marginTop="30dp"
             android:id="@+id/listViewSaloane"
             android:layout_width="match_parent"
             android:layout_height="650dp"
-            android:layout_below="@+id/ivSaloane"
+            android:layout_below="@+id/tvListaSaloane"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivSaloane">
-
+            app:layout_constraintTop_toBottomOf="@+id/tvListaSaloane">
         </ListView>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

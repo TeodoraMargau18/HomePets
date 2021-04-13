@@ -7,7 +7,9 @@ import android.widget.Toast;
 
 import com.example.banchelorapp.AuthentificationActivity;
 import com.example.banchelorapp.ListaSaloaneActivity;
+import com.example.banchelorapp.MainActivity;
 import com.example.banchelorapp.utils.Animal;
+import com.example.banchelorapp.utils.Proprietar;
 import com.example.banchelorapp.utils.Salon;
 import com.example.banchelorapp.utils.ServiciuSalon;
 import com.example.banchelorapp.utils.interventii.Deparazitare;
@@ -42,7 +44,16 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
     public boolean inSaloane;
     public boolean inServicii;
     public boolean serviciiTerminat;
-    public boolean corect;
+    public static boolean cevaTerminat;
+    public  boolean corect;
+    public static String numeProprietar;
+    public static String prenumeProprietar;
+    public static String emailProp;
+    public static String parola;
+    public static String adresa;
+    public static String numarTel;
+
+
     Context context;
     public static String link="http://192.168.0.101/TestRegisterLogin/";
 
@@ -54,6 +65,7 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
         inSaloane=false;
         inServicii=false;
         serviciiTerminat=false;
+        cevaTerminat=false;
     }
 
     @Override
@@ -65,7 +77,10 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
         String regURL=link+"test.php";
         String getAnimaleURL=link+"getAnimals.php";
         String getSaloaneURL=link+"getPachSalon.php";
-        String getServiciiURL=link+"getServicii.php";
+        String getVaccinuri=link+"getVaccinuri.php";
+        String getInterventii=link+"getInterventii.php";
+        String getDeparazitari=link+"getDeparazitari.php";
+        String addDescURL=link+"addDescURL.php";
 
         if(type.equals("reg")){
             String email=strings[1];
@@ -114,6 +129,51 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                 e.printStackTrace();
             }
         }else
+              if(type.equals("addDesc"))
+              {
+                  String descriereAnimal=strings[1];
+                  String cipAnimal=strings[2];
+                  try{
+                      URL url=new URL(addDescURL);
+                      try{
+                          HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
+                          httpURLConnection.setRequestMethod("POST");
+                          httpURLConnection.setDoOutput(true);
+                          httpURLConnection.setDoInput(true);
+                          OutputStream outputStream=httpURLConnection.getOutputStream();
+                          OutputStreamWriter outputStreamWriter=new OutputStreamWriter(outputStream,"UTF-8");
+                          BufferedWriter bufferedWriter=new BufferedWriter(outputStreamWriter);
+                          Log.e("Ce inserez?",descriereAnimal);
+                          Log.e("Ce unde?",cipAnimal);
+                          String insertData= URLEncoder.encode("descriereAnimal","UTF-8")+"="
+                                  +URLEncoder.encode(descriereAnimal,"UTF-8")+
+                          "&"+
+                                  URLEncoder.encode("cipAnimal","UTF-8")+"="
+                                  +URLEncoder.encode(cipAnimal,"UTF-8");
+                          bufferedWriter.write(insertData);
+                          bufferedWriter.flush();
+                          bufferedWriter.close();
+                          InputStream inputStream=httpURLConnection.getInputStream();
+                          InputStreamReader inputStreamReader=new InputStreamReader(inputStream,"ISO-8859-1");
+                          BufferedReader bufferedReader=new BufferedReader(inputStreamReader);
+                          String result="";
+                          String line="";
+                          StringBuilder stringBuilder=new StringBuilder();
+                          while((line=bufferedReader.readLine())!=null){
+                              stringBuilder.append(line).append("\n");
+                          }
+                          result=stringBuilder.toString();
+                          bufferedReader.close();
+                          inputStream.close();
+                          httpURLConnection.disconnect();
+                          return result;
+                      } catch (IOException e) {
+                          e.printStackTrace();
+                      }
+                  }catch(MalformedURLException e){
+                      e.printStackTrace();
+                  }
+               } else
             if(type.equals("login")){
                 String email=strings[1];
                 String parola=strings[2];
@@ -195,6 +255,8 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
 
                         String[] words=result.split(" ");
                         inAnimale=true;
+
+                        Log.e("macar a intrat ?",result);
                         return result;
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -235,7 +297,132 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                     e.printStackTrace();
                 }
             }
+            else
+            if(type.equals("getVaccinuri")){
+                String cipAnimal=strings[1];
+                try{
+                    URL url=new URL(getVaccinuri);
+                    try{
+                        HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
 
+                        httpURLConnection.setRequestMethod("POST");
+                        httpURLConnection.setDoOutput(true);
+                        httpURLConnection.setDoInput(true);
+                        OutputStream outputStream=httpURLConnection.getOutputStream();
+                        OutputStreamWriter outputStreamWriter=new OutputStreamWriter(outputStream,"UTF-8");
+                        BufferedWriter bufferedWriter=new BufferedWriter(outputStreamWriter);
+                        String animaleData= URLEncoder.encode("email","UTF-8")+"="+URLEncoder.encode(cipAnimal,"UTF-8");
+
+                        bufferedWriter.write(animaleData);
+                        bufferedWriter.flush();
+                        bufferedWriter.close();
+                        InputStream inputStream=httpURLConnection.getInputStream();
+                        InputStreamReader inputStreamReader=new InputStreamReader(inputStream,"ISO-8859-1");
+                        BufferedReader bufferedReader=new BufferedReader(inputStreamReader);
+                        String result="";
+                        String line="";
+                        StringBuilder stringBuilder=new StringBuilder();
+                        while((line=bufferedReader.readLine())!=null){
+                            stringBuilder.append(line).append("\n");
+                        }
+                        result=stringBuilder.toString();
+                        bufferedReader.close();
+                        inputStream.close();
+                        httpURLConnection.disconnect();
+
+                        String[] words=result.split(" ");
+                        return result;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }catch(MalformedURLException e){
+                    e.printStackTrace();
+                }
+            }
+            else
+            if(type.equals("getDeparazitari")){
+                String cipAnimal=strings[1];
+                try{
+                    URL url=new URL(getDeparazitari);
+                    try{
+                        HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
+
+                        httpURLConnection.setRequestMethod("POST");
+                        httpURLConnection.setDoOutput(true);
+                        httpURLConnection.setDoInput(true);
+                        OutputStream outputStream=httpURLConnection.getOutputStream();
+                        OutputStreamWriter outputStreamWriter=new OutputStreamWriter(outputStream,"UTF-8");
+                        BufferedWriter bufferedWriter=new BufferedWriter(outputStreamWriter);
+                        String animaleData= URLEncoder.encode("email","UTF-8")+"="+URLEncoder.encode(cipAnimal,"UTF-8");
+
+                        bufferedWriter.write(animaleData);
+                        bufferedWriter.flush();
+                        bufferedWriter.close();
+                        InputStream inputStream=httpURLConnection.getInputStream();
+                        InputStreamReader inputStreamReader=new InputStreamReader(inputStream,"ISO-8859-1");
+                        BufferedReader bufferedReader=new BufferedReader(inputStreamReader);
+                        String result="";
+                        String line="";
+                        StringBuilder stringBuilder=new StringBuilder();
+                        while((line=bufferedReader.readLine())!=null){
+                            stringBuilder.append(line).append("\n");
+                        }
+                        result=stringBuilder.toString();
+                        bufferedReader.close();
+                        inputStream.close();
+                        httpURLConnection.disconnect();
+
+                        String[] words=result.split(" ");
+                        return result;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }catch(MalformedURLException e){
+                    e.printStackTrace();
+                }
+            }
+            else
+            if(type.equals("getInterventii")){
+                String cipAnimal=strings[1];
+                try{
+                    URL url=new URL(getInterventii);
+                    try{
+                        HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
+
+                        httpURLConnection.setRequestMethod("POST");
+                        httpURLConnection.setDoOutput(true);
+                        httpURLConnection.setDoInput(true);
+                        OutputStream outputStream=httpURLConnection.getOutputStream();
+                        OutputStreamWriter outputStreamWriter=new OutputStreamWriter(outputStream,"UTF-8");
+                        BufferedWriter bufferedWriter=new BufferedWriter(outputStreamWriter);
+                        String animaleData= URLEncoder.encode("email","UTF-8")+"="+URLEncoder.encode(cipAnimal,"UTF-8");
+
+                        bufferedWriter.write(animaleData);
+                        bufferedWriter.flush();
+                        bufferedWriter.close();
+                        InputStream inputStream=httpURLConnection.getInputStream();
+                        InputStreamReader inputStreamReader=new InputStreamReader(inputStream,"ISO-8859-1");
+                        BufferedReader bufferedReader=new BufferedReader(inputStreamReader);
+                        String result="";
+                        String line="";
+                        StringBuilder stringBuilder=new StringBuilder();
+                        while((line=bufferedReader.readLine())!=null){
+                            stringBuilder.append(line).append("\n");
+                        }
+                        result=stringBuilder.toString();
+                        bufferedReader.close();
+                        inputStream.close();
+                        httpURLConnection.disconnect();
+
+                        String[] words=result.split(" ");
+                        return result;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }catch(MalformedURLException e){
+                    e.printStackTrace();
+                }
+            }
         return null;
     }
 
@@ -253,53 +440,58 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                 JSONObject jsonObject=null;
                 for(int i=0;i<jsonArray.length();i++){
                     jsonObject=jsonArray.getJSONObject(i);
-                    Log.e("Ar trebui sa am nume si prenume",jsonObject.toString());
+                    Log.e("Ar trebui sa am proprietarul",jsonObject.toString());
+                    numeProprietar=jsonObject.getString("nume");
+                    prenumeProprietar=jsonObject.getString("prenume");
+                    emailProp=jsonObject.getString("email");
+                    parola=jsonObject.getString("parola");
+                    adresa=jsonObject.getString("adresa");
+                    numarTel=jsonObject.getString("numarTel");
                 }
             }catch (Exception ex){
                 Toast.makeText(context,s,Toast.LENGTH_LONG).show();
             }
-
         }
         if(inAnimale){
             try{
                 JSONArray jsonArray=new JSONArray(s);
                 JSONObject jsonObject=null;
-                for(int i=0;i<jsonArray.length();i++){
-                    jsonObject=jsonArray.getJSONObject(i);
-                    Date dataMMMM=new Date(1999  ,06,01);
-                    ArrayList<Vaccin> listaVaccinuri=new ArrayList<>();
-                    Vaccin v= new Vaccin("antirabic",new Date(2000,06,01),new Date(2000,06,13),"popescu18");
-                    listaVaccinuri.add(v);
-                    listaVaccinuri.add(v);
-                    ArrayList<Interventie> listaOperatii=new ArrayList<>();
-                    Interventie interventie =new Interventie("Cezariana",new Date(2021,01,01),"Gigel");
-                    Interventie interventie2 =new Interventie("Tratament parvoviroza",new Date(2021,01,01),"Teodora");
-                    listaOperatii.add(interventie);
-                    listaOperatii.add(interventie2);
-                    ArrayList<Deparazitare> listaDeparazitari=new ArrayList<Deparazitare>();
-                    Deparazitare deparazitare=new Deparazitare(dataMMMM,dataMMMM,"INTERNA","Cestal");
-                    Deparazitare deparazitare2=new Deparazitare(dataMMMM,dataMMMM,"EXTERNA","Parakill");
-                    listaDeparazitari.add(deparazitare);
-                    listaDeparazitari.add(deparazitare2);
 
-                    String CIP=jsonObject.getString("cip");
-                    String emailProp=jsonObject.getString("emailProprietar");
-                    String numeAnimal=jsonObject.getString("numeAnimal");
-                    String rasaAnimal=jsonObject.getString("rasaAnimal");
-                    String sexAnimal=jsonObject.getString("sexAnimal");
-                    String culoare=jsonObject.getString("culoareAnimal");
-                    String imagine=jsonObject.getString("imagineAnimal");
+                for(int i=0;i<jsonArray.length();i++) {
+                    jsonObject = jsonArray.getJSONObject(i);
+
+                    Log.e("Am cate obiecte ?", String.valueOf(i+1));
+                        ArrayList<Deparazitare> deparazitari = new ArrayList<Deparazitare>();
+                        ArrayList<Interventie> interventii = new ArrayList<Interventie>();
+                        ArrayList<Vaccin> vaccinuri = new ArrayList<Vaccin>();
+
+                        String CIP=jsonObject.getString("cip");
+                        String emailProp=jsonObject.getString("emailProprietar");
+                        String numeAnimal=jsonObject.getString("numeAnimal");
+                        String rasaAnimal=jsonObject.getString("rasaAnimal");
+                        String specieAnimal=jsonObject.getString("categorieAnimal");
+                        String sexAnimal=jsonObject.getString("sexAnimal");
+                        String culoare=jsonObject.getString("culoareAnimal");
+                        String imagine=jsonObject.getString("imagineAnimal");
+                        String descriereAnimal=jsonObject.getString("despreAnimal");
 
 
-                    String dataNasteriiAnimalSTR=jsonObject.getString("dataNasteriiAnimal");
-                    Date dataNasteriiAnimal=new SimpleDateFormat("yyyy-MM-dd").parse(dataNasteriiAnimalSTR);
+                        String dataNasteriiAnimalSTR=jsonObject.getString("dataNasteriiAnimal");
+                        Log.e("Mereee?", "A????????????????");
+                        Date dataNasteriiAnimal=new SimpleDateFormat("yyyy-MM-dd").parse(dataNasteriiAnimalSTR);
 
-                    Animal a= new Animal(CIP,imagine,emailProp,numeAnimal,rasaAnimal,sexAnimal,
-                            dataNasteriiAnimal,culoare,
-                            listaVaccinuri,
-                            listaOperatii,listaDeparazitari);
-                    AuthentificationActivity.listaAnimale.add(a);
+                        Log.e("A mers data", "A merss!!!!!!!");
+
+//                        creez animalul
+                        Animal a= new Animal(CIP,imagine,emailProp,numeAnimal,rasaAnimal,descriereAnimal,specieAnimal,sexAnimal,
+                                dataNasteriiAnimal,culoare,
+                                vaccinuri,
+                                interventii,deparazitari);
+                        AuthentificationActivity.listaAnimale.add(a);
+
+                        Log.e("Gata", "creat si adaugat");
                 }
+
             }catch (Exception ex){
                 Toast.makeText(context,s,Toast.LENGTH_LONG).show();
             }
@@ -310,42 +502,52 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                 JSONArray jsonArray=new JSONArray(s);
                 ArrayList<String> listaCoduriExistente=new ArrayList();
                 ArrayList<String> listaCoduriServiciiExistente= new ArrayList();
+                ArrayList<String> listaPozeExistente= new ArrayList();
+
                 JSONObject jsonObject=null;
                 for(int i=0;i<jsonArray.length();i++) {
                     jsonObject = jsonArray.getJSONObject(i);
                     String codSalon = jsonObject.getString("codSalon");
+
+                    //Daca eu deja am salonul in lista doar preiau serviciul si poza si le inserez in lista de servicii si de poze a acelui salon
                     if (listaCoduriExistente.contains(codSalon)) {
+
                         JSONObject jsonServiciu = new JSONObject(jsonObject.getString("servicii"));
-                        String categorieAnimal = jsonServiciu.getString("categorieAnimal");
-                        String denumireServiciu = jsonServiciu.getString("denumireServiciu");
-                        String tarifServiciu = jsonServiciu.getString("tarifServiciu");
-                        String durataServiciu = jsonServiciu.getString("durataServiciu");
                         String codServiciu = jsonServiciu.getString("codServiciu");
 
-                        ServiciuSalon serviciuSalon =
-                                new ServiciuSalon(categorieAnimal, denumireServiciu, (float) (Double.parseDouble(tarifServiciu)), (float) (Double.parseDouble(durataServiciu)), Integer.parseInt(codSalon));
                         if (listaCoduriServiciiExistente.contains(codServiciu)) {
                             //De aici inserez pozele
-                            Log.e(" Preaiau pozaaa!!!!!!!!!!! ", jsonObject.getString("poze"));
                             JSONObject jsonPoze = new JSONObject(jsonObject.getString("poze"));
-                            Log.e("Am POZAAAAAAAAAAAAAAAAAA din jSON!! -> ", jsonPoze.toString());
                             String locatiePoza = jsonPoze.getString("locatiePoza");
-                            //Pana aici am pozele
-                            for (int k = 0; k < AuthentificationActivity.listaSaloane.size(); k++) {
-                                if (Integer.parseInt(codSalon) == AuthentificationActivity.listaSaloane.get(k).getCod()) {
-                                    AuthentificationActivity.listaSaloane.get(k).adaugaPoza(locatiePoza);
+                            if(!listaPozeExistente.contains(locatiePoza)) {//Pana aici am pozele
+                                listaPozeExistente.add(locatiePoza);
+                                for (int k = 0; k < AuthentificationActivity.listaSaloane.size(); k++) {
+                                    if (Integer.parseInt(codSalon) == AuthentificationActivity.listaSaloane.get(k).getCod()) {
+                                        AuthentificationActivity.listaSaloane.get(k).adaugaPoza(locatiePoza);
+                                    }
                                 }
                             }
-
-                            //Daca eu deja am salonul in lista doar preiau serviciul si poza si le inserez in lista de servicii si de poze a acelui salon
-
                         }
-                        for (int k = 0; k < AuthentificationActivity.listaSaloane.size(); k++) {
-                            if (Integer.parseInt(codSalon) == AuthentificationActivity.listaSaloane.get(k).getCod()) {
-                                AuthentificationActivity.listaSaloane.get(k).adaugaServiciu(serviciuSalon);
+                        else
+                        //Daca nu exista codul serviciului
+                        {
+                            String categorieAnimal = jsonServiciu.getString("categorieAnimal");
+                            String denumireServiciu = jsonServiciu.getString("denumireServiciu");
+                            String tarifServiciu = jsonServiciu.getString("tarifServiciu");
+                            String durataServiciu = jsonServiciu.getString("durataServiciu");
+
+                            ServiciuSalon serviciuSalon =
+                                    new ServiciuSalon(categorieAnimal, denumireServiciu, (float) (Double.parseDouble(tarifServiciu)), (float) (Double.parseDouble(durataServiciu)), Integer.parseInt(codSalon));
+                            listaCoduriServiciiExistente.add(codServiciu);
+                            for (int k = 0; k < AuthentificationActivity.listaSaloane.size(); k++) {
+                                if (Integer.parseInt(codSalon) == AuthentificationActivity.listaSaloane.get(k).getCod()) {
+                                    AuthentificationActivity.listaSaloane.get(k).adaugaServiciu(serviciuSalon);
+                                }
                             }
                         }
-                    } else {
+                    }
+                    //Daca nu exista codul salonului
+                    else {
                             //creez o lista noua de servicii daca salonul nu exista in lista
                             ArrayList<ServiciuSalon> servicii = new ArrayList<ServiciuSalon>();
                             ArrayList<String> poze = new ArrayList<String>();
@@ -362,7 +564,6 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                             List<String> listaProgram = new ArrayList<String>();
                             listaProgram = Arrays.asList(str);
 
-                            Log.e("dupa preluare salon ", "E ok");
                             JSONObject jsonServiciu = new JSONObject(jsonObject.getString("servicii"));
 
                             String codSalonServiciu = jsonServiciu.getString("codSalon");
@@ -375,13 +576,11 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                             ServiciuSalon serviciuSalon =
                                     new ServiciuSalon(categorieAnimal, denumireServiciu, (float) (Double.parseDouble(tarifServiciu)), (float) (Double.parseDouble(durataServiciu)), Integer.parseInt(codSalon));
                             servicii.add(serviciuSalon);
-                            Log.e("Am adaugat serviciul", denumireServiciu);
-
-                            Log.e("Ce am aici > ar trebuie sa fie POZAA ", jsonObject.getString("poze"));
                             JSONObject jsonPoze = new JSONObject(jsonObject.getString("poze"));
                             String locatiePoza = jsonPoze.getString("locatiePoza");
+
+                            listaPozeExistente.add(locatiePoza);
                             poze.add(locatiePoza);
-                            Log.e("dupa preluare POZAAA ", "E ok");
 
                             Salon salon = new Salon(Integer.parseInt(codSalon), numeSalon, despreSalon, servicii, poze, telefonSalon, siteSalon, locatieSalon, listaProgram);
                             AuthentificationActivity.listaSaloane.add(salon);
