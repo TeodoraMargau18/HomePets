@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    android:layout_height="240dp"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_gravity="center"
+    android:background="#2DAED6" >
+    <ImageView
+        android:id="@+id/ivAnimalAdoptie"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/borderimage"
+        />
+        <TextView
+            android:id="@+id/tvNumeAnimalAdoptie"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:fontFamily="@font/annie_use_your_telescope"
+
+            android:text="Nume"
+            android:textColor="@color/black"
+            android:background="@drawable/bordertest"
+            android:textSize="30dp" />
+
+</LinearLayout>

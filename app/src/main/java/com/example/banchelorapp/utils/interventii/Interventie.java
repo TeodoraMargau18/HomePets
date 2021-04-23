@@ -11,14 +11,37 @@ public class Interventie implements Parcelable {
     private String medic;
     private float tarif;
     private String codInterventie;
+    private String cipAnimal;
 
-    public Interventie(String tipInterventie, Date dataInterventie, String medic, float tarif, String codInterventie) {
+    public Interventie(String tipInterventie, Date dataInterventie, String medic, float tarif, String codInterventie, String cipAnimal) {
         this.tipInterventie = tipInterventie;
         this.dataInterventie = dataInterventie;
         this.medic = medic;
         this.tarif = tarif;
         this.codInterventie = codInterventie;
+        this.cipAnimal = cipAnimal;
     }
+
+    protected Interventie(Parcel in) {
+        tipInterventie = in.readString();
+        medic = in.readString();
+        tarif = in.readFloat();
+        codInterventie = in.readString();
+        cipAnimal = in.readString();
+        dataInterventie =(Date) in.readSerializable();
+    }
+
+    public static final Creator<Interventie> CREATOR = new Creator<Interventie>() {
+        @Override
+        public Interventie createFromParcel(Parcel in) {
+            return new Interventie(in);
+        }
+
+        @Override
+        public Interventie[] newArray(int size) {
+            return new Interventie[size];
+        }
+    };
 
     public String getTipInterventie() {
         return tipInterventie;
@@ -60,24 +83,13 @@ public class Interventie implements Parcelable {
         this.codInterventie = codInterventie;
     }
 
-    protected Interventie(Parcel in) {
-        tipInterventie = in.readString();
-        medic = in.readString();
-        tarif = in.readFloat();
-        codInterventie = in.readString();
+    public String getCipAnimal() {
+        return cipAnimal;
     }
 
-    public static final Creator<Interventie> CREATOR = new Creator<Interventie>() {
-        @Override
-        public Interventie createFromParcel(Parcel in) {
-            return new Interventie(in);
-        }
-
-        @Override
-        public Interventie[] newArray(int size) {
-            return new Interventie[size];
-        }
-    };
+    public void setCipAnimal(String cipAnimal) {
+        this.cipAnimal = cipAnimal;
+    }
 
     @Override
     public int describeContents() {
@@ -90,5 +102,19 @@ public class Interventie implements Parcelable {
         dest.writeString(medic);
         dest.writeFloat(tarif);
         dest.writeString(codInterventie);
+        dest.writeString(cipAnimal);
+        dest.writeSerializable(dataInterventie);
+    }
+
+    @Override
+    public String toString() {
+        return "Interventie{" +
+                "tipInterventie='" + tipInterventie + '\'' +
+                ", dataInterventie=" + dataInterventie +
+                ", medic='" + medic + '\'' +
+                ", tarif=" + tarif +
+                ", codInterventie='" + codInterventie + '\'' +
+                ", cipAnimal='" + cipAnimal + '\'' +
+                '}';
     }
 }

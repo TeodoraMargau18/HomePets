@@ -23,10 +23,8 @@ public class ProfilMedicalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil_medical);
-        Log.e("Profil Medical","S-a deschis");
         intent=getIntent();
         animal=(Animal)intent.getParcelableExtra(AnimaleleMeleActivity.tranferAnimal);
-        Log.e("Profil Medical",animal.getCuloareAnimal());
 
         bottomNavigationView=(BottomNavigationView)findViewById(R.id.bottomNav);
 
@@ -35,11 +33,10 @@ public class ProfilMedicalActivity extends AppCompatActivity {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         Fragment selectedFragment=null;
-                        Log.e("Profil Medical","Se Apeleaza ceva");
                         bundle=new Bundle();
                         switch (item.getItemId()){
                             case R.id.profilGeneralFragment:
-                                selectedFragment=new ProfilGeneralFragment();
+                                selectedFragment=ProfilGeneralFragment.newInstance(animal);
                                 getSupportFragmentManager().beginTransaction().
                                         replace(R.id.fragment_container,selectedFragment).commit();
                                 break;

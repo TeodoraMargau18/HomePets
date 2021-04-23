@@ -10,9 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.banchelorapp.DialogFragmentAnimal;
 import com.example.banchelorapp.R;
 import com.example.banchelorapp.utils.interventii.Interventie;
-import com.example.banchelorapp.utils.interventii.Vaccin;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,8 +37,9 @@ public class ListaInterventiiAdapter extends ArrayAdapter<Interventie> {
         Date dataInterventie=getItem(position).getDataInterventie();
         float tarif=getItem(position).getTarif();
         String cod=getItem(position).getCodInterventie();
+        String cipAnimal=getItem(position).getCipAnimal();
 
-      Interventie interventie=new Interventie(tipInterventie,dataInterventie,medic,tarif,cod);
+      Interventie interventie=new Interventie(tipInterventie,dataInterventie,medic,tarif,cod,cipAnimal);
         LayoutInflater inflater=LayoutInflater.from(mContext);
         convertView=inflater.inflate(mResource,parent,false);
 
@@ -46,9 +47,9 @@ public class ListaInterventiiAdapter extends ArrayAdapter<Interventie> {
         TextView tvMedic=convertView.findViewById(R.id.tvNumeMedicInterventie);
         TextView tvTip=convertView.findViewById(R.id.tvTipInterventie);
 
-        tvDataInterventie.setText("Data interventie :"+interventie.getDataInterventie());
+        tvDataInterventie.setText( DialogFragmentAnimal.formatareData(interventie.getDataInterventie().toString()));
         tvMedic.setText("Medic "+interventie.getMedic());
-        tvTip.setText("Tip interventie: "+interventie.getTipInterventie());
+        tvTip.setText(interventie.getTipInterventie());
 
         return convertView;
     }

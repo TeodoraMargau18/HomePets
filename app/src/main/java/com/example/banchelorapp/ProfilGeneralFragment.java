@@ -5,16 +5,17 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 
 import com.example.banchelorapp.adapter.ListaVaccinuriAdapter;
 import com.example.banchelorapp.utils.Animal;
 import com.example.banchelorapp.utils.Proprietar;
 import com.example.banchelorapp.utils.interventii.Vaccin;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +29,7 @@ public class ProfilGeneralFragment extends Fragment {
     ArrayList<String> listGroup;
     HashMap<String,List<String>> listItem;
     ExpandableAdapter adapter;
+    ImageView ivAnimalProfil;
 
     public ProfilGeneralFragment() {
     }
@@ -41,12 +43,14 @@ public class ProfilGeneralFragment extends Fragment {
         return  fragment;
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
       View view= inflater.inflate(R.layout.fragment_profil_general, container, false);
-
+        ivAnimalProfil=view.findViewById(R.id.imgFragmentGeneral);
       //-------------
 
         expandableListView=view.findViewById(R.id.expLvProfilGeneral);
@@ -54,7 +58,6 @@ public class ProfilGeneralFragment extends Fragment {
         Animal animal;
         if(getArguments()!=null){
             animal=getArguments().getParcelable(ProfilGeneralFragment.PROFILGENERAL_KEY);
-            Log.e("ProfilGeneral fragment",String.valueOf( animal.getDataNasteriiAnimal()));
         }
         else
             animal=new Animal();
@@ -64,6 +67,7 @@ public class ProfilGeneralFragment extends Fragment {
 
         adapter=new ExpandableAdapter(this.getContext(),listGroup,listItem);
         expandableListView.setAdapter(adapter);
+        Picasso.get().load(ProfilMedicalActivity.animal.getImagine().trim()).into(ivAnimalProfil);
         initListData(animal);
         //pana aici
 
@@ -93,31 +97,29 @@ public class ProfilGeneralFragment extends Fragment {
 
         ArrayList<String> list1=new ArrayList<>();
         array=new ArrayList<>();
-        Log.e("IN PROFIL GENERAL",MainActivity.proprietarGeneral.toString());
-        array.add(MainActivity.proprietarGeneral.getNume());
-        array.add(MainActivity.proprietarGeneral.getPrenume());
-        array.add(MainActivity.proprietarGeneral.getAdresa());
-        array.add(MainActivity.proprietarGeneral.getNumarTel());
+        array.add("Nume: "+MainActivity.proprietarGeneral.getNume());
+        array.add("Prenume: "+MainActivity.proprietarGeneral.getPrenume());
+        array.add("Adresa: "+MainActivity.proprietarGeneral.getAdresa());
+        array.add("Telefon: "+MainActivity.proprietarGeneral.getNumarTel());
         for (String item : array) {
             list1.add(item);
         }
 
         ArrayList<String> list2=new ArrayList<>();
         array=new ArrayList<>();
-        array.add(ProfilMedicalActivity.animal.getNumeAnimal());
-        array.add(ProfilMedicalActivity.animal.getRasaAnimal());
-        array.add(ProfilMedicalActivity.animal.getSexAnimal());
-//        array.add(DialogFragmentAnimal.formatareData(ProfilMedicalActivity.animal.getDataNasteriiAnimal().toString()));
-        array.add("zz-ll-aaaa");
-        array.add(ProfilMedicalActivity.animal.getCuloareAnimal());
+        array.add("Nume: "+ProfilMedicalActivity.animal.getNumeAnimal());
+        array.add("Rasa: "+ProfilMedicalActivity.animal.getRasaAnimal());
+        array.add("Sex: "+ProfilMedicalActivity.animal.getSexAnimal());
+        array.add("Data nasterii: "+DialogFragmentAnimal.formatareData(ProfilMedicalActivity.animal.getDataNasteriiAnimal().toString()));
+        array.add("Culoare: "+ProfilMedicalActivity.animal.getCuloareAnimal());
         for (String item : array) {
             list2.add(item);
         }
 
         ArrayList<String> list3=new ArrayList<>();
         array=new ArrayList<>();
-        array.add(ProfilMedicalActivity.animal.getCIP());
-        array.add("Semne particulare");
+        array.add("CIP: "+ProfilMedicalActivity.animal.getCIP());
+        array.add("Semne particulare"+ProfilMedicalActivity.animal.getSemneParticulare());
         for (String item : array) {
             list3.add(item);
         }

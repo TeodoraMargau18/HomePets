@@ -7,19 +7,12 @@ import com.example.banchelorapp.utils.interventii.Deparazitare;
 import com.example.banchelorapp.utils.interventii.Interventie;
 import com.example.banchelorapp.utils.interventii.Vaccin;
 
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Animal implements Parcelable {
-
-//+pozaAnimal,categorieAnimal
-    private String CIP;
-    private String semneParticulare;
+public class AnimaleAdoptie implements Parcelable {
     private String imagine;
-    private String emailProprietar;
+    private String ID;
     private String numeAnimal;
     private String rasaAnimal;
     private String descriereAnimal;
@@ -31,18 +24,13 @@ public class Animal implements Parcelable {
     private ArrayList<Interventie> operatiiAnimal;
     private ArrayList<Deparazitare> deparazitariAnimal;
 
-    public Animal() {
-    }
-
-    public Animal(String CIP,String semneParticulare, String imagine,
-                  String emailProprietar, String numeAnimal, String rasaAnimal, String descriereAnimal,
-                  String specieAnimal, String sexAnimal, Date dataNasteriiAnimal, String culoareAnimal,
-                  ArrayList<Vaccin> vaccinuriAnimal, ArrayList<Interventie> operatiiAnimal,
-                  ArrayList<Deparazitare> deparazitariAnimal) {
-        this.CIP = CIP;
-        this.semneParticulare = semneParticulare;
+    public AnimaleAdoptie(String ID,String imagine, String numeAnimal,
+                          String rasaAnimal, String descriereAnimal, String specieAnimal,
+                          String sexAnimal, Date dataNasteriiAnimal, String culoareAnimal,
+                          ArrayList<Vaccin> vaccinuriAnimal, ArrayList<Interventie> operatiiAnimal,
+                          ArrayList<Deparazitare> deparazitariAnimal) {
         this.imagine = imagine;
-        this.emailProprietar = emailProprietar;
+        this.ID = ID;
         this.numeAnimal = numeAnimal;
         this.rasaAnimal = rasaAnimal;
         this.descriereAnimal = descriereAnimal;
@@ -55,11 +43,9 @@ public class Animal implements Parcelable {
         this.deparazitariAnimal = deparazitariAnimal;
     }
 
-    protected Animal(Parcel in) {
-        CIP = in.readString();
-        semneParticulare = in.readString();
+    protected AnimaleAdoptie(Parcel in) {
         imagine = in.readString();
-        emailProprietar = in.readString();
+        ID = in.readString();
         numeAnimal = in.readString();
         rasaAnimal = in.readString();
         descriereAnimal = in.readString();
@@ -74,10 +60,8 @@ public class Animal implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(CIP);
-        dest.writeString(semneParticulare);
+        dest.writeString(ID);
         dest.writeString(imagine);
-        dest.writeString(emailProprietar);
         dest.writeString(numeAnimal);
         dest.writeString(rasaAnimal);
         dest.writeString(descriereAnimal);
@@ -95,33 +79,17 @@ public class Animal implements Parcelable {
         return 0;
     }
 
-    public static final Creator<Animal> CREATOR = new Creator<Animal>() {
+    public static final Creator<AnimaleAdoptie> CREATOR = new Creator<AnimaleAdoptie>() {
         @Override
-        public Animal createFromParcel(Parcel in) {
-            return new Animal(in);
+        public AnimaleAdoptie createFromParcel(Parcel in) {
+            return new AnimaleAdoptie(in);
         }
 
         @Override
-        public Animal[] newArray(int size) {
-            return new Animal[size];
+        public AnimaleAdoptie[] newArray(int size) {
+            return new AnimaleAdoptie[size];
         }
     };
-
-    public String getSemneParticulare() {
-        return semneParticulare;
-    }
-
-    public void setSemneParticulare(String semneParticulare) {
-        this.semneParticulare = semneParticulare;
-    }
-
-    public String getCIP() {
-        return CIP;
-    }
-
-    public void setCIP(String CIP) {
-        this.CIP = CIP;
-    }
 
     public String getImagine() {
         return imagine;
@@ -129,14 +97,6 @@ public class Animal implements Parcelable {
 
     public void setImagine(String imagine) {
         this.imagine = imagine;
-    }
-
-    public String getEmailProprietar() {
-        return emailProprietar;
-    }
-
-    public void setEmailProprietar(String emailProprietar) {
-        this.emailProprietar = emailProprietar;
     }
 
     public String getNumeAnimal() {
@@ -219,58 +179,11 @@ public class Animal implements Parcelable {
         this.deparazitariAnimal = deparazitariAnimal;
     }
 
-    public String returneazaVarstaGen(){
-        LocalDate today = LocalDate.now();
-        LocalDate dataNastere
-                = dataNasteriiAnimal.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();  //Data nasterii
-
-        Period p=Period.between(dataNastere,today);
-        return getSexAnimal()+" - "+p.getYears()+" ani si "+p.getMonths()+" luni ";
-    }
-    public String returneazaVarsta(){
-        LocalDate today = LocalDate.now();
-        LocalDate dataNastere
-                = dataNasteriiAnimal.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();  //Data nasterii
-
-        Period p=Period.between(dataNastere,today);
-        return p.getYears()+" ani si "+p.getMonths()+" luni ";
-    }
-    public void adaugaVaccin(Vaccin vaccin)
-    {
-        vaccinuriAnimal.add(vaccin);
-    }
-    public void adaugaInterventie(Interventie interventie)
-    {
-        operatiiAnimal.add(interventie);
-    }
-    public void adaugaDeparazitare(Deparazitare deparazitare)
-    {
-        deparazitariAnimal.add(deparazitare);
+    public String getID() {
+        return ID;
     }
 
-    @Override
-    public String toString() {
-       String s= "Animal{" +
-                "CIP='" + CIP + '\'' +
-                ", imagine='" + imagine + '\'' +
-                ", emailProprietar='" + emailProprietar + '\'' +
-                ", numeAnimal='" + numeAnimal + '\'' +
-                ", rasaAnimal='" + rasaAnimal + '\'' +
-                ", descriereAnimal='" + descriereAnimal + '\'' +
-                ", specieAnimal='" + specieAnimal + '\'' +
-                ", sexAnimal='" + sexAnimal + '\'' +
-                ", dataNasteriiAnimal=" + dataNasteriiAnimal +
-                ", culoareAnimal='" + culoareAnimal + '\'' ;
-       s+="Vaccinuri ->";
-       for(int i=0;i<vaccinuriAnimal.size();i++){
-           s+=vaccinuriAnimal.get(i).toString();
-       }s+="Operatii ->";
-        for(int i=0;i<operatiiAnimal.size();i++){
-            s+=operatiiAnimal.get(i).toString();
-        }s+="Deparazitari ->";
-        for(int i=0;i<deparazitariAnimal.size();i++){
-            s+=deparazitariAnimal.get(i).toString();
-        }
-       return  s;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 }

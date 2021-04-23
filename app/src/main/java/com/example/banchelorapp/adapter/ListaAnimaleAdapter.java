@@ -1,11 +1,6 @@
 package com.example.banchelorapp.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +33,7 @@ public class ListaAnimaleAdapter extends ArrayAdapter<Animal>  {
     private Context mContext;
     int mResource;
     ImageView imgListaAnimale;
+    public static String imagineAnimal;
 
     public ListaAnimaleAdapter(@NonNull Context context, int resource,
                                @NonNull ArrayList<Animal> objects){
@@ -51,7 +47,8 @@ public class ListaAnimaleAdapter extends ArrayAdapter<Animal>  {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         String cipAnimal=getItem(position).getCIP();
-        String imagine=getItem(position).getImagine();
+        String semneParticulare=getItem(position).getSemneParticulare();
+        imagineAnimal=getItem(position).getImagine();
         String numeAnimal=getItem(position).getNumeAnimal();
         String emailProprietar=getItem(position).getEmailProprietar();
         String rasaAnimal=getItem(position).getRasaAnimal();
@@ -64,7 +61,7 @@ public class ListaAnimaleAdapter extends ArrayAdapter<Animal>  {
         ArrayList<Interventie> operatiiAnimal=getItem(position).getOperatiiAnimal();
         ArrayList<Deparazitare> deparazitariAnimal=getItem(position).getDeparazitariAnimal();
 
-         Animal animal=new Animal(cipAnimal,imagine,emailProprietar,numeAnimal,rasaAnimal,descriereAnimal,specieAnimal,
+         Animal animal=new Animal(cipAnimal,semneParticulare,imagineAnimal,emailProprietar,numeAnimal,rasaAnimal,descriereAnimal,specieAnimal,
                  sexAnimal,dataNasteriiAnimal,culoareAnimal,vaccineAnimal,operatiiAnimal,deparazitariAnimal);
 
         LayoutInflater inflater=LayoutInflater.from(mContext);
@@ -76,7 +73,7 @@ public class ListaAnimaleAdapter extends ArrayAdapter<Animal>  {
 
         tvNume.setText(animal.getNumeAnimal());
         tvGenVarsta.setText(animal.returneazaVarstaGen());
-        Picasso.get().load(imagine.trim()).into(imgListaAnimale);
+        Picasso.get().load(imagineAnimal.trim()).into(imgListaAnimale);
 
 
         return convertView;

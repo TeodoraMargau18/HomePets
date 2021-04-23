@@ -11,18 +11,24 @@ public class Vaccin implements Parcelable {
     private Date dataViitoareiVaccinări;
     private String medic;
     private float pretVaccin;
+    private String cipAnimal;
 
-    public Vaccin(String tip, Date dataVaccin, Date dataViitoareiVaccinări, String medic,float pretVaccin) {
+    public Vaccin(String tip, Date dataVaccin, Date dataViitoareiVaccinări, String medic, float pretVaccin, String cipAnimal) {
         this.tip = tip;
         this.dataVaccin = dataVaccin;
         this.dataViitoareiVaccinări = dataViitoareiVaccinări;
         this.medic = medic;
         this.pretVaccin = pretVaccin;
+        this.cipAnimal = cipAnimal;
     }
 
     protected Vaccin(Parcel in) {
         tip = in.readString();
         medic = in.readString();
+        pretVaccin = in.readFloat();
+        cipAnimal = in.readString();
+        dataVaccin=(Date) in.readSerializable();
+        dataViitoareiVaccinări=(Date) in.readSerializable();
     }
 
     public static final Creator<Vaccin> CREATOR = new Creator<Vaccin>() {
@@ -53,14 +59,6 @@ public class Vaccin implements Parcelable {
         this.dataVaccin = dataVaccin;
     }
 
-    public String getMedic() {
-        return medic;
-    }
-
-    public void setMedic(String medic) {
-        this.medic = medic;
-    }
-
     public Date getDataViitoareiVaccinări() {
         return dataViitoareiVaccinări;
     }
@@ -69,9 +67,12 @@ public class Vaccin implements Parcelable {
         this.dataViitoareiVaccinări = dataViitoareiVaccinări;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public String getMedic() {
+        return medic;
+    }
+
+    public void setMedic(String medic) {
+        this.medic = medic;
     }
 
     public float getPretVaccin() {
@@ -82,9 +83,38 @@ public class Vaccin implements Parcelable {
         this.pretVaccin = pretVaccin;
     }
 
+    public String getCipAnimal() {
+        return cipAnimal;
+    }
+
+    public void setCipAnimal(String cipAnimal) {
+        this.cipAnimal = cipAnimal;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(tip);
         dest.writeString(medic);
+        dest.writeFloat(pretVaccin);
+        dest.writeString(cipAnimal);
+        dest.writeSerializable(dataVaccin);
+        dest.writeSerializable(dataViitoareiVaccinări);
+    }
+
+    @Override
+    public String toString() {
+        return "Vaccin{" +
+                "tip='" + tip + '\'' +
+                ", dataVaccin=" + dataVaccin +
+                ", dataViitoareiVaccinări=" + dataViitoareiVaccinări +
+                ", medic='" + medic + '\'' +
+                ", pretVaccin=" + pretVaccin +
+                ", cipAnimal='" + cipAnimal + '\'' +
+                '}';
     }
 }

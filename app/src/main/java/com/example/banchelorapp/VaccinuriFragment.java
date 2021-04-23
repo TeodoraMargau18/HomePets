@@ -24,7 +24,6 @@ import java.util.List;
 public class VaccinuriFragment extends Fragment {
 
     public static final String VACCINURI_KEY="transferAnimal";
-    Bundle bundle;
     ListView vaccinuriListView;
 
     public VaccinuriFragment() {
@@ -54,6 +53,9 @@ public class VaccinuriFragment extends Fragment {
         if(getContext()!=null)
         {
             ArrayList<Vaccin> listaVaccinuri=animal.getVaccinuriAnimal();
+            for(int i=0;i<listaVaccinuri.size();i++){
+                Log.e("aici am data?",listaVaccinuri.get(i).getTip().toString());
+            }
             ListaVaccinuriAdapter adapter=new ListaVaccinuriAdapter
                     (getContext().getApplicationContext(),
                             R.layout.lista_vaccinuri_adapter,

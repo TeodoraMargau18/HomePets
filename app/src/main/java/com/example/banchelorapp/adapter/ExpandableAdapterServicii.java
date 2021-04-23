@@ -1,7 +1,6 @@
 package com.example.banchelorapp.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +24,6 @@ public class ExpandableAdapterServicii extends BaseExpandableListAdapter {
         this.context = context;
         this.listGroupServicii = listGroup;
         this.listItemServicii = listItem;
-        Log.e("ExpandableAdapterServicii","In constructor");
     }
 
     @Override
