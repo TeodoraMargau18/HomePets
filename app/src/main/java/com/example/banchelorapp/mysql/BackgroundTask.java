@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.banchelorapp.AuthentificationActivity;
+import com.example.banchelorapp.InfoAdoptie;
 import com.example.banchelorapp.ListaSaloaneActivity;
 import com.example.banchelorapp.MainActivity;
 import com.example.banchelorapp.utils.Animal;
@@ -93,6 +94,7 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
         String getInterventii=link+"getInterventii.php";
         String getDeparazitari=link+"getDeparazitari.php";
         String addDescURL=link+"getAddDesc.php";
+        String addStateURL=link+"addState.php";
 
         if(type.equals("reg")){
             String email=strings[1];
@@ -183,7 +185,50 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                   }catch(MalformedURLException e){
                       e.printStackTrace();
                   }
-               } else
+               }else
+              if(type.equals(InfoAdoptie.type))
+              {
+                  String statutAnimal=strings[1];
+                  String idAnimal=strings[2];
+                  try{
+                      URL url=new URL(addStateURL);
+                      try{
+                          HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
+                          httpURLConnection.setRequestMethod("POST");
+                          httpURLConnection.setDoOutput(true);
+                          httpURLConnection.setDoInput(true);
+                          OutputStream outputStream=httpURLConnection.getOutputStream();
+                          OutputStreamWriter outputStreamWriter=new OutputStreamWriter(outputStream,"UTF-8");
+                          BufferedWriter bufferedWriter=new BufferedWriter(outputStreamWriter);
+                          String insertData= URLEncoder.encode("statutAnimal","UTF-8")+"="
+                                  +URLEncoder.encode(statutAnimal,"UTF-8")+
+                                  "&"+
+                                  URLEncoder.encode("ID","UTF-8")+"="
+                                  +URLEncoder.encode(idAnimal,"UTF-8");
+                          bufferedWriter.write(insertData);
+                          bufferedWriter.flush();
+                          bufferedWriter.close();
+                          InputStream inputStream=httpURLConnection.getInputStream();
+                          InputStreamReader inputStreamReader=new InputStreamReader(inputStream,"ISO-8859-1");
+                          BufferedReader bufferedReader=new BufferedReader(inputStreamReader);
+                          String result="";
+                          String line="";
+                          StringBuilder stringBuilder=new StringBuilder();
+                          while((line=bufferedReader.readLine())!=null){
+                              stringBuilder.append(line).append("\n");
+                          }
+                          result=stringBuilder.toString();
+                          bufferedReader.close();
+                          inputStream.close();
+                          httpURLConnection.disconnect();
+                          return result;
+                      } catch (IOException e) {
+                          e.printStackTrace();
+                      }
+                  }catch(MalformedURLException e){
+                      e.printStackTrace();
+                  }
+              } else
             if(type.equals("login")){
                 String email=strings[1];
                 String parola=strings[2];
@@ -599,12 +644,14 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                     String specieAnimal=jsonObject.getString("categorieAnimal");
                     String sexAnimal=jsonObject.getString("sexAnimal");
                     String culoare=jsonObject.getString("culoareAnimal");
+                    String statut=jsonObject.getString("statutAnimal");
 
                     String dataNasteriiAnimalSTR=jsonObject.getString("dataNasteriiAnimal");
                     Date dataNasteriiAnimal=new SimpleDateFormat("yyyy-MM-dd").parse(dataNasteriiAnimalSTR);
 //                        creez animalul
                     AnimaleAdoptie a= new AnimaleAdoptie(ID,imagine,numeAnimal,rasaAnimal,descriereAnimal,
                             specieAnimal,sexAnimal,dataNasteriiAnimal,culoare,vaccinuri,interventii,deparazitari);
+                    if(statut.toLowerCase().trim().equals("neadoptat"))
                     AuthentificationActivity.listaAnimaleAdoptie.add(a);
                 }
 

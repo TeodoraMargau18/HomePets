@@ -57,4 +57,53 @@
     <string name="logout">Logout</string>
     <string name="saloane_nregistrate">Saloane înregistrate</string>
     <string name="adopta">Adopta</string>
+    <string name="info_adoptie1">1. Adoptatorul se angajeaza:</string>
+    <string name="info_adoptie2">a. sa microcipeze animalul, sa-l inregistreze in Registrul Electronic al Cainilor
+cu Stapan (RECS), sa ii faca carnet de sanatate unde vor fi trecute toate
+procedurile medicale pe toata durata de viata si sa-l vaccineze anti-rabic.</string>
+    <string name="info_adoptie3">b. sa trateze animalul cu blandete, sa ii ofere hrana, apa, libertate de miscare
+si tratament medical in caz de boala.</string>
+    <string name="info_adoptie4">c. sa ia toate masurile necesare ca animalul sa nu fuga.</string>
+    <string name="info_adoptie5">d. sa deparaziteze animalul intern / extern cel putin o data pe an.</string>
+    <string name="info_adoptie6">2. Adoptatorul se obliga sa nu instraineze animalul fara acordul expres al
+donatorului. In cazul nerespectarii acestui punct, animalul revine de drept
+donatorului care va urma pasii de la punctul 3.</string>
+    <string name="info_adoptie7">3. In cazul in care adoptatorul nu mai are posibilitatea sau nu mai doreste sa tina
+animalul, acesta este obligat sa contacteze donatorul pentru ca impreuna sa
+incerce gasirea altui stapan. In cazul in care nu se poate gasi un nou stapan
+pentru animal, donatorul se angajaza sa suporte cheltuielile legate de
+eutanasierea animalului la un cabinet veterinar cu respectarea legislatiei in
+2 / 2
+vigoare. Ambele parti convin ca abandonul animalului indiferent de
+circumstante nu reprezinta o solutie!</string>
+    <string name="info_adoptie8">4. Donatorul va primi poze cu animalul periodic, la 6 luni, pe toata durata de viata a
+animalului.</string>
+    <string name="info_adoptie9">5. Adoptatorul se obliga sa castreze animalul la varsta de 6 luni (femela), respectiv 1
+an (masculul), daca acest lucru nu s-a realizat inaintea adoptiei. Donatorul va
+consilia adoptatorul pentru realizarea aceastei operatii gratuit prin intermediul unor
+asociatii de protectia animalelor. Daca adoptatorul nu efectueaza aceasta
+procedura obligatorie prin lege la varsta specificata mai sus, animalul revine de
+drept donatorului care va urma pasii de la punctul 3.</string>
+    <string name="info_adoptie10">6. Donatorul va fi informat imediat daca animalul moare sau se pierde.</string>
+    <string name="info_adoptie11">7. Adoptatorul ia la cunostinta in mod explicit urmatoarele articole din acte legislative
+referitoare la protectia si detinerea animalelor:</string>
+    <string name="info_adoptie12">Legea 258/2013</string>
+    <string name="info_adoptie13">Art. 8, Alin. 4: Proprietarii sau detinatorii de caini, persoane fizice sau
+persoane juridice, au obligatia identificarii acestora prin microcipare.</string>
+    <string name="info_adoptie14">Art. 13 Alin. 2: Este obligatorie sterilizarea câinilor cu sau fără stăpân
+aparţinând rasei comune.</string>
+    <string name="info_adoptie15">Art. 14 Alin. 1 Lit. b: Nerespectarea dispozitiilor de mai sus se sanctioneaza, cu
+amendă de la 5.000 lei la 10.000 lei.</string>
+    <string name="info_adoptie16">Ordinului Preşedintelui ANSVSA nr. 1/2014</string>
+    <string name="info_adoptie17">Art. 4 Alin. 2: Cainii neidentificati si neinregistrati aflati in spatiile publice
+sunt considerati caini fara stapan si sunt tratati conform prevederilor legislatiei
+specifice in vigoare.</string>
+    <string name="info_adoptie18">Anexa 3: Vaccinarea contra rabiei a cainilor si a pisicilor in varsta de peste 3
+luni in Romania este obligatorie.</string>
+    <string name="info_adoptie19">Legea 205/2004</string>
+    <string name="info_adoptie20">Art. 26 Alin 2: Abandonarea și/sau alungarea unui animal a cărui existență depinde
+de îngrijirea omului se sancționează cu amendă de la 1.000 lei la 3.000 de lei.</string>
+    <string name="sunt_de_acord">Am luat la cunostinta!</string>
+    <string name="inchide">Inchide</string>
+    <string name="animal_sters">AnimalSters</string>
 </resources>

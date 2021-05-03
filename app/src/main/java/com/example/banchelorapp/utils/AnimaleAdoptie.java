@@ -7,6 +7,9 @@ import com.example.banchelorapp.utils.interventii.Deparazitare;
 import com.example.banchelorapp.utils.interventii.Interventie;
 import com.example.banchelorapp.utils.interventii.Vaccin;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -60,8 +63,8 @@ public class AnimaleAdoptie implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(ID);
         dest.writeString(imagine);
+        dest.writeString(ID);
         dest.writeString(numeAnimal);
         dest.writeString(rasaAnimal);
         dest.writeString(descriereAnimal);
@@ -185,5 +188,32 @@ public class AnimaleAdoptie implements Parcelable {
 
     public void setID(String ID) {
         this.ID = ID;
+    }
+
+    public String returneazaVarsta(){
+        LocalDate today = LocalDate.now();
+        LocalDate dataNastere
+                = dataNasteriiAnimal.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();  //Data nasterii
+
+        Period p=Period.between(dataNastere,today);
+        return p.getYears()+" ani si "+p.getMonths()+" luni ";
+    }
+
+    @Override
+    public String toString() {
+        return "AnimaleAdoptie{" +
+                "imagine='" + imagine + '\'' +
+                ", ID='" + ID + '\'' +
+                ", numeAnimal='" + numeAnimal + '\'' +
+                ", rasaAnimal='" + rasaAnimal + '\'' +
+                ", descriereAnimal='" + descriereAnimal + '\'' +
+                ", specieAnimal='" + specieAnimal + '\'' +
+                ", sexAnimal='" + sexAnimal + '\'' +
+                ", dataNasteriiAnimal=" + dataNasteriiAnimal +
+                ", culoareAnimal='" + culoareAnimal + '\'' +
+                ", vaccinuriAnimal=" + vaccinuriAnimal +
+                ", operatiiAnimal=" + operatiiAnimal +
+                ", deparazitariAnimal=" + deparazitariAnimal +
+                '}';
     }
 }

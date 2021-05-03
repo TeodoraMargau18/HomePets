@@ -1,10 +1,12 @@
 package com.example.banchelorapp;
 
+        import android.content.Intent;
         import android.os.Bundle;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
         import android.widget.Button;
+        import android.widget.GridView;
         import android.widget.ImageView;
         import android.widget.TextView;
         import android.widget.Toast;
@@ -18,7 +20,8 @@ package com.example.banchelorapp;
 
 public class PopUpAdoptii extends DialogFragment {
 
-    TextView tvNume, tvSpecie, tvRasa,etDespre;
+    public static final int REQUEST_CODE = 101;
+    TextView tvNume, tvSpecie, tvRasa,etDespre,tvDataN, tvVarsta;
     Button btnInchide;
     Button btnAdopta;
     PopUpAdoptii dlg;
@@ -37,6 +40,8 @@ public class PopUpAdoptii extends DialogFragment {
         tvNume=view.findViewById(R.id.dialogFragmentNume);
         tvSpecie=view.findViewById(R.id.dialogFragmentSpecie);
         tvRasa=view.findViewById(R.id.dialogFragmentRasa);
+        tvDataN=view.findViewById(R.id.dialogFragmentDataN);
+        tvVarsta=view.findViewById(R.id.dialogFragmentVarsta);
 
         btnInchide=view.findViewById(R.id.dialogFragmentInchide);
         btnAdopta=view.findViewById(R.id.btnDialogFragmentAdopta);
@@ -49,6 +54,10 @@ public class PopUpAdoptii extends DialogFragment {
         tvSpecie.setText(animal.getSpecieAnimal());
         descriereAnimal=animal.getDescriereAnimal();
         tvRasa.setText(animal.getRasaAnimal());
+        tvVarsta.setText(animal.returneazaVarsta());
+
+        String dataFormatata=formatareData(animal.getDataNasteriiAnimal().toString());
+        tvDataN.setText(dataFormatata);
         if(animal.getDescriereAnimal().equals("null"))
             etDespre.setText("");
         else
@@ -71,7 +80,10 @@ public class PopUpAdoptii extends DialogFragment {
         btnAdopta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(dlg.getContext(),"Ai adoptat",Toast.LENGTH_LONG).show();
+
+                Intent intent=new Intent(view.getContext(),InfoAdoptie.class);
+                startActivityForResult(intent, REQUEST_CODE);
+//                Toast.makeText(dlg.getContext(),"Ai adoptat",Toast.LENGTH_LONG).show();
                 dlg.dismiss();
             }
         });
@@ -92,4 +104,5 @@ public class PopUpAdoptii extends DialogFragment {
     public void onResume() {
         super.onResume();
     }
+
 }

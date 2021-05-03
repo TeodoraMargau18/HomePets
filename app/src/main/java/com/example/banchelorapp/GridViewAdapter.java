@@ -57,4 +57,9 @@ public class GridViewAdapter extends BaseAdapter {
         textView.setText(numeAnimale.get(position));
         return convertView;
     }
+    public void updateItems(List<String> newNumeAnimale, List<String> newPozeAnimale) {
+        this.numeAnimale = newNumeAnimale;
+        this.pozeAnimale = newPozeAnimale;
+        notifyDataSetChanged();
+    }
 }
