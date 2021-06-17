@@ -15,7 +15,7 @@ import java.util.Date;
 
 public class Animal implements Parcelable {
 
-//+pozaAnimal,categorieAnimal
+//+categorieAnimal
     private String CIP;
     private String semneParticulare;
     private String imagine;
@@ -111,48 +111,25 @@ public class Animal implements Parcelable {
         return semneParticulare;
     }
 
-    public void setSemneParticulare(String semneParticulare) {
-        this.semneParticulare = semneParticulare;
-    }
-
     public String getCIP() {
         return CIP;
-    }
-
-    public void setCIP(String CIP) {
-        this.CIP = CIP;
     }
 
     public String getImagine() {
         return imagine;
     }
 
-    public void setImagine(String imagine) {
-        this.imagine = imagine;
-    }
 
     public String getEmailProprietar() {
         return emailProprietar;
-    }
-
-    public void setEmailProprietar(String emailProprietar) {
-        this.emailProprietar = emailProprietar;
     }
 
     public String getNumeAnimal() {
         return numeAnimal;
     }
 
-    public void setNumeAnimal(String numeAnimal) {
-        this.numeAnimal = numeAnimal;
-    }
-
     public String getRasaAnimal() {
         return rasaAnimal;
-    }
-
-    public void setRasaAnimal(String rasaAnimal) {
-        this.rasaAnimal = rasaAnimal;
     }
 
     public String getDescriereAnimal() {
@@ -167,57 +144,35 @@ public class Animal implements Parcelable {
         return specieAnimal;
     }
 
-    public void setSpecieAnimal(String specieAnimal) {
-        this.specieAnimal = specieAnimal;
-    }
-
     public String getSexAnimal() {
         return sexAnimal;
-    }
-
-    public void setSexAnimal(String sexAnimal) {
-        this.sexAnimal = sexAnimal;
     }
 
     public Date getDataNasteriiAnimal() {
         return dataNasteriiAnimal;
     }
 
-    public void setDataNasteriiAnimal(Date dataNasteriiAnimal) {
-        this.dataNasteriiAnimal = dataNasteriiAnimal;
-    }
 
     public String getCuloareAnimal() {
         return culoareAnimal;
-    }
-
-    public void setCuloareAnimal(String culoareAnimal) {
-        this.culoareAnimal = culoareAnimal;
     }
 
     public ArrayList<Vaccin> getVaccinuriAnimal() {
         return vaccinuriAnimal;
     }
 
-    public void setVaccinuriAnimal(ArrayList<Vaccin> vaccinuriAnimal) {
-        this.vaccinuriAnimal = vaccinuriAnimal;
-    }
+
 
     public ArrayList<Interventie> getOperatiiAnimal() {
         return operatiiAnimal;
     }
 
-    public void setOperatiiAnimal(ArrayList<Interventie> operatiiAnimal) {
-        this.operatiiAnimal = operatiiAnimal;
-    }
 
     public ArrayList<Deparazitare> getDeparazitariAnimal() {
         return deparazitariAnimal;
     }
 
-    public void setDeparazitariAnimal(ArrayList<Deparazitare> deparazitariAnimal) {
-        this.deparazitariAnimal = deparazitariAnimal;
-    }
+
 
     public String returneazaVarstaGen(){
         LocalDate today = LocalDate.now();

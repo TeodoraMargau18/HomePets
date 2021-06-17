@@ -10,15 +10,15 @@
     tools:openDrawer="start"
     >
 
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/nav_view"
-        app:headerLayout="@layout/header"
-        app:menu="@menu/drawable_main_menu"
-        android:background="#94C8F9"
-        android:layout_gravity="start"
-        />
+<!--    <com.google.android.material.navigation.NavigationView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:id="@+id/nav_view"-->
+<!--        app:headerLayout="@layout/header"-->
+<!--        app:menu="@menu/drawable_main_menu"-->
+<!--        android:background="#94C8F9"-->
+<!--        android:layout_gravity="start"-->
+<!--        />-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,9 +27,9 @@
         android:orientation="vertical"
         android:id="@+id/mainActivityID">
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar"/>
+<!--        <include-->
+<!--            android:id="@+id/toolbar"-->
+<!--            layout="@layout/toolbar"/>-->
 
 
     <TextView

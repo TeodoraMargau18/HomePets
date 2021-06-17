@@ -27,6 +27,7 @@ public class AnimaleAdoptie implements Parcelable {
     private ArrayList<Interventie> operatiiAnimal;
     private ArrayList<Deparazitare> deparazitariAnimal;
 
+
     public AnimaleAdoptie(String ID,String imagine, String numeAnimal,
                           String rasaAnimal, String descriereAnimal, String specieAnimal,
                           String sexAnimal, Date dataNasteriiAnimal, String culoareAnimal,
@@ -98,96 +99,33 @@ public class AnimaleAdoptie implements Parcelable {
         return imagine;
     }
 
-    public void setImagine(String imagine) {
-        this.imagine = imagine;
-    }
-
     public String getNumeAnimal() {
         return numeAnimal;
-    }
-
-    public void setNumeAnimal(String numeAnimal) {
-        this.numeAnimal = numeAnimal;
     }
 
     public String getRasaAnimal() {
         return rasaAnimal;
     }
 
-    public void setRasaAnimal(String rasaAnimal) {
-        this.rasaAnimal = rasaAnimal;
-    }
-
     public String getDescriereAnimal() {
         return descriereAnimal;
-    }
-
-    public void setDescriereAnimal(String descriereAnimal) {
-        this.descriereAnimal = descriereAnimal;
     }
 
     public String getSpecieAnimal() {
         return specieAnimal;
     }
 
-    public void setSpecieAnimal(String specieAnimal) {
-        this.specieAnimal = specieAnimal;
-    }
-
     public String getSexAnimal() {
         return sexAnimal;
-    }
-
-    public void setSexAnimal(String sexAnimal) {
-        this.sexAnimal = sexAnimal;
     }
 
     public Date getDataNasteriiAnimal() {
         return dataNasteriiAnimal;
     }
 
-    public void setDataNasteriiAnimal(Date dataNasteriiAnimal) {
-        this.dataNasteriiAnimal = dataNasteriiAnimal;
-    }
-
-    public String getCuloareAnimal() {
-        return culoareAnimal;
-    }
-
-    public void setCuloareAnimal(String culoareAnimal) {
-        this.culoareAnimal = culoareAnimal;
-    }
-
-    public ArrayList<Vaccin> getVaccinuriAnimal() {
-        return vaccinuriAnimal;
-    }
-
-    public void setVaccinuriAnimal(ArrayList<Vaccin> vaccinuriAnimal) {
-        this.vaccinuriAnimal = vaccinuriAnimal;
-    }
-
-    public ArrayList<Interventie> getOperatiiAnimal() {
-        return operatiiAnimal;
-    }
-
-    public void setOperatiiAnimal(ArrayList<Interventie> operatiiAnimal) {
-        this.operatiiAnimal = operatiiAnimal;
-    }
-
-    public ArrayList<Deparazitare> getDeparazitariAnimal() {
-        return deparazitariAnimal;
-    }
-
-    public void setDeparazitariAnimal(ArrayList<Deparazitare> deparazitariAnimal) {
-        this.deparazitariAnimal = deparazitariAnimal;
-    }
 
     public String getID() {
         return ID;
-    }
-
-    public void setID(String ID) {
-        this.ID = ID;
     }
 
     public String returneazaVarsta(){

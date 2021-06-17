@@ -89,8 +89,6 @@ public class ProfilGeneralFragment extends Fragment {
         listGroup.add("Proprietar");
         listGroup.add("Descriere animal");
         listGroup.add("Identificare animal");
-        listGroup.add("Prevenire si combatere");
-        listGroup.add("Date fiziologice");
 
         ArrayList<String> array;
         //vectorul in care bag toate elementele unei liste expandabile
@@ -119,32 +117,15 @@ public class ProfilGeneralFragment extends Fragment {
         ArrayList<String> list3=new ArrayList<>();
         array=new ArrayList<>();
         array.add("CIP: "+ProfilMedicalActivity.animal.getCIP());
-        array.add("Semne particulare"+ProfilMedicalActivity.animal.getSemneParticulare());
+        array.add("Semne particulare: "+ProfilMedicalActivity.animal.getSemneParticulare());
         for (String item : array) {
             list3.add(item);
         }
 
-        ArrayList<String> list4=new ArrayList<>();
-        array=new ArrayList<>();
-      array.add("Boala1");
-        array.add("Boala2");
-        array.add("Boala3");
-        for (String item : array) {
-            list4.add(item);
-        }
 
-        ArrayList<String> list5=new ArrayList<>();
-        array=new ArrayList<>();
-        array.add("Semne vitale normale | Caini  | Pisici    ");
-        array.add("   Temperatura          | 38-39.2|  37.8-39.5");
-        for (String item : array) {
-            list5.add(item);
-        }
         listItem.put(listGroup.get(0),list1);
         listItem.put(listGroup.get(1),list2);
         listItem.put(listGroup.get(2),list3);
-        listItem.put(listGroup.get(3),list4);
-        listItem.put(listGroup.get(4),list5);
         adapter.notifyDataSetChanged();
 
     }

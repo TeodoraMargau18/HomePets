@@ -34,19 +34,8 @@ import java.util.HashMap;
 import java.util.zip.Inflater;
 
 import static com.example.banchelorapp.AuthentificationActivity.email;
-
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
-    //Burger menu
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    Toolbar toolbar;
-    TextView tvNumeProp;
-    TextView tvEmailProp;
-    View hView;
-    //-------
-
-    public static boolean logout=false;
+//implements NavigationView.OnNavigationItemSelectedListener
+public class MainActivity extends AppCompatActivity  {
 
     String typeVaccinuri="getVaccinuri";
     String typeDeparazitari="getDeparazitari";
@@ -107,29 +96,9 @@ public static ArrayList<Interventie> listaInterventii;
         listaVaccinuri=new ArrayList<>();
 
 
-        drawerLayout=findViewById(R.id.mainActivityIDDRawerTest);
-        navigationView=findViewById(R.id.nav_view);
-        toolbar=findViewById(R.id.toolbar);
         proprietarGeneral=new Proprietar(BackgroundTask.numeProprietar,BackgroundTask.prenumeProprietar,BackgroundTask.adresa,
                 BackgroundTask.emailProp,BackgroundTask.numarTel,BackgroundTask.parola,AuthentificationActivity.listaAnimale);
 
-        setSupportActionBar(toolbar);
-
-        navigationView.bringToFront();
-        ActionBarDrawerToggle toggle=
-                new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
-        hView=navigationView.getHeaderView(0);
-        tvNumeProp=hView.findViewById(R.id.numeProprietarHeader);
-        tvEmailProp= hView.findViewById(R.id.emailProprietarHeader);
-
-        tvNumeProp.setText(BackgroundTask.numeProprietar+" "+BackgroundTask.prenumeProprietar);
-        tvEmailProp.setText(email);
-
-        navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setCheckedItem(R.id.myProfile);
 
 
         BackgroundTask backgroundTaskVaccinuri=new BackgroundTask(getApplicationContext());
@@ -142,41 +111,7 @@ public static ArrayList<Interventie> listaInterventii;
         backgroundTaskInterventii.execute(typeInterventii);
 
 
-        if(AuthentificationActivity.back){
-            this.finish();
-            System.exit(0);
-        }
 
     }
-
-    @Override
-    public void onBackPressed() {
-
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else{
-        super.onBackPressed();
-        }
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.myProfile:
-                break;
-            case R.id.detalii:
-                break;
-            case R.id.logOut:
-                logout=true;
-                Intent intent=new Intent(MainActivity.this,AuthentificationActivity.class);
-                startActivity(intent);
-                break;
-        }
-        drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
 
 }

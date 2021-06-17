@@ -36,7 +36,6 @@ public class AuthentificationActivity extends AppCompatActivity {
    public static ArrayList<Animal> listaAnimale;
    public static ArrayList<AnimaleAdoptie> listaAnimaleAdoptie;
    public static ArrayList<Salon> listaSaloane;
-    public static boolean back=false;
 
     String typeAnimale="getAnimale";
     String typeAnimaleAdoptie="getAnimaleAdoptie";
@@ -66,11 +65,11 @@ public class AuthentificationActivity extends AppCompatActivity {
 
         Date startMoment = new Date();
         while(!backgroundTask.corect){
-
             Date endMoment = new Date();
             int numSeconds = (int)((endMoment.getTime() - startMoment.getTime()) / 1000);
             if(numSeconds>0.5)
             {
+                Log.e("Am o eroare","trece timpul");
                 break;
             }
 
@@ -90,6 +89,7 @@ public class AuthentificationActivity extends AppCompatActivity {
             editor.apply();
 //SharedPreferences terminat
 
+            Log.e("Am o eroare","backgroundTask.corect");
             intent=new Intent(this,MainActivity.class);
 
             startActivity(intent);
@@ -134,17 +134,5 @@ public class AuthentificationActivity extends AppCompatActivity {
     public void fetchDataAdoptii() {
         BackgroundTask backgroundTaskAnimaleAdoptie=new BackgroundTask(getApplicationContext());
         backgroundTaskAnimaleAdoptie.execute(typeAnimaleAdoptie);
-    }
-    @Override
-    public void onBackPressed() {
-        back=true;
-        if(!MainActivity.logout){
-            super.onBackPressed();
-        }
-        else{
-            this.finish();
-            System.exit(0);
-            return;
-        }
     }
 }

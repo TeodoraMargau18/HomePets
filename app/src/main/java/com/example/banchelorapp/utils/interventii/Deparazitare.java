@@ -62,48 +62,28 @@ public class Deparazitare implements Parcelable {
         return dataDeparazitare;
     }
 
-    public void setDataDeparazitare(Date dataDeparazitare) {
-        this.dataDeparazitare = dataDeparazitare;
-    }
-
     public Date getDataViitoareiDeparazitari() {
         return dataViitoareiDeparazitari;
     }
 
-    public void setDataViitoareiDeparazitari(Date dataViitoareiDeparazitari) {
-        this.dataViitoareiDeparazitari = dataViitoareiDeparazitari;
-    }
 
     public String getTipDeparazitare() {
         return tipDeparazitare;
     }
 
-    public void setTipDeparazitare(String tipDeparazitare) {
-        this.tipDeparazitare = tipDeparazitare;
-    }
+
 
     public String getProdusDeparazitare() {
         return produsDeparazitare;
     }
 
-    public void setProdusDeparazitare(String produsDeparazitare) {
-        this.produsDeparazitare = produsDeparazitare;
-    }
 
     public float getPretProdus() {
         return pretProdus;
     }
 
-    public void setPretProdus(float pretProdus) {
-        this.pretProdus = pretProdus;
-    }
-
     public String getCipAnimal() {
         return cipAnimal;
-    }
-
-    public void setCipAnimal(String cipAnimal) {
-        this.cipAnimal = cipAnimal;
     }
 
     @Override

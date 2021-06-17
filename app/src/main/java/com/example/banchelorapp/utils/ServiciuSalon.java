@@ -56,39 +56,15 @@ public class ServiciuSalon implements Parcelable {
         return categorieAnimal;
     }
 
-    public void setCategorieAnimal(String categorieAnimal) {
-        this.categorieAnimal = categorieAnimal;
-    }
-
     public String getDenumireServiciu() {
         return denumireServiciu;
-    }
-
-    public void setDenumireServiciu(String denumireServiciu) {
-        this.denumireServiciu = denumireServiciu;
     }
 
     public float getTarifServiciu() {
         return tarifServiciu;
     }
 
-    public void setTarifServiciu(float tarifServiciu) {
-        this.tarifServiciu = tarifServiciu;
-    }
-
     public float getDurata() {
         return durata;
-    }
-
-    public void setDurata(float durata) {
-        this.durata = durata;
-    }
-
-    public int getCodSalon() {
-        return codSalon;
-    }
-
-    public void setCodSalon(int codSalon) {
-        this.codSalon = codSalon;
     }
 }

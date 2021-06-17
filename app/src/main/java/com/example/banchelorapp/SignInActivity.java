@@ -65,7 +65,9 @@ public class SignInActivity extends AppCompatActivity {
             tietParola.setError(getString(R.string.camp_obligatoriu));
             return false;
         }
-        if(tietEmail.getText().toString().length()<1) {
+        if(tietEmail.getText().toString().length()<1
+                ||tietEmail.getText().toString().contains("@yahoo.com")
+                ||tietEmail.getText().toString().contains("@gmail.com")) {
             tietEmail.setError(getString(R.string.camp_obligatoriu));
             return false;
         }

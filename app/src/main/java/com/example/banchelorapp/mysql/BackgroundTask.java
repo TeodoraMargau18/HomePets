@@ -62,7 +62,7 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
 
 
     Context context;
-    public static String link="http://192.168.0.101/TestRegisterLogin/";
+    public static String link="http://192.168.1.2/TestRegisterLogin/";
 
     public BackgroundTask(Context context){
         this.context=context;
@@ -603,7 +603,7 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                         String specieAnimal=jsonObject.getString("categorieAnimal");
                         String sexAnimal=jsonObject.getString("sexAnimal");
                         String culoare=jsonObject.getString("culoareAnimal");
-                        String imagine=jsonObject.getString("imagineAnimal");
+                        String imagine=link+jsonObject.getString("imagineAnimal");
                         String descriereAnimal=jsonObject.getString("despreAnimal");
                         String semneParticulare=jsonObject.getString("semneParticulare");
 
@@ -637,7 +637,7 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                     ArrayList<Vaccin> vaccinuri = new ArrayList<Vaccin>();
 
                     String ID=jsonObject.getString("ID");
-                    String imagine=jsonObject.getString("imagineAnimal");
+                    String imagine=link+jsonObject.getString("imagineAnimal");
                     String numeAnimal=jsonObject.getString("numeAnimal");
                     String rasaAnimal=jsonObject.getString("rasaAnimal");
                     String descriereAnimal=jsonObject.getString("despreAnimal");
@@ -651,7 +651,7 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
 //                        creez animalul
                     AnimaleAdoptie a= new AnimaleAdoptie(ID,imagine,numeAnimal,rasaAnimal,descriereAnimal,
                             specieAnimal,sexAnimal,dataNasteriiAnimal,culoare,vaccinuri,interventii,deparazitari);
-                    if(statut.toLowerCase().trim().equals("neadoptat"))
+                    if(!statut.toLowerCase().trim().equals("adoptat"))
                     AuthentificationActivity.listaAnimaleAdoptie.add(a);
                 }
 
@@ -680,7 +680,7 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                         if (listaCoduriServiciiExistente.contains(codServiciu)) {
                             //De aici inserez pozele
                             JSONObject jsonPoze = new JSONObject(jsonObject.getString("poze"));
-                            String locatiePoza = jsonPoze.getString("locatiePoza");
+                            String locatiePoza =link+ jsonPoze.getString("locatiePoza");
                             if(!listaPozeExistente.contains(locatiePoza)) {//Pana aici am pozele
                                 listaPozeExistente.add(locatiePoza);
                                 for (int k = 0; k < AuthentificationActivity.listaSaloane.size(); k++) {
@@ -739,7 +739,7 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                                     new ServiciuSalon(categorieAnimal, denumireServiciu, (float) (Double.parseDouble(tarifServiciu)), (float) (Double.parseDouble(durataServiciu)), Integer.parseInt(codSalon));
                             servicii.add(serviciuSalon);
                             JSONObject jsonPoze = new JSONObject(jsonObject.getString("poze"));
-                            String locatiePoza = jsonPoze.getString("locatiePoza");
+                            String locatiePoza = link+jsonPoze.getString("locatiePoza");
 
                             listaPozeExistente.add(locatiePoza);
                             poze.add(locatiePoza);

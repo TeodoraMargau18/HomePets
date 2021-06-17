@@ -78,24 +78,13 @@ public class Proprietar implements Parcelable {
         return nume;
     }
 
-    public void setNume(String nume) {
-        this.nume = nume;
-    }
 
     public String getPrenume() {
         return prenume;
     }
 
-    public void setPrenume(String prenume) {
-        this.prenume = prenume;
-    }
-
     public String getAdresa() {
         return adresa;
-    }
-
-    public void setAdresa(String adresa) {
-        this.adresa = adresa;
     }
 
     public String getEmail() {
@@ -110,25 +99,6 @@ public class Proprietar implements Parcelable {
         return numarTel;
     }
 
-    public void setNumarTel(String numarTel) {
-        this.numarTel = numarTel;
-    }
-
-    public String getParola() {
-        return parola;
-    }
-
-    public void setParola(String parola) {
-        this.parola = parola;
-    }
-
-    public ArrayList<Animal> getListaAnimale() {
-        return listaAnimale;
-    }
-
-    public void setListaAnimale(ArrayList<Animal> listaAnimale) {
-        this.listaAnimale = listaAnimale;
-    }
 
     @Override
     public String toString() {

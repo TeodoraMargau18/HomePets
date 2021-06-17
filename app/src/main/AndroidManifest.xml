@@ -11,7 +11,8 @@
         android:roundIcon="@drawable/fundalalbastrulogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.BanchelorApp">
-        <activity android:name=".InfoAdoptie"></activity>
+        <activity android:name=".ProgramareSalon"></activity>
+        <activity android:name=".InfoAdoptie" />
         <activity android:name=".ServiciiActivity" />
         <activity android:name=".SalonSelectatActivity" />
         <activity android:name=".ProfilMedicalActivity" />
