@@ -41,12 +41,9 @@ public class MainActivity extends AppCompatActivity  {
     String typeDeparazitari="getDeparazitari";
     String typeInterventii="getInterventii";
 
-public static ArrayList<Vaccin> listaVaccinuri;
-public static ArrayList<Deparazitare> listaDeparazitari;
-public static ArrayList<Interventie> listaInterventii;
-
-
-
+    public static ArrayList<Vaccin> listaVaccinuri;
+    public static ArrayList<Deparazitare> listaDeparazitari;
+    public static ArrayList<Interventie> listaInterventii;
     public static Proprietar proprietarGeneral;
 
     Intent intent;
@@ -62,16 +59,25 @@ public static ArrayList<Interventie> listaInterventii;
 
         for(int i=0;i<AuthentificationActivity.listaAnimale.size();i++){
             for(int j=0;j<MainActivity.listaInterventii.size();j++)
-                if(AuthentificationActivity.listaAnimale.get(i).getCIP().equals(MainActivity.listaInterventii.get(j).getCipAnimal())){
-                    AuthentificationActivity.listaAnimale.get(i).adaugaInterventie(MainActivity.listaInterventii.get(j));
+                if(!(AuthentificationActivity.listaAnimale.get(i).getOperatiiAnimal().contains(MainActivity.listaInterventii.get(j)))){
+                    if(AuthentificationActivity.listaAnimale.get(i).getCIP().equals(MainActivity.listaInterventii.get(j).getCipAnimal())){
+                        AuthentificationActivity.listaAnimale.get(i).adaugaInterventie(MainActivity.listaInterventii.get(j));
+                    }
                 }
+
             for(int j=0;j<MainActivity.listaDeparazitari.size();j++)
-                if(AuthentificationActivity.listaAnimale.get(i).getCIP().equals(MainActivity.listaDeparazitari.get(j).getCipAnimal())){
-                    AuthentificationActivity.listaAnimale.get(i).adaugaDeparazitare(MainActivity.listaDeparazitari.get(j));
+                if(!(AuthentificationActivity.listaAnimale.get(i).getDeparazitariAnimal().contains(MainActivity.listaDeparazitari.get(j)))){
+                    if(AuthentificationActivity.listaAnimale.get(i).getCIP().equals(MainActivity.listaDeparazitari.get(j).getCipAnimal())){
+                        AuthentificationActivity.listaAnimale.get(i).adaugaDeparazitare(MainActivity.listaDeparazitari.get(j));
+                    }
                 }
+
             for(int j=0;j<MainActivity.listaVaccinuri.size();j++)
-                if(AuthentificationActivity.listaAnimale.get(i).getCIP().equals(MainActivity.listaVaccinuri.get(j).getCipAnimal())){
-                    AuthentificationActivity.listaAnimale.get(i).adaugaVaccin(MainActivity.listaVaccinuri.get(j));
+
+                if(!(AuthentificationActivity.listaAnimale.get(i).getVaccinuriAnimal().contains(MainActivity.listaVaccinuri.get(j)))){
+                    if (AuthentificationActivity.listaAnimale.get(i).getCIP().equals(MainActivity.listaVaccinuri.get(j).getCipAnimal())) {
+                        AuthentificationActivity.listaAnimale.get(i).adaugaVaccin(MainActivity.listaVaccinuri.get(j));
+                    }
                 }
         }
 

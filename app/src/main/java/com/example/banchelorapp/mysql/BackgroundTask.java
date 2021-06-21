@@ -62,7 +62,7 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
 
 
     Context context;
-    public static String link="http://192.168.1.2/TestRegisterLogin/";
+    public static String link="http://192.168.1.2/HomePets/";
 
     public BackgroundTask(Context context){
         this.context=context;

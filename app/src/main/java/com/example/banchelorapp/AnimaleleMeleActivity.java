@@ -79,10 +79,7 @@ public class AnimaleleMeleActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-        Log.e("Am animale?", String.valueOf(AuthentificationActivity.listaAnimale.size()));
         for(Animal a :AuthentificationActivity.listaAnimale){
-            Log.e("Ce am aici?",a.getNumeAnimal());
             for(Vaccin v : a.getVaccinuriAnimal())
             {
                 getPerioada(v.getDataViitoareiVaccinări(),"VACCIN",a);

@@ -46,7 +46,12 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="camp_obligatoriu_nume">Nume invalid!</string>
+    <string name="camp_obligatoriu_prenume">Prenumele este prea scurt!</string>
     <string name="camp_obligatoriu">Campul nu este valid</string>
+    <string name="camp_obligatoriu_telefon">Numarul de telefon trebuie sa aiba minim 10 cifre</string>
+    <string name="camp_obligatoriu_parola">Parola trebuie sa aiba minim 8 caractere</string>
+    <string name="camp_obligatoriu_email">Email invalid</string>
     <string name="programeaza_te">Programeaza-te</string>
     <string name="servicii">Servicii</string>
     <string name="finalizeaza_programarea">Finalizeaza programarea</string>

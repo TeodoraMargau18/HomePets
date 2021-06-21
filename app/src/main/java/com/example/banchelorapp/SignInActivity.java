@@ -48,28 +48,30 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private boolean validareDate(){
-        Log.e("Inregistrare","validare");
         if(tietNume.getText()==null||tietNume.getText().toString().length()<3) {
-            Log.e("Inregistrare","nume invalid");
-            tietNume.setError(getString(R.string.camp_obligatoriu));
+            tietNume.setError(getString(R.string.camp_obligatoriu_nume));
             return false;
         }
-        if(tietPrenume.getText().toString().length()<1){
-            tietPrenume.setError(getString(R.string.camp_obligatoriu));
+        if(tietPrenume.getText().toString().length()<3){
+            tietPrenume.setError(getString(R.string.camp_obligatoriu_prenume));
             return false;}
-        if(tietTelefon.getText().toString().length()<1) {
-            tietTelefon.setError(getString(R.string.camp_obligatoriu));
+        if(tietTelefon.getText().toString().length()<10) {
+            tietTelefon.setError(getString(R.string.camp_obligatoriu_telefon));
             return false;
         }
         if(tietParola.getText().toString().length()<8) {
-            tietParola.setError(getString(R.string.camp_obligatoriu));
+            tietParola.setError(getString(R.string.camp_obligatoriu_parola));
             return false;
         }
         if(tietEmail.getText().toString().length()<1
-                ||tietEmail.getText().toString().contains("@yahoo.com")
-                ||tietEmail.getText().toString().contains("@gmail.com")) {
-            tietEmail.setError(getString(R.string.camp_obligatoriu));
-            return false;
+                ||!(tietEmail.getText().toString().contains("@yahoo.com"))) {
+            Log.e("nu contine @yahoo.com",tietEmail.getText().toString());
+            if(!(tietEmail.getText().toString().contains("@gmail.com"))){
+                tietEmail.setError(getString(R.string.camp_obligatoriu_email));
+                Log.e("nu contine @gmail.com",tietEmail.getText().toString());
+                return false;
+            }
+
         }
         if(tietAdresa.getText().toString().length()<1) {
             tietAdresa.setError(getString(R.string.camp_obligatoriu));

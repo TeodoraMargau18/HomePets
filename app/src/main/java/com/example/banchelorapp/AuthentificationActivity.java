@@ -61,8 +61,6 @@ public class AuthentificationActivity extends AppCompatActivity {
         BackgroundTask backgroundTask=new BackgroundTask(getApplicationContext());
         backgroundTask.execute(type,email,parola);
 
-
-
         Date startMoment = new Date();
         while(!backgroundTask.corect){
             Date endMoment = new Date();
@@ -81,13 +79,13 @@ public class AuthentificationActivity extends AppCompatActivity {
 
         if(backgroundTask.corect){
 
-            //        SharedPreferences
-//salvare in fisier
+            //SharedPreferences
+            //salvare in fisier
             SharedPreferences.Editor editor= preferences.edit() ;
             editor.putString(EMAIL,email);
             editor.putString(PAROLA,parola);
             editor.apply();
-//SharedPreferences terminat
+            //SharedPreferences terminat
 
             Log.e("Am o eroare","backgroundTask.corect");
             intent=new Intent(this,MainActivity.class);
