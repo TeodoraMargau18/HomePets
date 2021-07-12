@@ -1,4 +1,4 @@
-package com.example.banchelorapp;
+package com.example.banchelorapp.adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.banchelorapp.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

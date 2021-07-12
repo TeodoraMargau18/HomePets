@@ -1,4 +1,4 @@
-package com.example.banchelorapp;
+package com.example.banchelorapp.calendarulProgramarilor;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -14,9 +14,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.banchelorapp.adapter.TimeSlotAdapter;
+import com.example.banchelorapp.R;
 
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,15 +24,12 @@ import java.util.List;
 import devs.mulham.horizontalcalendar.HorizontalCalendar;
 import devs.mulham.horizontalcalendar.HorizontalCalendarView;
 import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
-import dmax.dialog.SpotsDialog;
 
-public class ProgramareSalon extends AppCompatActivity implements ITimeSlotLoadListener {
+public class ProgramareSalonActivity extends AppCompatActivity implements ITimeSlotLoadListener {
 
     View activityProgramareView;
 
-    //
     List<TimeSlot> timeIndisponibil;
-
 
     //Aici ar trebui sa fac legatura cu baza de date
     ITimeSlotLoadListener iTimeSlotLoadListener;
@@ -53,21 +49,19 @@ public class ProgramareSalon extends AppCompatActivity implements ITimeSlotLoadL
         @Override
         public void onReceive(Context context, Intent intent) {
             Calendar date=Calendar.getInstance();
-            Log.e("Aici e problema??","Nu am o instanta");
             date.add(Calendar.DATE,0);
-            Log.e("Aici e problema??","Nu am o instanta");
-//            loadAvaibleTimeSlot(simpleDateFormat.format(date.getTime()));
+            loadAvaibleTimeSlot(simpleDateFormat.format(date.getTime()));
         }
     };
 
     private void loadAvaibleTimeSlot(String format) {
-        //Aici ar trebui sa incarc slot urile ocupate
-
+        Log.e("Testez on receive din broadcast",format);
+        Log.e("Testez loadAvaibleTimeSlot",format);
     }
-    static  ProgramareSalon instance;
-    public static ProgramareSalon getInstance(){
+    static ProgramareSalonActivity instance;
+    public static ProgramareSalonActivity getInstance(){
         if(instance==null)
-            instance=new ProgramareSalon();
+            instance=new ProgramareSalonActivity();
         return instance;
     }
 
@@ -94,20 +88,10 @@ public class ProgramareSalon extends AppCompatActivity implements ITimeSlotLoadL
         timeIndisponibil.add(test1);
         onTimeSlotLoadSucces(timeIndisponibil);
 
-
-//        e ok ?
         activityProgramareView=findViewById(R.id.activityProgramareView);
 
         init(activityProgramareView);
 
-
-
-
-//            Calendar date=Calendar.getInstance();
-//            Log.e("Aici e problema??","Nu am o instanta");
-//            date.add(Calendar.DATE,0);
-//            Log.e("Aici e problema??","Nu am o instanta");
-//            loadAvaibleTimeSlot(simpleDateFormat.format(date.getTime()));
         TimeSlotAdapter adapter=new TimeSlotAdapter(getApplicationContext());
         recyclerView.setAdapter(adapter);
 
@@ -133,7 +117,7 @@ public class ProgramareSalon extends AppCompatActivity implements ITimeSlotLoadL
         endDate.add(Calendar.DATE,30);
         HorizontalCalendar horizontalCalendar=new HorizontalCalendar.Builder(itemView,R.id.calendarView)
                 .range(startDate,endDate)
-                .datesNumberOnScreen(1)
+                .datesNumberOnScreen(3)
                 .mode(HorizontalCalendar.Mode.DAYS)
                 .defaultSelectedDate(startDate)
                 .build()
@@ -143,7 +127,7 @@ public class ProgramareSalon extends AppCompatActivity implements ITimeSlotLoadL
             public void onDateSelected(Calendar date, int position) {
                 if(selected_date.getTimeInMillis()!=date.getTimeInMillis()){
                     selected_date=date;
-//                    loadAvaibleTimeSlot(simpleDateFormat.format(date.getTime()));
+                    loadAvaibleTimeSlot(simpleDateFormat.format(date.getTime()));
                 }
             }
         });

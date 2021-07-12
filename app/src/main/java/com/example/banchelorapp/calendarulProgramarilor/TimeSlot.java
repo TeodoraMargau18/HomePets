@@ -1,4 +1,4 @@
-package com.example.banchelorapp;
+package com.example.banchelorapp.calendarulProgramarilor;
 
 public class TimeSlot {
     Long slot;

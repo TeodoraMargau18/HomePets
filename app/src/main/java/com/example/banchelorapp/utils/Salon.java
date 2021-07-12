@@ -5,7 +5,6 @@ import android.os.Parcelable;
 
 import com.example.banchelorapp.Calculeaza;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Salon implements Parcelable, Calculeaza {

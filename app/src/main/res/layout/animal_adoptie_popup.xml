@@ -129,35 +129,20 @@
             <!--Sfarsit LLDataN-->
 
             <!--   inceput notite -->
-            <LinearLayout
-                android:id="@+id/dialogFragmentLLNotite"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <TextView
-                    android:id="@+id/dialogFragmentNotite"
-                    android:layout_width="80dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.3"
-                    android:paddingTop="20dp"
-                    android:text="@string/notite"
-                    android:textAlignment="center"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/etNotite"
+                <ScrollView
+                    android:id="@+id/scrollView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="60dp"
                     android:layout_weight="0.7"
-                    android:orientation="vertical"
-                    android:text="Test"
-                    android:textSize="20dp"
-                    android:weightSum="1" />
-            </LinearLayout>
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/etNotite"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:textSize="20dp" />
+                </ScrollView>
             <!--   sfarsit notite -->
 
             <!--Inceput llSEx-->

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SalonSelectatActivity extends AppCompatActivity {
-
+    public static  int codSalon;
     public static String SERVICII_KEY="transferServicii";
     ViewFlipper viewFlipper;
     Intent intent;
@@ -47,6 +47,7 @@ public class SalonSelectatActivity extends AppCompatActivity {
         viewFlipper=findViewById(R.id.viewFlipperSalon);
         intent=getIntent();
         salon=intent.getParcelableExtra(ListaSaloaneActivity.SALON_KEY);
+        codSalon=salon.getCod();
 
         List<String> images=salon.getPozeSalon();
         tvNume=findViewById(R.id.tvNumeSalonSelectat);

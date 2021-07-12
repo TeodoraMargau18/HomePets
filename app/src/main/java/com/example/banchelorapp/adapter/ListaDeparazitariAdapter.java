@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.banchelorapp.DialogFragmentAnimal;
+import com.example.banchelorapp.fragments.DialogFragmentAnimal;
 import com.example.banchelorapp.R;
 import com.example.banchelorapp.utils.interventii.Deparazitare;
 

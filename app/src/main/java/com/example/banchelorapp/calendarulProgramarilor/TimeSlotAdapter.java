@@ -1,4 +1,4 @@
-package com.example.banchelorapp.adapter;
+package com.example.banchelorapp.calendarulProgramarilor;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,7 +11,6 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.banchelorapp.R;
-import com.example.banchelorapp.TimeSlot;
 
 import java.util.ArrayList;
 import java.util.List;

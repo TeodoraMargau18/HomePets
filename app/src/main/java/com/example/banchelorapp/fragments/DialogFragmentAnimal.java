@@ -1,33 +1,34 @@
-package com.example.banchelorapp;
+package com.example.banchelorapp.fragments;
 
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.Button;
-        import android.widget.GridView;
-        import android.widget.ImageView;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-        import androidx.annotation.NonNull;
-        import androidx.annotation.Nullable;
-        import androidx.fragment.app.DialogFragment;
-        import com.example.banchelorapp.utils.Animal;
-        import com.example.banchelorapp.utils.AnimaleAdoptie;
-        import com.squareup.picasso.Picasso;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 
-public class PopUpAdoptii extends DialogFragment {
+import com.example.banchelorapp.AnimaleleMeleActivity;
+import com.example.banchelorapp.R;
+import com.example.banchelorapp.mysql.BackgroundTask;
+import com.example.banchelorapp.utils.Animal;
+import com.squareup.picasso.Picasso;
 
-    public static final int REQUEST_CODE = 101;
-    TextView tvNume, tvSpecie, tvRasa,etDespre,tvDataN, tvVarsta;
+public class DialogFragmentAnimal extends DialogFragment {
+
+    EditText etDespre;
+    TextView tvNume, tvSpecie, tvRasa,tvDataN, tvVarsta;
     Button btnInchide;
-    Button btnAdopta;
-    PopUpAdoptii dlg;
+    Button btnSalveaza;
+    DialogFragmentAnimal dlg;
     ImageView img;
     ImageView imgSex;
-    AnimaleAdoptie animal;
+    Animal animal;
     String descriereAnimal;
 
 
@@ -35,39 +36,40 @@ public class PopUpAdoptii extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view=inflater.inflate(R.layout.animal_adoptie_popup,container,false);
+        View view=inflater.inflate(R.layout.dialog_fragment_animal,container,false);
         etDespre =view.findViewById(R.id.etNotite);
         tvNume=view.findViewById(R.id.dialogFragmentNume);
         tvSpecie=view.findViewById(R.id.dialogFragmentSpecie);
+        tvVarsta=view.findViewById(R.id.dialogFragmentVarsta);
         tvRasa=view.findViewById(R.id.dialogFragmentRasa);
         tvDataN=view.findViewById(R.id.dialogFragmentDataN);
-        tvVarsta=view.findViewById(R.id.dialogFragmentVarsta);
 
         btnInchide=view.findViewById(R.id.dialogFragmentInchide);
-        btnAdopta=view.findViewById(R.id.btnDialogFragmentAdopta);
+        btnSalveaza=view.findViewById(R.id.dialogFragmentSalveaza);
         img=view.findViewById(R.id.dialogFragmentImg);
         imgSex=view.findViewById(R.id.dialogFragmentSexImg);
 
         animal =getArguments().getParcelable(
-                CentruAdoptiiActivity.animalAdoptie);
+                AnimaleleMeleActivity.tranferAnimal);
         tvNume.setText(animal.getNumeAnimal());
         tvSpecie.setText(animal.getSpecieAnimal());
         descriereAnimal=animal.getDescriereAnimal();
-        tvRasa.setText(animal.getRasaAnimal());
         tvVarsta.setText(animal.returneazaVarsta());
-
-        String dataFormatata=formatareData(animal.getDataNasteriiAnimal().toString());
-        tvDataN.setText(dataFormatata);
+        tvRasa.setText(animal.getRasaAnimal());
         if(animal.getDescriereAnimal().equals("null"))
             etDespre.setText("");
         else
             etDespre.setText(animal.getDescriereAnimal());
-        if(animal.getSexAnimal().equalsIgnoreCase("feminin"))
-        {
-            imgSex.setImageResource(R.drawable.female);
-        }
-        else
-            imgSex.setImageResource(R.drawable.symbol_male);
+
+        String dataFormatata=formatareData(animal.getDataNasteriiAnimal().toString());
+
+        tvDataN.setText(dataFormatata);
+if(animal.getSexAnimal().equalsIgnoreCase("feminin"))
+{
+    imgSex.setImageResource(R.drawable.female);
+}
+else
+    imgSex.setImageResource(R.drawable.symbol_male);
         Picasso.get().load(animal.getImagine().trim()).into(img);
         dlg=this;
 
@@ -77,13 +79,14 @@ public class PopUpAdoptii extends DialogFragment {
                 dlg.dismiss();
             }
         });
-        btnAdopta.setOnClickListener(new View.OnClickListener() {
+        btnSalveaza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent=new Intent(view.getContext(),InfoAdoptie.class);
-                startActivityForResult(intent, REQUEST_CODE);
-//                Toast.makeText(dlg.getContext(),"Ai adoptat",Toast.LENGTH_LONG).show();
+                String type="addDesc";
+                descriereAnimal= etDespre.getText().toString();
+                animal.setDescriereAnimal(descriereAnimal);
+                BackgroundTask backgroundTask=new BackgroundTask(AnimaleleMeleActivity.ctx);
+                backgroundTask.execute(type,descriereAnimal,animal.getCIP());
                 dlg.dismiss();
             }
         });
@@ -104,5 +107,4 @@ public class PopUpAdoptii extends DialogFragment {
     public void onResume() {
         super.onResume();
     }
-
 }

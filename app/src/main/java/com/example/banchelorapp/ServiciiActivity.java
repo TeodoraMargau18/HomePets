@@ -14,7 +14,6 @@ import com.example.banchelorapp.utils.Salon;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import android.widget.Toast;
 
 public class ServiciiActivity extends AppCompatActivity {
     public static String  SERVICII_KEY="servicii";
@@ -23,14 +22,10 @@ public class ServiciiActivity extends AppCompatActivity {
     Salon salon;
     ExpandableListView expandableListView;
     ArrayList<String> listaCategorieAnimal;
-    HashMap<String, List<String>> listItem;
+    HashMap<String, List<String>> serviciiCategorie;
     ExpandableAdapterServicii adapter;
 
-    public void comandaFunction(){
-        intent=new Intent(this.getApplicationContext(),ProgramareSalon.class);
-        Log.e("Buton Apasat","Am apasat");
-        startActivity(intent);
-    }
+
 
 
     @Override
@@ -42,9 +37,9 @@ public class ServiciiActivity extends AppCompatActivity {
         expandableListView=findViewById(R.id.expLvCategorieAnimalServicii);
 
         listaCategorieAnimal =new ArrayList<>();
-        listItem=new HashMap<>();
+        serviciiCategorie =new HashMap<>();
 
-        adapter=new ExpandableAdapterServicii(this.getApplicationContext(), listaCategorieAnimal,listItem);
+        adapter=new ExpandableAdapterServicii(this.getApplicationContext(), listaCategorieAnimal, serviciiCategorie);
         expandableListView.setAdapter(adapter);
         initListData(salon);
 
@@ -52,13 +47,18 @@ public class ServiciiActivity extends AppCompatActivity {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
-                Log.e("lista",listaCategorieAnimal.get(groupPosition));
-                Log.e("Elemente lista",listItem.get(listaCategorieAnimal.get(groupPosition)).get(childPosition));
+                Log.e("Cod Categorie",listaCategorieAnimal.get(groupPosition));
+                Log.e("Codul serviciului",serviciiCategorie.get(listaCategorieAnimal.get(groupPosition)).get(childPosition));
                 comandaFunction();
                 return false;
             }
         });
 
+    }
+
+    public void comandaFunction(){
+        intent=new Intent(this.getApplicationContext(), SalonBookingActivity.class);
+        startActivity(intent);
     }
 
     private void initListData(Salon salon){
@@ -83,8 +83,8 @@ public class ServiciiActivity extends AppCompatActivity {
                         listElExpandat.add(salon.getServicii().get(j).getDenumireServiciu()
                                 + " - Pret: "
                                 + salon.getServicii().get(j).getTarifServiciu()
-                                + " lei ");
-                        listItem.put(listaCategorieAnimal.get(i), listElExpandat);
+                                + " lei - Cod serviciu: "+salon.getServicii().get(j).getCodServiciu());
+                        serviciiCategorie.put(listaCategorieAnimal.get(i), listElExpandat);
                     }
             }
         }

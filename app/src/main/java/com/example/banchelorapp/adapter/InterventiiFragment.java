@@ -1,4 +1,4 @@
-package com.example.banchelorapp;
+package com.example.banchelorapp.adapter;
 
 import android.os.Bundle;
 
@@ -11,11 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.example.banchelorapp.adapter.ListaInterventiiAdapter;
-import com.example.banchelorapp.adapter.ListaVaccinuriAdapter;
+import com.example.banchelorapp.R;
 import com.example.banchelorapp.utils.Animal;
 import com.example.banchelorapp.utils.interventii.Interventie;
-import com.example.banchelorapp.utils.interventii.Vaccin;
 
 import java.util.ArrayList;
 

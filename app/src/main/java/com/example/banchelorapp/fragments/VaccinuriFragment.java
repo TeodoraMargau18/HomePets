@@ -1,6 +1,5 @@
-package com.example.banchelorapp;
+package com.example.banchelorapp.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -10,16 +9,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.banchelorapp.adapter.ListaAnimaleAdapter;
+import com.example.banchelorapp.R;
 import com.example.banchelorapp.adapter.ListaVaccinuriAdapter;
 import com.example.banchelorapp.utils.Animal;
 import com.example.banchelorapp.utils.interventii.Vaccin;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class VaccinuriFragment extends Fragment {
 

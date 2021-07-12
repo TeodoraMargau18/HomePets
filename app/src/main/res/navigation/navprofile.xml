@@ -7,23 +7,23 @@
 
     <fragment
         android:id="@+id/profilGeneralFragment"
-        android:name="com.example.banchelorapp.ProfilGeneralFragment"
+        android:name="com.example.banchelorapp.fragments.ProfilGeneralFragment"
         android:label="fragment_profil_general"
         tools:layout="@layout/fragment_profil_general" />
 
     <fragment
         android:id="@+id/vaccinuriFragment"
-        android:name="com.example.banchelorapp.VaccinuriFragment"
+        android:name="com.example.banchelorapp.fragments.VaccinuriFragment"
         android:label="fragment_vaccinuri"
         tools:layout="@layout/fragment_vaccinuri" />
     <fragment
         android:id="@+id/deparazitariFragment"
-        android:name="com.example.banchelorapp.DeparazitariFragment"
+        android:name="com.example.banchelorapp.fragments.DeparazitariFragment"
         android:label="fragment_deparazitari"
         tools:layout="@layout/fragment_deparazitari" />
     <fragment
         android:id="@+id/interventiiFragment"
-        android:name="com.example.banchelorapp.InterventiiFragment"
+        android:name="com.example.banchelorapp.adapter.InterventiiFragment"
         android:label="fragment_interventii"
         tools:layout="@layout/fragment_interventii" />
 

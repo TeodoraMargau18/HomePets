@@ -1,5 +1,6 @@
 package com.example.banchelorapp.mysql;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -61,8 +62,10 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
     public static String numarTel;
 
 
+
+
     Context context;
-    public static String link="http://192.168.1.2/HomePets/";
+    public static String link="http://192.168.1.6/HomePets/";
 
     public BackgroundTask(Context context){
         this.context=context;
@@ -78,6 +81,7 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
         interventiiTerminat=false;
         deparazitariTerminat=false;
         cevaTerminat=false;
+
     }
 
     @Override
@@ -561,6 +565,7 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
 
     @Override
     protected void onPreExecute() {
+
         super.onPreExecute();
     }
 
@@ -606,12 +611,9 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                         String imagine=link+jsonObject.getString("imagineAnimal");
                         String descriereAnimal=jsonObject.getString("despreAnimal");
                         String semneParticulare=jsonObject.getString("semneParticulare");
-
-
                         String dataNasteriiAnimalSTR=jsonObject.getString("dataNasteriiAnimal");
                         Date dataNasteriiAnimal=new SimpleDateFormat("yyyy-MM-dd").parse(dataNasteriiAnimalSTR);
 
-//                        creez animalul
                         Animal a= new Animal(CIP,semneParticulare,imagine,emailProp,numeAnimal,rasaAnimal,descriereAnimal,specieAnimal,sexAnimal,
                                 dataNasteriiAnimal,culoare,
                                 vaccinuri,
@@ -623,7 +625,6 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
             }catch (Exception ex){
                 Toast.makeText(context,s,Toast.LENGTH_LONG).show();
             }
-
         }
         if(inAnimaleAdoptie){
             try{
@@ -648,7 +649,6 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
 
                     String dataNasteriiAnimalSTR=jsonObject.getString("dataNasteriiAnimal");
                     Date dataNasteriiAnimal=new SimpleDateFormat("yyyy-MM-dd").parse(dataNasteriiAnimalSTR);
-//                        creez animalul
                     AnimaleAdoptie a= new AnimaleAdoptie(ID,imagine,numeAnimal,rasaAnimal,descriereAnimal,
                             specieAnimal,sexAnimal,dataNasteriiAnimal,culoare,vaccinuri,interventii,deparazitari);
                     if(!statut.toLowerCase().trim().equals("adoptat"))
@@ -698,8 +698,9 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                             String tarifServiciu = jsonServiciu.getString("tarifServiciu");
                             String durataServiciu = jsonServiciu.getString("durataServiciu");
 
-                            ServiciuSalon serviciuSalon =
-                                    new ServiciuSalon(categorieAnimal, denumireServiciu, (float) (Double.parseDouble(tarifServiciu)), (float) (Double.parseDouble(durataServiciu)), Integer.parseInt(codSalon));
+                           ServiciuSalon serviciuSalon =
+                                    new ServiciuSalon(Integer.parseInt(codServiciu),categorieAnimal,denumireServiciu,(float) (Double.parseDouble(tarifServiciu)),(float) (Double.parseDouble(durataServiciu)),
+                                            Integer.parseInt(codSalon));
                             listaCoduriServiciiExistente.add(codServiciu);
                             for (int k = 0; k < AuthentificationActivity.listaSaloane.size(); k++) {
                                 if (Integer.parseInt(codSalon) == AuthentificationActivity.listaSaloane.get(k).getCod()) {
@@ -713,7 +714,6 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                             //creez o lista noua de servicii daca salonul nu exista in lista
                             ArrayList<ServiciuSalon> servicii = new ArrayList<ServiciuSalon>();
                             ArrayList<String> poze = new ArrayList<String>();
-                            //adaug codul daca nu exista in lista
                             listaCoduriExistente.add(codSalon);
 
                             String numeSalon = jsonObject.getString("numeSalon");
@@ -727,16 +727,15 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                             listaProgram = Arrays.asList(str);
 
                             JSONObject jsonServiciu = new JSONObject(jsonObject.getString("servicii"));
-
-                            String codSalonServiciu = jsonServiciu.getString("codSalon");
                             String categorieAnimal = jsonServiciu.getString("categorieAnimal");
                             String denumireServiciu = jsonServiciu.getString("denumireServiciu");
                             String tarifServiciu = jsonServiciu.getString("tarifServiciu");
                             String durataServiciu = jsonServiciu.getString("durataServiciu");
                             String codServiciu = jsonServiciu.getString("codServiciu");
                             listaCoduriServiciiExistente.add(codServiciu);
+
                             ServiciuSalon serviciuSalon =
-                                    new ServiciuSalon(categorieAnimal, denumireServiciu, (float) (Double.parseDouble(tarifServiciu)), (float) (Double.parseDouble(durataServiciu)), Integer.parseInt(codSalon));
+                                    new ServiciuSalon(Integer.parseInt(codServiciu),categorieAnimal, denumireServiciu, (float) (Double.parseDouble(tarifServiciu)), (float) (Double.parseDouble(durataServiciu)), Integer.parseInt(codSalon));
                             servicii.add(serviciuSalon);
                             JSONObject jsonPoze = new JSONObject(jsonObject.getString("poze"));
                             String locatiePoza = link+jsonPoze.getString("locatiePoza");
@@ -748,7 +747,6 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                             AuthentificationActivity.listaSaloane.add(salon);
                     }
                 }
-
             }catch (Exception ex){
                 Toast.makeText(context,s,Toast.LENGTH_LONG).show();
             }

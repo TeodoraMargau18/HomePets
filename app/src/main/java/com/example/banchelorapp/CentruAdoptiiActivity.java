@@ -10,8 +10,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.example.banchelorapp.adapter.GridViewAdapter;
+import com.example.banchelorapp.fragments.PopUpAdoptii;
 import com.example.banchelorapp.utils.AnimaleAdoptie;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;

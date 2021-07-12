@@ -1,4 +1,4 @@
-package com.example.banchelorapp;
+package com.example.banchelorapp.calendarulProgramarilor;
 
 import android.graphics.Rect;
 import android.view.View;

@@ -8,30 +8,21 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
+
 import com.example.banchelorapp.adapter.ListaAnimaleAdapter;
-import com.example.banchelorapp.mysql.BackgroundTask;
+import com.example.banchelorapp.fragments.DialogFragmentAnimal;
 import com.example.banchelorapp.utils.Animal;
 import com.example.banchelorapp.utils.interventii.Deparazitare;
-import com.example.banchelorapp.utils.interventii.Interventie;
 import com.example.banchelorapp.utils.interventii.Vaccin;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class AnimaleleMeleActivity extends AppCompatActivity {

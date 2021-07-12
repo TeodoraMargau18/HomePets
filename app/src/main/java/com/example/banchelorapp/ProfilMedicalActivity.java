@@ -6,9 +6,12 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
+import com.example.banchelorapp.adapter.InterventiiFragment;
+import com.example.banchelorapp.fragments.DeparazitariFragment;
+import com.example.banchelorapp.fragments.ProfilGeneralFragment;
+import com.example.banchelorapp.fragments.VaccinuriFragment;
 import com.example.banchelorapp.utils.Animal;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -36,12 +39,12 @@ public class ProfilMedicalActivity extends AppCompatActivity {
                         bundle=new Bundle();
                         switch (item.getItemId()){
                             case R.id.profilGeneralFragment:
-                                selectedFragment=ProfilGeneralFragment.newInstance(animal);
+                                selectedFragment= ProfilGeneralFragment.newInstance(animal);
                                 getSupportFragmentManager().beginTransaction().
                                         replace(R.id.fragment_container,selectedFragment).commit();
                                 break;
                             case R.id.interventiiFragment:
-                                selectedFragment=InterventiiFragment.newInstance(animal);
+                                selectedFragment= InterventiiFragment.newInstance(animal);
                                 getSupportFragmentManager().beginTransaction().
                                         replace(R.id.fragment_container,selectedFragment).commit();
                                 break;
@@ -51,14 +54,16 @@ public class ProfilMedicalActivity extends AppCompatActivity {
                                         replace(R.id.fragment_container,selectedFragment).commit();
                                 break;
                             case R.id.vaccinuriFragment:
-                                selectedFragment=VaccinuriFragment.newInstance(animal);
+                                selectedFragment= VaccinuriFragment.newInstance(animal);
                                 getSupportFragmentManager().beginTransaction()
                                         .replace(R.id.fragment_container,selectedFragment)
                                         .commit();
                                 break;
                             case R.id.mainActivityID:
                                 intent=new Intent(getApplicationContext(),MainActivity.class);
+                                finish();
                                startActivity(intent);
+
                                 break;
                         }
                         return  true;

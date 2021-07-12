@@ -52,13 +52,10 @@ public class ListaSaloaneActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 bundle =new Bundle();
-
                  bundle.putParcelable(SALON_KEY, (Parcelable) listaSaloane.getItemAtPosition(position));
                  intent = new Intent(getApplicationContext(),SalonSelectatActivity.class);
                  intent.putExtras(bundle);
                  startActivity(intent);
-
-
             }
         });
     }

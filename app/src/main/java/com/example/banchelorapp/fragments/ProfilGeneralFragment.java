@@ -1,4 +1,4 @@
-package com.example.banchelorapp;
+package com.example.banchelorapp.fragments;
 
 import android.os.Bundle;
 
@@ -11,9 +11,12 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 
+import com.example.banchelorapp.MainActivity;
+import com.example.banchelorapp.ProfilMedicalActivity;
+import com.example.banchelorapp.R;
+import com.example.banchelorapp.adapter.ExpandableAdapter;
 import com.example.banchelorapp.adapter.ListaVaccinuriAdapter;
 import com.example.banchelorapp.utils.Animal;
-import com.example.banchelorapp.utils.Proprietar;
 import com.example.banchelorapp.utils.interventii.Vaccin;
 import com.squareup.picasso.Picasso;
 
@@ -95,7 +98,7 @@ public class ProfilGeneralFragment extends Fragment {
 
         ArrayList<String> list1=new ArrayList<>();
         array=new ArrayList<>();
-        array.add("Nume: "+MainActivity.proprietarGeneral.getNume());
+        array.add("Nume: "+ MainActivity.proprietarGeneral.getNume());
         array.add("Prenume: "+MainActivity.proprietarGeneral.getPrenume());
         array.add("Adresa: "+MainActivity.proprietarGeneral.getAdresa());
         array.add("Telefon: "+MainActivity.proprietarGeneral.getNumarTel());
@@ -108,7 +111,7 @@ public class ProfilGeneralFragment extends Fragment {
         array.add("Nume: "+ProfilMedicalActivity.animal.getNumeAnimal());
         array.add("Rasa: "+ProfilMedicalActivity.animal.getRasaAnimal());
         array.add("Sex: "+ProfilMedicalActivity.animal.getSexAnimal());
-        array.add("Data nasterii: "+DialogFragmentAnimal.formatareData(ProfilMedicalActivity.animal.getDataNasteriiAnimal().toString()));
+        array.add("Data nasterii: "+ DialogFragmentAnimal.formatareData(ProfilMedicalActivity.animal.getDataNasteriiAnimal().toString()));
         array.add("Culoare: "+ProfilMedicalActivity.animal.getCuloareAnimal());
         for (String item : array) {
             list2.add(item);
