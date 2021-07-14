@@ -88,7 +88,7 @@ public class ProgramareSalonActivity extends AppCompatActivity implements ITimeS
         timeIndisponibil.add(test1);
         onTimeSlotLoadSucces(timeIndisponibil);
 
-        activityProgramareView=findViewById(R.id.activityProgramareView);
+        activityProgramareView=findViewById(R.id.activityBookingView);
 
         init(activityProgramareView);
 

@@ -10,6 +10,7 @@ import com.example.banchelorapp.AuthentificationActivity;
 import com.example.banchelorapp.InfoAdoptie;
 import com.example.banchelorapp.ListaSaloaneActivity;
 import com.example.banchelorapp.MainActivity;
+import com.example.banchelorapp.booking.SalonBookingActivity;
 import com.example.banchelorapp.utils.Animal;
 import com.example.banchelorapp.utils.AnimaleAdoptie;
 import com.example.banchelorapp.utils.Proprietar;
@@ -38,6 +39,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public class BackgroundTask extends AsyncTask<String,String, String> {
@@ -60,6 +62,7 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
     public static String parola;
     public static String adresa;
     public static String numarTel;
+    public static HashMap<Date,String> oreIndisponibile;
 
 
 
@@ -68,6 +71,7 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
     public static String link="http://192.168.1.6/HomePets/";
 
     public BackgroundTask(Context context){
+        oreIndisponibile=new HashMap<>();
         this.context=context;
         eTermimnat=false;
         corect=false;
@@ -99,6 +103,8 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
         String getDeparazitari=link+"getDeparazitari.php";
         String addDescURL=link+"getAddDesc.php";
         String addStateURL=link+"addState.php";
+        String insertProgramareURL=link+"insertProgramare.php";
+        String getProgramariURL=link+"getProgramari.php";
 
         if(type.equals("reg")){
             String email=strings[1];
@@ -146,7 +152,11 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
             }catch(MalformedURLException e){
                 e.printStackTrace();
             }
-        }else
+        }
+
+
+
+        else
               if(type.equals("addDesc"))
               {
                   String descriereAnimal=strings[1];
@@ -552,6 +562,115 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                             Toast.makeText(context,result,Toast.LENGTH_LONG).show();
                         }
                         interventiiTerminat=true;
+                        return result;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }catch(MalformedURLException e){
+                    e.printStackTrace();
+                }
+            }
+            //calendarul programarilor
+            else if(type.equals("inserareProgramare")){
+                String oraProgramare=strings[1];
+                String numeAnimal=strings[2];
+                String codServiciu=strings[3];
+                String dataProgramare=strings[4];
+                try{
+                    URL url=new URL(insertProgramareURL);
+                    try{
+                        HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
+                        httpURLConnection.setRequestMethod("POST");
+                        httpURLConnection.setDoOutput(true);
+                        httpURLConnection.setDoInput(true);
+                        OutputStream outputStream=httpURLConnection.getOutputStream();
+                        OutputStreamWriter outputStreamWriter=new OutputStreamWriter(outputStream,"UTF-8");
+                        BufferedWriter bufferedWriter=new BufferedWriter(outputStreamWriter);
+                        String insertData= URLEncoder.encode("oraProgramare","UTF-8")+"="+
+                                URLEncoder.encode(oraProgramare,"UTF-8")+
+                                "&"+URLEncoder.encode("numeAnimal","UTF-8")+"="+
+                                URLEncoder.encode(numeAnimal,"UTF-8")+
+                                "&"+URLEncoder.encode("codServiciu","UTF-8")+"="+
+                                URLEncoder.encode(codServiciu,"UTF-8")+
+                                "&"+URLEncoder.encode("dataProgramare","UTF-8")+"="+
+                                URLEncoder.encode(dataProgramare,"UTF-8");
+                        bufferedWriter.write(insertData);
+                        bufferedWriter.flush();
+                        bufferedWriter.close();
+                        InputStream inputStream=httpURLConnection.getInputStream();
+                        InputStreamReader inputStreamReader=new InputStreamReader(inputStream,"ISO-8859-1");
+                        BufferedReader bufferedReader=new BufferedReader(inputStreamReader);
+                        String result="";
+                        String line="";
+                        StringBuilder stringBuilder=new StringBuilder();
+                        while((line=bufferedReader.readLine())!=null){
+                            stringBuilder.append(line).append("\n");
+                        }
+                        result=stringBuilder.toString();
+                        bufferedReader.close();
+                        inputStream.close();
+                        httpURLConnection.disconnect();
+                        if(result.equals("Succes!")){
+                            Toast.makeText(context, result, Toast.LENGTH_SHORT).show();
+                        }
+                        return result;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }catch(MalformedURLException e){
+                    e.printStackTrace();
+                }
+            }else
+            if(type.equals("getProgramari")){
+                String codSalon=strings[1];
+                try{
+                    URL url=new URL(getProgramariURL);
+                    try{
+                        HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
+
+                        httpURLConnection.setRequestMethod("POST");
+                        httpURLConnection.setDoOutput(true);
+                        httpURLConnection.setDoInput(true);
+
+                        OutputStream outputStream=httpURLConnection.getOutputStream();
+                        OutputStreamWriter outputStreamWriter=new OutputStreamWriter(outputStream,"UTF-8");
+                        BufferedWriter bufferedWriter=new BufferedWriter(outputStreamWriter);
+                        String insertData= URLEncoder.encode("codSalon","UTF-8")+"="+
+                                URLEncoder.encode(codSalon,"UTF-8");
+                        bufferedWriter.write(insertData);
+                        bufferedWriter.flush();
+                        bufferedWriter.close();
+
+                        InputStream inputStream=httpURLConnection.getInputStream();
+                        InputStreamReader inputStreamReader=new InputStreamReader(inputStream,"ISO-8859-1");
+                        BufferedReader bufferedReader=new BufferedReader(inputStreamReader);
+                        String result="";
+                        String line="";
+                        StringBuilder stringBuilder=new StringBuilder();
+                        while((line=bufferedReader.readLine())!=null){
+                            stringBuilder.append(line).append("\n");
+                        }
+                        result=stringBuilder.toString();
+                        bufferedReader.close();
+                        inputStream.close();
+                        httpURLConnection.disconnect();
+                        try{
+                            JSONArray jsonArray=new JSONArray(result);
+                            JSONObject jsonObject=null;
+
+                            for(int i=0;i<jsonArray.length();i++) {
+                                jsonObject = jsonArray.getJSONObject(i);
+                                String oraProgramare=jsonObject.getString("oraProgramare");
+                                String dataProgramare=jsonObject.getString("dataProgramare");
+
+                                Date data=SalonBookingActivity.simpleDateFormatDB.parse(dataProgramare);
+                                Log.e("ce data mi-a luat",dataProgramare);
+                                oreIndisponibile.put(data,oraProgramare);
+                            }
+
+                        }catch (Exception ex){
+                            Toast.makeText(context,result,Toast.LENGTH_LONG).show();
+                        }
                         return result;
                     } catch (IOException e) {
                         e.printStackTrace();

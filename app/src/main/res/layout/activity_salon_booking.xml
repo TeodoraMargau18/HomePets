@@ -1,27 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-        android:id="@+id/activityProgramareView"
+        android:id="@+id/activityBookingView"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".SalonBookingActivity"
+        tools:context=".booking.SalonBookingActivity"
         android:padding="8dp"
         android:background="#83BCCD"
         android:orientation="vertical">
         <devs.mulham.horizontalcalendar.HorizontalCalendarView
-            android:id="@+id/calendarView"
+            android:id="@+id/calendarViewBooking"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#2DAED6"
             app:textColorSelected="#64CCEC"
             />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleViewProgramare"
+        <LinearLayout
+        android:id="@+id/linearMare"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="4dp" />
-
+        android:layout_marginTop="4dp"
+            android:padding="7dp"
+        android:orientation="horizontal"
+            android:weightSum="3"
+            >
+            <LinearLayout
+            android:id="@+id/linear1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:orientation="vertical"/>
+            <LinearLayout
+                android:id="@+id/linear2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:orientation="vertical" />
+            <LinearLayout
+                android:id="@+id/linear3"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:orientation="vertical"/>
+        </LinearLayout>
 </LinearLayout>

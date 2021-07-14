@@ -4,15 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
+import com.example.banchelorapp.mysql.BackgroundTask;
 import com.example.banchelorapp.utils.Salon;
 import com.squareup.picasso.Picasso;
 
@@ -25,14 +24,14 @@ public class SalonSelectatActivity extends AppCompatActivity {
     ViewFlipper viewFlipper;
     Intent intent;
     Bundle bundle;
-    Salon salon;
+    public static Salon salonSelectat;
     TextView tvNume;
     ListView lvProgram;
 
     public void goToServiciiActivity(View view){
         bundle=new Bundle();
-        if(salon!=null) {
-            bundle.putParcelable(SERVICII_KEY, salon);
+        if(salonSelectat !=null) {
+            bundle.putParcelable(SERVICII_KEY, salonSelectat);
             intent=new Intent(getApplicationContext(),ServiciiActivity.class);
             intent.putExtras(bundle);
             startActivity(intent);
@@ -46,17 +45,19 @@ public class SalonSelectatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_salon_selectat);
         viewFlipper=findViewById(R.id.viewFlipperSalon);
         intent=getIntent();
-        salon=intent.getParcelableExtra(ListaSaloaneActivity.SALON_KEY);
-        codSalon=salon.getCod();
+        salonSelectat =intent.getParcelableExtra(ListaSaloaneActivity.SALON_KEY);
+        codSalon= salonSelectat.getCod();
 
-        List<String> images=salon.getPozeSalon();
+
+
+        List<String> images= salonSelectat.getPozeSalon();
         tvNume=findViewById(R.id.tvNumeSalonSelectat);
         lvProgram =findViewById(R.id.tvProgram);
 
         List<String> listaPrograme=new ArrayList<>();
-        listaPrograme=salon.getProgram();
+        listaPrograme= salonSelectat.getProgram();
 
-        tvNume.setText(salon.getNumeSalon());
+        tvNume.setText(salonSelectat.getNumeSalon());
         ArrayAdapter<String> programAdapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_list_item_1,

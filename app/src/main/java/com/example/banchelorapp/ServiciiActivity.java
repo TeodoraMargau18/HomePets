@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ExpandableListView;
 
 import com.example.banchelorapp.adapter.ExpandableAdapterServicii;
+import com.example.banchelorapp.booking.SalonBookingActivity;
 import com.example.banchelorapp.utils.Salon;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ServiciiActivity extends AppCompatActivity {
+    public static final String COD_SERVICIU = "CodServiciu";
     public static String  SERVICII_KEY="servicii";
 
     Intent intent;
@@ -49,15 +51,18 @@ public class ServiciiActivity extends AppCompatActivity {
                                         int groupPosition, int childPosition, long id) {
                 Log.e("Cod Categorie",listaCategorieAnimal.get(groupPosition));
                 Log.e("Codul serviciului",serviciiCategorie.get(listaCategorieAnimal.get(groupPosition)).get(childPosition));
-                comandaFunction();
+                comandaFunction(serviciiCategorie.get(listaCategorieAnimal.get(groupPosition)).get(childPosition));
                 return false;
             }
         });
 
     }
 
-    public void comandaFunction(){
+    public void comandaFunction(String codServiciu){
         intent=new Intent(this.getApplicationContext(), SalonBookingActivity.class);
+        String codDeTrimis=codServiciu.split(" ")[codServiciu.split(" ").length-1];
+        Log.e("Ce cod am de trimis?",codDeTrimis);
+        intent.putExtra(COD_SERVICIU,codDeTrimis);
         startActivity(intent);
     }
 

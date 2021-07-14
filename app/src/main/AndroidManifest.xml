@@ -11,7 +11,7 @@
         android:roundIcon="@drawable/fundalalbastrulogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.BanchelorApp">
-        <activity android:name=".SalonBookingActivity"></activity>
+        <activity android:name=".booking.SalonBookingActivity"></activity>
         <activity android:name=".calendarulProgramarilor.ProgramareSalonActivity" />
         <activity android:name=".InfoAdoptie" />
         <activity android:name=".ServiciiActivity" />
