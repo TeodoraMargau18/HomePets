@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ListaDeparazitariAdapter extends ArrayAdapter<Deparazitare> {
-    private static final String TAG="ListaDeparazitariAdapter";
     private Context mContext;
     int mResource;
 

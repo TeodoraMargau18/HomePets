@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListaSaloaneAdapter extends ArrayAdapter<Salon> {
-    private static final String TAG="ListaSaloaneAdapter";
     private Context mContext;
     int mResource;
     public ListaSaloaneAdapter(@NonNull Context context, int resource,

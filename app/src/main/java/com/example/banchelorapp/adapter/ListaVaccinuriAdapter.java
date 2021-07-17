@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ListaVaccinuriAdapter extends ArrayAdapter<Vaccin> {
-    private static final String TAG="ListaVaccinuriAdapter";
     private Context mContext;
     int mResource;
 

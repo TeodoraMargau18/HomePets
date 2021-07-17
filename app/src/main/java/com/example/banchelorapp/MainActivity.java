@@ -1,40 +1,18 @@
 package com.example.banchelorapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.banchelorapp.mysql.BackgroundTask;
-import com.example.banchelorapp.utils.Animal;
 import com.example.banchelorapp.utils.Proprietar;
 import com.example.banchelorapp.utils.interventii.Deparazitare;
 import com.example.banchelorapp.utils.interventii.Interventie;
 import com.example.banchelorapp.utils.interventii.Vaccin;
-import com.google.android.material.navigation.NavigationView;
 
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.zip.Inflater;
-
-import static com.example.banchelorapp.AuthentificationActivity.email;
-//implements NavigationView.OnNavigationItemSelectedListener
 public class MainActivity extends AppCompatActivity  {
 
     String typeVaccinuri="getVaccinuri";

@@ -65,10 +65,10 @@ public class SignInActivity extends AppCompatActivity {
         }
         if(tietEmail.getText().toString().length()<1
                 ||!(tietEmail.getText().toString().contains("@yahoo.com"))) {
-            Log.e("nu contine @yahoo.com",tietEmail.getText().toString());
+            Toast.makeText(this, "nu contine @yahoo.com", Toast.LENGTH_SHORT).show();
             if(!(tietEmail.getText().toString().contains("@gmail.com"))){
                 tietEmail.setError(getString(R.string.camp_obligatoriu_email));
-                Log.e("nu contine @gmail.com",tietEmail.getText().toString());
+                Toast.makeText(this, "nu contine @gmail.com", Toast.LENGTH_SHORT).show();
                 return false;
             }
 
@@ -87,8 +87,6 @@ public class SignInActivity extends AppCompatActivity {
             String type="reg";
             BackgroundTask backgroundTask=new BackgroundTask(getApplicationContext());
             backgroundTask.execute(type,email,parola,nume,prenume,adresa,telefon);
-
-            Log.e("Validare date","A trecut de backgroundTask");
 
             return true;
         }

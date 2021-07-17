@@ -44,6 +44,8 @@ import java.util.List;
 
 public class BackgroundTask extends AsyncTask<String,String, String> {
 
+    public static String link="http://192.168.1.4/HomePets/";
+
     public boolean eTermimnat;
     public boolean inAnimale;
     public static boolean inAnimaleTerminat;
@@ -52,6 +54,7 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
     public boolean inServicii;
     public boolean serviciiTerminat;
     public static boolean vaccinuriTerminat;
+    public static boolean programariTerminat;
     public static boolean interventiiTerminat;
     public static boolean deparazitariTerminat;
     public static boolean cevaTerminat;
@@ -62,13 +65,8 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
     public static String parola;
     public static String adresa;
     public static String numarTel;
-    public static HashMap<Date,String> oreIndisponibile;
-
-
-
-
+    public static HashMap<String,ArrayList<String>> oreIndisponibile;
     Context context;
-    public static String link="http://192.168.1.6/HomePets/";
 
     public BackgroundTask(Context context){
         oreIndisponibile=new HashMap<>();
@@ -82,6 +80,7 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
         inServicii=false;
         serviciiTerminat=false;
         vaccinuriTerminat=false;
+        programariTerminat=false;
         interventiiTerminat=false;
         deparazitariTerminat=false;
         cevaTerminat=false;
@@ -153,9 +152,6 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                 e.printStackTrace();
             }
         }
-
-
-
         else
               if(type.equals("addDesc"))
               {
@@ -321,8 +317,6 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                         bufferedReader.close();
                         inputStream.close();
                         httpURLConnection.disconnect();
-
-                        String[] words=result.split(" ");
                         inAnimale=true;
                         return result;
                     } catch (IOException e) {
@@ -435,7 +429,6 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                                 Date dataViitoareiVaccinari=new SimpleDateFormat("yyyy-MM-dd").parse(dataViitoareiVaccinariSTR);
 
                                 String codMedic=jsonObject.getString("codMedic");
-                                String codVaccin=jsonObject.getString("codVaccin");
                                 float tarifVaccin=(float)(Double.parseDouble(jsonObject.getString("tarifVaccin"))) ;
                                 String cipAnimal=jsonObject.getString("cipAnimal");
 
@@ -485,7 +478,6 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
 
                             for(int i=0;i<jsonArray.length();i++) {
                                 jsonObject = jsonArray.getJSONObject(i);
-                                String codDeparazitare=jsonObject.getString("codDeparazitare");
                                 String dataDeparazitareSTR=jsonObject.getString("dataDeparazitare");
                                 Date dataDeparazitare=new SimpleDateFormat("yyyy-MM-dd").parse(dataDeparazitareSTR);
 
@@ -576,6 +568,7 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                 String numeAnimal=strings[2];
                 String codServiciu=strings[3];
                 String dataProgramare=strings[4];
+                String emailProprietar=strings[5];
                 try{
                     URL url=new URL(insertProgramareURL);
                     try{
@@ -593,7 +586,10 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                                 "&"+URLEncoder.encode("codServiciu","UTF-8")+"="+
                                 URLEncoder.encode(codServiciu,"UTF-8")+
                                 "&"+URLEncoder.encode("dataProgramare","UTF-8")+"="+
-                                URLEncoder.encode(dataProgramare,"UTF-8");
+                                URLEncoder.encode(dataProgramare,"UTF-8")+
+                                "&"+URLEncoder.encode("emailProprietar","UTF-8")+"="+
+                                URLEncoder.encode(emailProprietar,"UTF-8");
+
                         bufferedWriter.write(insertData);
                         bufferedWriter.flush();
                         bufferedWriter.close();
@@ -610,9 +606,8 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                         bufferedReader.close();
                         inputStream.close();
                         httpURLConnection.disconnect();
-                        if(result.equals("Succes!")){
-                            Toast.makeText(context, result, Toast.LENGTH_SHORT).show();
-                        }
+
+
                         return result;
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -659,14 +654,21 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                             JSONObject jsonObject=null;
 
                             for(int i=0;i<jsonArray.length();i++) {
+                                ArrayList listaProgramariZi=new ArrayList();
                                 jsonObject = jsonArray.getJSONObject(i);
                                 String oraProgramare=jsonObject.getString("oraProgramare");
                                 String dataProgramare=jsonObject.getString("dataProgramare");
 
                                 Date data=SalonBookingActivity.simpleDateFormatDB.parse(dataProgramare);
-                                Log.e("ce data mi-a luat",dataProgramare);
-                                oreIndisponibile.put(data,oraProgramare);
+                                listaProgramariZi.add(oraProgramare.trim());
+                                if(!oreIndisponibile.containsKey(dataProgramare))
+                                    oreIndisponibile.put(dataProgramare,listaProgramariZi);
+                                else{
+                                    oreIndisponibile.get(dataProgramare).add(oraProgramare.trim());
+
+                                }
                             }
+                            programariTerminat=true;
 
                         }catch (Exception ex){
                             Toast.makeText(context,result,Toast.LENGTH_LONG).show();
@@ -789,6 +791,7 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                 for(int i=0;i<jsonArray.length();i++) {
                     jsonObject = jsonArray.getJSONObject(i);
                     String codSalon = jsonObject.getString("codSalon");
+
 
                     //Daca eu deja am salonul in lista doar preiau serviciul si poza si le inserez in lista de servicii si de poze a acelui salon
                     if (listaCoduriExistente.contains(codSalon)) {

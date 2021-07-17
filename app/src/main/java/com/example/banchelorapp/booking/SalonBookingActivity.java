@@ -1,7 +1,6 @@
 package com.example.banchelorapp.booking;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,34 +8,33 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import com.example.banchelorapp.ListaSaloaneActivity;
 import com.example.banchelorapp.R;
 import com.example.banchelorapp.SalonSelectatActivity;
 import com.example.banchelorapp.ServiciiActivity;
-import com.example.banchelorapp.calendarulProgramarilor.SpacesItemDecoration;
+import com.example.banchelorapp.fragments.DialogFragmentNumeProgramare;
 import com.example.banchelorapp.mysql.BackgroundTask;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 
 import devs.mulham.horizontalcalendar.HorizontalCalendar;
 import devs.mulham.horizontalcalendar.HorizontalCalendarView;
 import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
-
+//Activitatea in care preiau programarile
 public class SalonBookingActivity extends AppCompatActivity {
-
+    public static Context ctx;
+    public static final String ORA = "ora";
+    public static final String COD_SERVICIU = "codServiciu";
+    public static final String DATA_INSERT = "dataInsert";
     View activityBookingView;
+    public static boolean inserat;
+    public static SalonBookingActivity currentApp;
 
     Calendar selected_date;
     LinearLayout linearLayout1;
@@ -54,19 +52,15 @@ public class SalonBookingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salon_booking);
-
-        Log.e("Cate programari am pana acm ?", String.valueOf(BackgroundTask.oreIndisponibile.size()));
-
-        String type="getProgramari";
-        BackgroundTask backgroundTask=new BackgroundTask(getApplicationContext());
-        backgroundTask.execute(type, String.valueOf(SalonSelectatActivity.codSalon));
+        ctx=this.getApplicationContext();
+        currentApp=this;
 
 
+        while(!BackgroundTask.programariTerminat){
+        }
         activityBookingView=findViewById(R.id.activityBookingView);
         intent =getIntent();
         codServiciu= (String) intent.getSerializableExtra(ServiciiActivity.COD_SERVICIU);
-        if(codServiciu!=null)
-            Log.e("Ce cod am ?",codServiciu);
         context=this.getApplicationContext();
         linearLayout1 =findViewById(R.id.linear1);
         linearLayout2 =findViewById(R.id.linear2);
@@ -83,8 +77,7 @@ public class SalonBookingActivity extends AppCompatActivity {
         date.add(Calendar.DATE,0);
 
     }
-
-    private void loadAvaibleTimeSlot(String zi,String dataInsert) {
+    private void loadAvaibleTimeSlot(String zi, String dataInsert) {
         linearLayout1.removeAllViews();
         linearLayout2.removeAllViews();
         linearLayout3.removeAllViews();
@@ -98,14 +91,23 @@ public class SalonBookingActivity extends AppCompatActivity {
                     while(oraInceput<oraSfarsit){
                         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                                 LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.WRAP_CONTENT);
-
                         Button btn = new Button(context);
                         btn.setId(oraInceput);
                         final int id_ = btn.getId();
                         String text=oraInceput+":00-"+(oraInceput+1)+":00";
                         oraInceput+=1;
                         btn.setText(text);
-                        btn.setBackgroundColor(Color.rgb(174, 255, 255));
+                        if(BackgroundTask.oreIndisponibile.containsKey(dataInsert)){
+                            for(String programare:BackgroundTask.oreIndisponibile.get(dataInsert)){
+                                if(programare.trim().equals(text.trim())){
+                                    btn.setBackgroundColor(Color.rgb(238, 86, 86));
+                                    btn.setEnabled(false);
+                                }
+                            }
+                        }else{
+                            btn.setBackgroundColor(Color.rgb(174, 255, 255));
+                        }
+
                         if(i==0||i==3||i==6){
                             linearLayout1.addView(btn, params);
                         }else if(i==1||i==4||i==7){
@@ -117,18 +119,31 @@ public class SalonBookingActivity extends AppCompatActivity {
                         btn.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View view) {
                                 //inserare in baza de date
-                                String type="inserareProgramare";
+                                inserat=false;
                                 String ora=text;
-                                Log.e("Ce data inserez",dataInsert);
-                                BackgroundTask backgroundTask=new BackgroundTask(getApplicationContext());
-                                backgroundTask.execute(type,ora,"Jaqueline",codServiciu,dataInsert);
-                                Toast.makeText(view.getContext(),
-                                        "Button clicked index = " + id_, Toast.LENGTH_LONG)
-                                        .show();
+
+                                DialogFragmentNumeProgramare dialogFragmentNumeProgramare=new DialogFragmentNumeProgramare();
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable(ORA, ora);
+                                bundle.putSerializable(COD_SERVICIU, codServiciu);
+                                bundle.putSerializable(DATA_INSERT, dataInsert);
+
+                                dialogFragmentNumeProgramare.setArguments(bundle);
+                                dialogFragmentNumeProgramare.show(getSupportFragmentManager(),"MyDialogFragment");
                             }
                         });
+                        if(inserat==true){
+                            if(BackgroundTask.oreIndisponibile.containsKey(dataInsert))
+                                BackgroundTask.oreIndisponibile.get(dataInsert).add(text);
+                            else
+                            {
+                                ArrayList list=new ArrayList();
+                                list.add(text);
+                                BackgroundTask.oreIndisponibile.put(dataInsert,list);
+                            }
+                        }
+                        inserat=false;
                         i++;
-
                 }
 
             }
@@ -150,23 +165,16 @@ public class SalonBookingActivity extends AppCompatActivity {
                 ;
         selected_date=startDate;
         String ziDinSaptamana=getZiDinSaptamana(selected_date);
+
         loadAvaibleTimeSlot(ziDinSaptamana,simpleDateFormatDB.format(selected_date.getTime()));
-        Log.e("Ce data am selectat-data initiala?", simpleDateFormatDB.format(startDate.getTime()));
 
         horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
             @Override
             public void onDateSelected(Calendar date, int position) {
                 if(selected_date.getTimeInMillis()!=date.getTimeInMillis()){
                     selected_date=date;
-                    Log.e("Schimb data","data schimbata");
-                    String ziDinSaptamanaEng=String.valueOf(date.getTime()).trim().substring(0,4);
-                    Log.e("In functie", ziDinSaptamanaEng+" - "+ziDinSaptamanaEng.trim().toLowerCase().equals("thu"));
                     String ziDinSaptamana=getZiDinSaptamana(date);
-
-                    Log.e("Schimb data",ziDinSaptamana);
-
                     loadAvaibleTimeSlot(ziDinSaptamana.trim(),simpleDateFormatDB.format(selected_date.getTime()));
-                    Log.e("Ce data am selectat?", ziDinSaptamana);
                 }
             }
         });
@@ -177,30 +185,22 @@ public class SalonBookingActivity extends AppCompatActivity {
         String ziDinSaptamana="";
         if(ziDinSaptamanaEng.trim().toLowerCase().equals("mon")){
             ziDinSaptamana="luni";
-            Log.e("In functie", ziDinSaptamana);
         }else if(ziDinSaptamanaEng.trim().toLowerCase().equals("thu")){
             ziDinSaptamana="marti";
-            Log.e("In functie", ziDinSaptamana);
         }else if(ziDinSaptamanaEng.trim().toLowerCase().equals("wed")){
             ziDinSaptamana="miercuri";
-            Log.e("In functie", ziDinSaptamana);
         }else if(ziDinSaptamanaEng.trim().toLowerCase().equals("tue")){
             ziDinSaptamana="joi";
-            Log.e("In functie", ziDinSaptamana);
         }else if(ziDinSaptamanaEng.trim().toLowerCase().equals("fri")){
             ziDinSaptamana="vineri";
-            Log.e("In functie", ziDinSaptamana);
         }else if(ziDinSaptamanaEng.trim().toLowerCase().equals("sat")){
             ziDinSaptamana="sambata";
-            Log.e("In functie", ziDinSaptamana);
         }else if(ziDinSaptamanaEng.trim().toLowerCase().equals("sun")){
             ziDinSaptamana="duminica";
-            Log.e("In functie", ziDinSaptamana);
         }
         else{
-            Log.e("Nu a intrat in niciun if","E naspa");
+            Log.e("Nu a intrat in niciun if","");
         }
-        Log.e("In functie", ziDinSaptamana);
         return ziDinSaptamana;
     }
     private void calculOrePeZile() {
@@ -227,7 +227,6 @@ public class SalonBookingActivity extends AppCompatActivity {
                 zile.put(ziDinSaptamana,lista);
             }
         }
-        Log.e("Finish","Am terminat de incarcat pe zile");
 
     }
 

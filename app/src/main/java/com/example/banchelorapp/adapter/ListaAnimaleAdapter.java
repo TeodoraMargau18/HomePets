@@ -29,7 +29,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ListaAnimaleAdapter extends ArrayAdapter<Animal>  {
-    private static final String TAG="ListaAnimaleAdapter";
     private Context mContext;
     int mResource;
     ImageView imgListaAnimale;

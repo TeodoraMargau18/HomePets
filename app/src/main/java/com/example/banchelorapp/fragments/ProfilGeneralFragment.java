@@ -54,8 +54,6 @@ public class ProfilGeneralFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
       View view= inflater.inflate(R.layout.fragment_profil_general, container, false);
         ivAnimalProfil=view.findViewById(R.id.imgFragmentGeneral);
-      //-------------
-
         expandableListView=view.findViewById(R.id.expLvProfilGeneral);
 
         Animal animal;
@@ -71,8 +69,7 @@ public class ProfilGeneralFragment extends Fragment {
         adapter=new ExpandableAdapter(this.getContext(),listGroup,listItem);
         expandableListView.setAdapter(adapter);
         Picasso.get().load(ProfilMedicalActivity.animal.getImagine().trim()).into(ivAnimalProfil);
-        initListData(animal);
-        //pana aici
+        initListData();
 
         if(getContext()!=null)
         {
@@ -81,20 +78,16 @@ public class ProfilGeneralFragment extends Fragment {
                     (getContext().getApplicationContext(),
                             R.layout.lista_vaccinuri_adapter,
                             listaVaccinuri);
-//            vaccinuriListView.setAdapter(adapter);
         }
-
-      //-------------
     return view;
     }
 
-    private void initListData(Animal animal){
+    private void initListData(){
         listGroup.add("Proprietar");
         listGroup.add("Descriere animal");
         listGroup.add("Identificare animal");
 
         ArrayList<String> array;
-        //vectorul in care bag toate elementele unei liste expandabile
 
         ArrayList<String> list1=new ArrayList<>();
         array=new ArrayList<>();

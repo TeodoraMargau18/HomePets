@@ -34,7 +34,6 @@ public class CentruAdoptiiActivity extends AppCompatActivity {
         for (AnimaleAdoptie a : AuthentificationActivity.listaAnimaleAdoptie) {
             numeAnimale.add(a.getNumeAnimal());
             pozeAnimale.add(a.getImagine());
-            Log.e("In centru adoptii", "Am luat pozele si animalul");
         }
 
         adapter = new GridViewAdapter(CentruAdoptiiActivity.this, numeAnimale, pozeAnimale);
@@ -62,7 +61,6 @@ public class CentruAdoptiiActivity extends AppCompatActivity {
             for (AnimaleAdoptie a : AuthentificationActivity.listaAnimaleAdoptie) {
                 numeAnimale.add(a.getNumeAnimal());
                 pozeAnimale.add(a.getImagine());
-                Log.e("In centru adoptii OnActivityResult", "Am luat pozele si animalul");
             }
             adapter.updateItems(numeAnimale,pozeAnimale);
             gridView.setAdapter(adapter);

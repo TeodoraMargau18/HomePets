@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ListaInterventiiAdapter extends ArrayAdapter<Interventie> {
-    private static final String TAG="ListaInterventiiAdapter";
     private Context mContext;
     int mResource;
 

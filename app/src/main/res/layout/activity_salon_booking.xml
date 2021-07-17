@@ -31,6 +31,7 @@
             android:id="@+id/linear1"
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                android:padding="5dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="4dp"
                 android:orientation="vertical"/>
@@ -38,12 +39,14 @@
                 android:id="@+id/linear2"
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                android:padding="5dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="4dp"
                 android:orientation="vertical" />
             <LinearLayout
                 android:id="@+id/linear3"
                 android:layout_width="0dp"
+                android:padding="5dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:layout_marginTop="4dp"

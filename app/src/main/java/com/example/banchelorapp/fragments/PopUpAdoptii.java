@@ -84,7 +84,6 @@ public class PopUpAdoptii extends DialogFragment {
 
                 Intent intent=new Intent(view.getContext(), InfoAdoptie.class);
                 startActivityForResult(intent, REQUEST_CODE);
-//                Toast.makeText(dlg.getContext(),"Ai adoptat",Toast.LENGTH_LONG).show();
                 dlg.dismiss();
             }
         });

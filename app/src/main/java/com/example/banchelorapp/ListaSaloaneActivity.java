@@ -38,6 +38,7 @@ public class ListaSaloaneActivity extends AppCompatActivity {
 
         for(int i=0;i<AuthentificationActivity.listaSaloane.size();i++)
         {
+            Log.e("Cate saloane am ?", String.valueOf(AuthentificationActivity.listaSaloane.size()));
             listaItemApasat.add(false);
         }
 

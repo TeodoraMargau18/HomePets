@@ -28,7 +28,6 @@ public class InfoAdoptie extends AppCompatActivity {
 
     CheckBox checkBox;
     Button btnAdoptInfo;
-    AnimaleAdoptie animal;
     Context ctx;
     public static final String type="UpdateStare";
 
@@ -48,44 +47,6 @@ public class InfoAdoptie extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (checkBox.isChecked()) {
-
-
-//                    Aici voi trimite Email
-//                    final String emailApp="teodora17416@gmail.com";
-//                    final String parola="yolO17416";
-//                    String mesaj="Un mesaj de testare";
-//                    Properties props=new Properties();
-//                    props.put("mail.transport.protocol", "smtp");
-//                    props.put("mail.smtps.auth","true");
-//                    props.put("mail.smtps.starttls.enable","true");
-//                    props.put("mail.smtps.host","smtp.gmail.com");
-//                    props.put("mail.smtps.port","587");
-//                    Session session=Session.getInstance(props,
-//                            new javax.mail.Authenticator(){
-//                                @Override
-//                                protected PasswordAuthentication getPasswordAuthentication() {
-//                                    return new PasswordAuthentication(emailApp,parola);
-//                                }
-//                            });
-//
-//                    try{
-//                        Message message=new MimeMessage(session);
-//                    message.setFrom(new InternetAddress(emailApp));
-//                    message.setRecipients(Message.RecipientType.TO,InternetAddress.parse("teo.sysy@gmail.com"));
-//                    message.setSubject("Testare");
-//                    message.setText("Un mesaj de confirmare");
-//                    Transport.send(message);
-//                        Toast.makeText((getApplicationContext()), "Email sent successfully", Toast.LENGTH_LONG).show();
-//                    } catch (MessagingException e) {
-//                       throw new RuntimeException(e);
-//                    }
-//
-//                    StrictMode.ThreadPolicy policy=
-//                            new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//                    StrictMode.setThreadPolicy(policy);
-//                    pana aici
-
-
                     Toast.makeText(InfoAdoptie.this, "Te asteptam la centru pentru a completa formularul de adoptie", Toast.LENGTH_LONG).show();
 
                     String id=AuthentificationActivity.listaAnimaleAdoptie.get(CentruAdoptiiActivity.pozitieAnimal).getID();

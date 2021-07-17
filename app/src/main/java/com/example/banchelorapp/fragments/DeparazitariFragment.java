@@ -23,7 +23,6 @@ public class DeparazitariFragment extends Fragment {
 
     public static final String DEPARAZITARI_KEY="transferAnimal";
 
-    Bundle bundle;
     ListView deparazitariListView;
 
     public DeparazitariFragment() {
@@ -44,7 +43,6 @@ public class DeparazitariFragment extends Fragment {
         Animal animal;
         if(getArguments()!=null){
             animal=getArguments().getParcelable(DeparazitariFragment.DEPARAZITARI_KEY);
-            Log.e("Deparazitari fragment",String.valueOf( animal.getDeparazitariAnimal().size()));
         }
         else
             animal=new Animal();

@@ -43,16 +43,12 @@ public class VaccinuriFragment extends Fragment {
         Animal animal;
         if(getArguments()!=null){
             animal=getArguments().getParcelable(VaccinuriFragment.VACCINURI_KEY);
-            Log.e("Vaccinuri fragment",String.valueOf( animal.getVaccinuriAnimal().size()));
         }
         else
             animal=new Animal();
         if(getContext()!=null)
         {
             ArrayList<Vaccin> listaVaccinuri=animal.getVaccinuriAnimal();
-            for(int i=0;i<listaVaccinuri.size();i++){
-                Log.e("aici am data?",listaVaccinuri.get(i).getTip().toString());
-            }
             ListaVaccinuriAdapter adapter=new ListaVaccinuriAdapter
                     (getContext().getApplicationContext(),
                             R.layout.lista_vaccinuri_adapter,
