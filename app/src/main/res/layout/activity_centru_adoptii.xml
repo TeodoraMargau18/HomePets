@@ -5,18 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CentruAdoptiiActivity"
-    android:padding="2dp">
+    android:padding="2dp"
+
+    android:background="#2DAED6">
 
     <GridView
         android:id="@+id/gridAnimaleAdoptie"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:numColumns="2"
-        android:background="#2DAED6"
+        android:layout_marginBottom="50dp"
         android:padding="10dp"
+        />
+    <Button
+        android:id="@+id/btn_adoptiile_mele"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/adoptiile_mele"
+        app:layout_constraintTop_toBottomOf="@+id/gridAnimaleAdoptie"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

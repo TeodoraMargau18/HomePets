@@ -22,7 +22,7 @@ package com.example.banchelorapp.fragments;
 public class PopUpAdoptii extends DialogFragment {
 
     public static final int REQUEST_CODE = 101;
-    TextView tvNume, tvSpecie, tvRasa,etDespre,tvDataN, tvVarsta;
+    TextView tvNume, tvSpecie, tvRasa,etDespre, centruAdoptie, tvVarsta;
     Button btnInchide;
     Button btnAdopta;
     PopUpAdoptii dlg;
@@ -41,7 +41,7 @@ public class PopUpAdoptii extends DialogFragment {
         tvNume=view.findViewById(R.id.dialogFragmentNume);
         tvSpecie=view.findViewById(R.id.dialogFragmentSpecie);
         tvRasa=view.findViewById(R.id.dialogFragmentRasa);
-        tvDataN=view.findViewById(R.id.dialogFragmentDataN);
+        centruAdoptie =view.findViewById(R.id.dialogFragmentCentruAdoptie);
         tvVarsta=view.findViewById(R.id.dialogFragmentVarsta);
 
         btnInchide=view.findViewById(R.id.dialogFragmentInchide);
@@ -57,8 +57,7 @@ public class PopUpAdoptii extends DialogFragment {
         tvRasa.setText(animal.getRasaAnimal());
         tvVarsta.setText(animal.returneazaVarsta());
 
-        String dataFormatata=formatareData(animal.getDataNasteriiAnimal().toString());
-        tvDataN.setText(dataFormatata);
+        centruAdoptie.setText(animal.getCentruAdoptie());
         if(animal.getDescriereAnimal().equals("null"))
             etDespre.setText("");
         else

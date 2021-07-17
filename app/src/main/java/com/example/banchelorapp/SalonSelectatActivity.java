@@ -82,6 +82,4 @@ public class SalonSelectatActivity extends AppCompatActivity {
 
     }
 
-    public void goToProgramarileMeleActivity(View view) {
-    }
 }

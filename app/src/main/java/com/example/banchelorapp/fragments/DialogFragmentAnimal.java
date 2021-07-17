@@ -42,7 +42,7 @@ public class DialogFragmentAnimal extends DialogFragment {
         tvSpecie=view.findViewById(R.id.dialogFragmentSpecie);
         tvVarsta=view.findViewById(R.id.dialogFragmentVarsta);
         tvRasa=view.findViewById(R.id.dialogFragmentRasa);
-        tvDataN=view.findViewById(R.id.dialogFragmentDataN);
+        tvDataN=view.findViewById(R.id.dialogFragmentCentruAdoptie);
 
         btnInchide=view.findViewById(R.id.dialogFragmentInchide);
         btnSalveaza=view.findViewById(R.id.dialogFragmentSalveaza);

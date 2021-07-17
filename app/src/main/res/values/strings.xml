@@ -113,4 +113,14 @@ de îngrijirea omului se sancționează cu amendă de la 1.000 lei la 3.000 de l
     <string name="animal_sters">AnimalSters</string>
     <string name="trimite">Trimite</string>
     <string name="nume_animal">Nume Animal</string>
+    <string name="varsta">Varsta</string>
+    <string name="centru_adoptie">Centru Adoptie</string>
+    <string name="rasa">Rasa</string>
+    <string name="adoptiile_mele">Adoptiile mele</string>
+    <string name="nume_salon">Nume salon</string>
+    <string name="nume_serviciu">Nume serviciu: </string>
+    <string name="data_programare">Data programare: </string>
+    <string name="nume_animmal">Nume animal: </string>
+    <string name="ora_programare">Ora programare: </string>
+    <string name="categorie_animal">Categorie animal</string>
 </resources>

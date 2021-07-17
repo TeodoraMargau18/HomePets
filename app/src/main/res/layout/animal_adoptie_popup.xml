@@ -8,7 +8,7 @@
 
     <RelativeLayout
         android:layout_width="300dp"
-        android:layout_height="470dp"
+        android:layout_height="500dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +35,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="190dp"
+            android:layout_height="match_parent"
             android:layout_below="@+id/dialogFragmentNume"
             android:orientation="vertical"
             android:weightSum="4">
@@ -74,7 +74,7 @@
                         android:layout_width="250dp"
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
-                        android:text="Rasa"
+                        android:text="@string/rasa"
                         android:textSize="18dp" />
 
                 </LinearLayout>
@@ -108,20 +108,20 @@
                     android:weightSum="1">
 
                     <TextView
-                        android:id="@+id/dialogFragmentDataN"
-                        android:layout_width="253dp"
+                        android:id="@+id/dialogFragmentCentruAdoptie"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
-                        android:text="Data nasterii"
+                        android:text="@string/centru_adoptie"
 
-                        android:textSize="15dp" />
+                        android:textSize="13dp" />
 
                     <TextView
                         android:id="@+id/dialogFragmentVarsta"
                         android:layout_width="250dp"
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
-                        android:text="Varsta"
+                        android:text="@string/varsta"
                         android:textSize="18dp" />
 
                 </LinearLayout>
@@ -132,7 +132,7 @@
                 <ScrollView
                     android:id="@+id/scrollView"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="100dp"
                     android:layout_weight="0.7"
                     android:orientation="vertical">
 

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:outlineAmbientShadowColor="#0B1C5A"
+    android:background="@color/white"
+        android:layout_marginTop="10dp"
+    android:padding="5dp"
+
+        >
+    <TextView
+        android:id="@+id/tv_serviciu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2DAED6"
+
+        android:fontFamily="@font/annie_use_your_telescope"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="25dp"
+        android:text="@string/nume_serviciu"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/tvNumeAnimalServicii"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2DAED6"
+        android:text="@string/nume_animmal"
+        android:fontFamily="@font/annie_use_your_telescope"
+        android:textAlignment="textStart"
+        android:textColor="#3A5AB8"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tvNumeSalonServicii"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#2DAED6"
+            android:text="@string/nume_salon"
+            android:fontFamily="@font/annie_use_your_telescope"
+            android:textAlignment="textStart"
+            android:textColor="#2444A3"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    <TextView android:id="@+id/tv_ora"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#2DAED6"
+    android:text="@string/ora_programare"
+    android:fontFamily="@font/annie_use_your_telescope"
+    android:textAlignment="textStart"
+    android:textColor="#3A5AB8"
+    android:textSize="20dp"
+    android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvZi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2DAED6"
+        android:text="@string/data_programare"
+        android:fontFamily="@font/annie_use_your_telescope"
+        android:textAlignment="textStart"
+        android:textColor="#3A5AB8"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+
+    </LinearLayout>

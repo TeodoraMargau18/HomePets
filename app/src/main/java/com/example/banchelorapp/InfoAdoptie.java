@@ -53,6 +53,9 @@ public class InfoAdoptie extends AppCompatActivity {
                     String statut="adoptat";
                     BackgroundTask backgroundTask=new BackgroundTask(ctx);
                     backgroundTask.execute(type,statut,id);
+
+                    AuthentificationActivity.listaAnimaleAdoptatee.add(AuthentificationActivity.listaAnimaleAdoptie.get(CentruAdoptiiActivity.pozitieAnimal));
+
                     AuthentificationActivity.listaAnimaleAdoptie.remove(CentruAdoptiiActivity.pozitieAnimal);
                     finish();
                 }

@@ -6,8 +6,10 @@
     android:layout_height="match_parent"
     android:background="#2DAED6">
     <RelativeLayout
+        android:id="@+id/RLSaloaneleMele"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="100dp">
         <ImageView
         android:id="@+id/ivSaloane"
         android:layout_width="match_parent"
@@ -34,12 +36,23 @@
             android:layout_marginTop="30dp"
             android:id="@+id/listViewSaloane"
             android:layout_width="match_parent"
-            android:layout_height="650dp"
+            android:layout_height="500dp"
             android:layout_below="@+id/tvListaSaloane"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvListaSaloane">
         </ListView>
+
     </RelativeLayout>
+    <Button
+        android:id="@+id/btnProgramarileMele"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:text="@string/programarile_mele"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RLSaloaneleMele"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

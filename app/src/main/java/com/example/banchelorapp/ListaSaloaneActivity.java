@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ public class ListaSaloaneActivity extends AppCompatActivity {
 
     public static String SALON_KEY="transfer salon";
     ListView listaSaloane;
+    Button btnProgramarileMele;
     Bundle bundle;
     Intent intent;
     public ArrayList<Boolean> listaItemApasat;
@@ -35,7 +37,7 @@ public class ListaSaloaneActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_saloane);
         listaItemApasat=new ArrayList<>();
-
+        btnProgramarileMele=findViewById(R.id.btnProgramarileMele);
         for(int i=0;i<AuthentificationActivity.listaSaloane.size();i++)
         {
             Log.e("Cate saloane am ?", String.valueOf(AuthentificationActivity.listaSaloane.size()));
@@ -57,6 +59,15 @@ public class ListaSaloaneActivity extends AppCompatActivity {
                  intent = new Intent(getApplicationContext(),SalonSelectatActivity.class);
                  intent.putExtras(bundle);
                  startActivity(intent);
+            }
+        });
+        btnProgramarileMele.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("Test", "Programarile mele");
+
+                intent=new Intent(getApplicationContext(),ProgramarileMeleActivity.class);
+                startActivity(intent);
             }
         });
     }

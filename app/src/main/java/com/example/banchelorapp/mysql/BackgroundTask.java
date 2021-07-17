@@ -13,6 +13,7 @@ import com.example.banchelorapp.MainActivity;
 import com.example.banchelorapp.booking.SalonBookingActivity;
 import com.example.banchelorapp.utils.Animal;
 import com.example.banchelorapp.utils.AnimaleAdoptie;
+import com.example.banchelorapp.utils.Programare;
 import com.example.banchelorapp.utils.Proprietar;
 import com.example.banchelorapp.utils.Salon;
 import com.example.banchelorapp.utils.ServiciuSalon;
@@ -48,6 +49,7 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
 
     public boolean eTermimnat;
     public boolean inAnimale;
+    public boolean inAnimaleAdoptate;
     public static boolean inAnimaleTerminat;
     public boolean inAnimaleAdoptie;
     public boolean inSaloane;
@@ -74,6 +76,7 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
         eTermimnat=false;
         corect=false;
         inAnimale=false;
+        inAnimaleAdoptate=false;
         inAnimaleTerminat=false;
         inAnimaleAdoptie=false;
         inSaloane=false;
@@ -95,6 +98,7 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
         String loginURL=link+"login.php";
         String regURL=link+"test.php";
         String getAnimaleURL=link+"getAnimals.php";
+        String getAnimaleAdoptateURL=link+"getAnimaleAdoptate.php";
         String getAnimaleAdoptieURL=link+"getAnimaleAdoptie.php";
         String getSaloaneURL=link+"getPachSalon.php";
         String getVaccinuri=link+"getVaccinuri.php";
@@ -104,6 +108,7 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
         String addStateURL=link+"addState.php";
         String insertProgramareURL=link+"insertProgramare.php";
         String getProgramariURL=link+"getProgramari.php";
+        String getProgramarileMeleURL=link+"getProgramarileMele.php";
 
         if(type.equals("reg")){
             String email=strings[1];
@@ -214,7 +219,10 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                                   +URLEncoder.encode(statutAnimal,"UTF-8")+
                                   "&"+
                                   URLEncoder.encode("ID","UTF-8")+"="
-                                  +URLEncoder.encode(idAnimal,"UTF-8");
+                                  +URLEncoder.encode(idAnimal,"UTF-8")+
+                                  "&"+
+                                  URLEncoder.encode("emailAdoptator","UTF-8")+"="
+                                  +URLEncoder.encode( AuthentificationActivity.email,"UTF-8");
                           bufferedWriter.write(insertData);
                           bufferedWriter.flush();
                           bufferedWriter.close();
@@ -358,7 +366,41 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                     e.printStackTrace();
                 }
             }else
-            if(type.equals("getSaloane")){
+            if(type.equals("getAnimaleAdoptate")){
+                try{
+                    URL url=new URL(getAnimaleAdoptateURL);
+                    try{
+                        HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
+
+                        httpURLConnection.setRequestMethod("POST");
+                        httpURLConnection.setDoOutput(true);
+                        httpURLConnection.setDoInput(true);
+
+                        InputStream inputStream=httpURLConnection.getInputStream();
+                        InputStreamReader inputStreamReader=new InputStreamReader(inputStream,"ISO-8859-1");
+                        BufferedReader bufferedReader=new BufferedReader(inputStreamReader);
+                        String result="";
+                        String line="";
+                        StringBuilder stringBuilder=new StringBuilder();
+                        while((line=bufferedReader.readLine())!=null){
+                            stringBuilder.append(line).append("\n");
+                        }
+                        result=stringBuilder.toString();
+                        bufferedReader.close();
+                        inputStream.close();
+                        httpURLConnection.disconnect();
+                        inAnimaleAdoptate=true;
+                        return result;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }catch(MalformedURLException e){
+                    e.printStackTrace();
+                }
+        }
+            else
+        if
+            (type.equals("getSaloane")){
                 try{
                     URL url=new URL(getSaloaneURL);
                     try{
@@ -680,6 +722,67 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                 }catch(MalformedURLException e){
                     e.printStackTrace();
                 }
+            }else if (type.equals("getProgramarileMele")) {
+                String emailProprietar = strings[1];
+                try {
+                    URL url = new URL(getProgramarileMeleURL);
+                    try {
+                        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+                        httpURLConnection.setRequestMethod("POST");
+                        httpURLConnection.setDoOutput(true);
+                        httpURLConnection.setDoInput(true);
+
+                        OutputStream outputStream = httpURLConnection.getOutputStream();
+                        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-8");
+                        BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
+                        String insertData = URLEncoder.encode("emailProprietar", "UTF-8") + "=" +
+                                URLEncoder.encode(emailProprietar, "UTF-8");
+                        bufferedWriter.write(insertData);
+                        bufferedWriter.flush();
+                        bufferedWriter.close();
+
+                        InputStream inputStream = httpURLConnection.getInputStream();
+                        InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "ISO-8859-1");
+                        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                        String result = "";
+                        String line = "";
+                        StringBuilder stringBuilder = new StringBuilder();
+                        while ((line = bufferedReader.readLine()) != null) {
+                            stringBuilder.append(line).append("\n");
+                        }
+                        result = stringBuilder.toString();
+                        bufferedReader.close();
+                        inputStream.close();
+                        httpURLConnection.disconnect();
+                        try {
+                            JSONArray jsonArray = new JSONArray(result);
+                            JSONObject jsonObject = null;
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                jsonObject = jsonArray.getJSONObject(i);
+                                String oraProgramare = jsonObject.getString("oraProgramare");
+                                String dataProgramare = jsonObject.getString("dataProgramare");
+                                String numeAnimal = jsonObject.getString("numeAnimal");
+                                String serviciu = jsonObject.getString("denumireServiciu");
+                                String numeSalon = jsonObject.getString("numeSalon");
+
+
+                                Programare p = new Programare(dataProgramare, oraProgramare, numeAnimal, serviciu, numeSalon);
+
+                                AuthentificationActivity.listaProgramarileMele.add(p);
+                            }
+
+                        } catch (Exception ex) {
+                            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+                        }
+                        return result;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
             }
         return null;
     }
@@ -747,6 +850,43 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                 Toast.makeText(context,s,Toast.LENGTH_LONG).show();
             }
         }
+        if(inAnimaleAdoptate){
+            try{
+                JSONArray jsonArray=new JSONArray(s);
+                JSONObject jsonObject=null;
+
+                for(int i=0;i<jsonArray.length();i++) {
+                    jsonObject = jsonArray.getJSONObject(i);
+                    ArrayList<Deparazitare> deparazitari = new ArrayList<Deparazitare>();
+                    ArrayList<Interventie> interventii = new ArrayList<Interventie>();
+                    ArrayList<Vaccin> vaccinuri = new ArrayList<Vaccin>();
+
+                    String ID=jsonObject.getString("ID");
+                    String emailAdoptator=jsonObject.getString("emailAdoptator");
+                    String imagine=link+jsonObject.getString("imagineAnimal");
+                    String numeAnimal=jsonObject.getString("numeAnimal");
+                    String rasaAnimal=jsonObject.getString("rasaAnimal");
+                    String centruAdoptie=jsonObject.getString("centruAdoptie");
+                    String descriereAnimal=jsonObject.getString("despreAnimal");
+                    String specieAnimal=jsonObject.getString("categorieAnimal");
+                    String sexAnimal=jsonObject.getString("sexAnimal");
+                    String culoare=jsonObject.getString("culoareAnimal");
+                    String statut=jsonObject.getString("statutAnimal");
+
+                    String dataNasteriiAnimalSTR=jsonObject.getString("dataNasteriiAnimal");
+                    Date dataNasteriiAnimal=new SimpleDateFormat("yyyy-MM-dd").parse(dataNasteriiAnimalSTR);
+                    AnimaleAdoptie a=new AnimaleAdoptie(imagine,ID,numeAnimal,rasaAnimal,descriereAnimal,specieAnimal,
+                            sexAnimal,dataNasteriiAnimal,culoare,centruAdoptie,vaccinuri,interventii,deparazitari);
+                    if(statut.toLowerCase().trim().equals("adoptat")
+                            &&emailAdoptator.trim().equals(AuthentificationActivity.email))
+                         AuthentificationActivity.listaAnimaleAdoptatee.add(a);
+                    Log.e("Animale in adoptate ", String.valueOf(AuthentificationActivity.listaAnimaleAdoptatee.size()));
+                }
+
+            }catch (Exception ex){
+                Toast.makeText(context,s,Toast.LENGTH_LONG).show();
+            }
+        }
         if(inAnimaleAdoptie){
             try{
                 JSONArray jsonArray=new JSONArray(s);
@@ -762,6 +902,7 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
                     String imagine=link+jsonObject.getString("imagineAnimal");
                     String numeAnimal=jsonObject.getString("numeAnimal");
                     String rasaAnimal=jsonObject.getString("rasaAnimal");
+                    String centruAdoptie=jsonObject.getString("centruAdoptie");
                     String descriereAnimal=jsonObject.getString("despreAnimal");
                     String specieAnimal=jsonObject.getString("categorieAnimal");
                     String sexAnimal=jsonObject.getString("sexAnimal");
@@ -770,8 +911,8 @@ public class BackgroundTask extends AsyncTask<String,String, String> {
 
                     String dataNasteriiAnimalSTR=jsonObject.getString("dataNasteriiAnimal");
                     Date dataNasteriiAnimal=new SimpleDateFormat("yyyy-MM-dd").parse(dataNasteriiAnimalSTR);
-                    AnimaleAdoptie a= new AnimaleAdoptie(ID,imagine,numeAnimal,rasaAnimal,descriereAnimal,
-                            specieAnimal,sexAnimal,dataNasteriiAnimal,culoare,vaccinuri,interventii,deparazitari);
+                    AnimaleAdoptie a=new AnimaleAdoptie(imagine,ID,numeAnimal,rasaAnimal,descriereAnimal,specieAnimal,
+                            sexAnimal,dataNasteriiAnimal,culoare,centruAdoptie,vaccinuri,interventii,deparazitari);
                     if(!statut.toLowerCase().trim().equals("adoptat"))
                     AuthentificationActivity.listaAnimaleAdoptie.add(a);
                 }
